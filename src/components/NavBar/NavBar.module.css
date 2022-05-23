@@ -1,0 +1,33 @@
+.nav {
+	background: rgb(8, 1, 1);
+	grid-auto-rows: 50px;
+ }
+ .item {
+	padding: 5px;
+	align-self: center;
+	justify-self: stretch;
+ }
+ .link {
+	padding: 8px;
+	display: inline-block;
+	text-decoration: none;
+	color: #fff;
+	font-size: 22px;
+ }
+ .link:hover {
+	background: linear-gradient(180deg, #000, rgb(236, 14, 151), #000);
+	border-radius: 10px;
+ }
+
+ @media (max-width: 1300px) {
+	.nav {
+	  grid-auto-flow: column;
+	  justify-content: center;
+	}
+ }
+ @media (max-width: 600px) {
+	.nav {
+	  grid-auto-flow: row;
+	  justify-content: start;
+	}
+ }

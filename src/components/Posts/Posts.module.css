@@ -1,0 +1,16 @@
+.posts {
+	padding-right: 10px;
+	background: #fff;
+	grid-gap: 17px;
+	grid-auto-rows: min-content;
+ }
+ .coments {
+	width: 150px;
+	box-shadow: rgb(59, 58, 58) 2px 3px 2px 3px;
+ }
+
+.coments:hover {
+	cursor: pointer;
+	font-weight: 700;
+	box-shadow: #50234e 2px 4px 2px 4px;
+}

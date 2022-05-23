@@ -1,0 +1,9 @@
+.img {
+	display: flex;
+	align-items: stretch;
+ }
+ .img img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+ }

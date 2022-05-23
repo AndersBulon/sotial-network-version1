@@ -1,0 +1,7 @@
+.header{
+   grid-template-columns: repeat(2, auto);
+   justify-content: start;
+}
+.img {
+   height: 50px;
+ }
