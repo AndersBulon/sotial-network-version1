@@ -6,13 +6,11 @@ function Posts() {
   return (
     <div className={`${style.posts} grid designe`}>
       <div className={`${style.coments} coments designe`}>Comments...</div>
-		<Post />
-		<Post />
-		<Post />
-		<Post />
-		<Post />
-		<Post />
-
+		<Post message = "Привет 1" like = "1"/>
+		<Post message = "Привет 2" like = "7"/>
+		<Post message = "Привет 3" like = "5"/>
+		<Post message = "Привет 4" like = "1212"/>
+		<Post message = "Привет 5" like = "67"/>
     </div>
   );
 }

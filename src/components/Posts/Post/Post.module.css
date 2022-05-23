@@ -1,4 +1,3 @@
-
 .article {
 	border-radius: 0px 0px 10px 10px;
 	background: linear-gradient(180deg, rgb(247, 162, 162), #fff);
@@ -25,4 +24,15 @@
 	height: 100%;
 	border-radius: 50%;
 	object-fit: cover;
+ }
+ .like {
+	 text-align: center;
+	 border-radius: 50%;
+	 display: inline-block;
+	 padding: 1px 10px;
+	 background-color: #fff;
+	 height: 25px;
+	 color: #1db91d;
+	 font-weight: 600;
+	 font-style: italic;
  }

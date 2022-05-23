@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Post.module.css";
 
-function Post () {
+function Post (props) {
    return (
      <article className={style.article}>
        <div className={style.logo}>
@@ -12,8 +12,11 @@ function Post () {
          />
        </div>
        <div className={style.posttext}>
-         ПОСТ БЛОК
+         {props.message}
        </div>
+		 <div>
+			 Likes: <span  className={style.like}>{props.like}</span>
+		 </div>
      </article>
    )
 }
