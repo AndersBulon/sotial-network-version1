@@ -1,6 +1,6 @@
 .posts {
 	padding-right: 10px;
-	background: #fff;
+	/* background: #fff; */
 	grid-gap: 17px;
 	grid-auto-rows: min-content;
  }

@@ -4,7 +4,7 @@ import style from "./Posts.module.css";
 
 function Posts() {
   return (
-    <div className={`${style.posts} grid designe`}>
+    <div className={`${style.posts} grid`}>
       <div className={`${style.coments} coments designe`}>Comments...</div>
 		<Post message = "Привет 1" like = "1"/>
 		<Post message = "Привет 2" like = "7"/>
