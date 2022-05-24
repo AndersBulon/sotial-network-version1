@@ -58,4 +58,9 @@ body {
       "footer";
   }
 }
+@media (max-width: 350px) {
+	.app-wrapper {
+		grid-template-rows: auto auto 250px 1fr auto;
+	}
+}
 

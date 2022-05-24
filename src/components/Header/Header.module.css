@@ -5,3 +5,16 @@
 .img {
    height: 50px;
  }
+
+ @media (max-width: 350px) {
+	 .header {
+		 min-width: 250px;
+	 }
+	.img {
+		height: 40px;
+	 }
+	 h1 {
+	 font-size: 25px;
+ }
+ }
+ 

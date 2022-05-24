@@ -1,4 +1,5 @@
 .profile {
+	height: 100%;
 	grid-row-gap: 5px;
 	grid-template-columns: 200px auto;
 	grid-template-rows: 50px 1fr;
@@ -7,9 +8,9 @@
 	  "avatar info";
  }
  .nick {
+	 grid-area: nick;
 	background: #000;
 	color: #fff;
-	grid-area: nick;
 	text-align: center;
  }
  .avatar {
@@ -40,16 +41,18 @@
 	.profile {
 	  position: relative;
 	  grid-template-columns: 1fr;
-	  grid-column-gap: 0;
+	  grid-template-areas:
+	  "nick"
+	  "info";
 	}
 	.userinfo {
 	  padding: 5px 5px 5px 70px;
 	}
 	.avatar {
+	  position: absolute;
 	  border-radius: 50%;
 	  padding: 3px;
 	  background-color: #fff;
-	  position: absolute;
 	  width: 60px;
 	  height: 60px;
 	  top: 5px;

@@ -6,9 +6,9 @@ import style from "./Content.module.css"
 
 function Content() {
 	return (
-		<div className={style.content}>
-			{/* <Profile /> */}
-			<Posts />
+		<div className={`${style.content} designe`}>
+			<Profile />
+			{/* <Posts /> */}
 		</div>
 	)
 }
