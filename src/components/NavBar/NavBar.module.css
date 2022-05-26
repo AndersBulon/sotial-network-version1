@@ -19,6 +19,7 @@
  }
  .active_link {
 	 color: #d0ecb7;
+	 text-decoration: underline;
  }
  .link:hover, .active_link:hover{
 	background: linear-gradient(180deg, #000, #ec0e97, #000);
