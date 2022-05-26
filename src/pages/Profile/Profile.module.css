@@ -34,6 +34,7 @@
 	width: 100%;
 	object-fit: cover;
  }
+ 
 /**---------------------------------------*/
  @media (max-width: 1050px) {
 	.profile {
@@ -56,11 +57,11 @@
 	  top: 5px;
 	  left: 5px;
 	}
-	
 	.img {
 	  border-radius: 50%;
 	}
  }
+
  @media (max-width: 600px) {
 	.avatar {
 	  top: 60px;

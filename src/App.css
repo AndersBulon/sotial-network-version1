@@ -17,6 +17,10 @@ body {
   display: grid;
   grid-gap: 10px;
 }
+.outletcontainer {
+	/* height: 100%; */
+	background-color: #b6eb7b;
+}
 /**------------------------------- */
 
 .header {
@@ -28,12 +32,10 @@ body {
 .top-image {
   grid-area: topimage;
 }
-.appcontent {
-	grid-area: cont;
-}
 .footer {
   grid-area: footer;
 }
+
 .app-wrapper {
   min-height: 98vh;
   grid-template-columns: 200px 1fr;
@@ -41,10 +43,10 @@ body {
   grid-template-areas:
     "header header"
     "nav topimage"
-    "nav cont"
+    "nav outlet"
     "footer footer";
 }
-.appcontent {
+.outlet {
 	padding-bottom: 15px ;
 	height: 100%;
 	background-color: #94d32f;
@@ -58,7 +60,7 @@ body {
       "header"
       "nav"
       "topimage"
-      "cont"
+      "outlet"
       "footer";
   }
 }

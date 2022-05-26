@@ -1,0 +1,11 @@
+.content {
+	padding: 20px;
+	height: 100%;
+	background-color: rgb(94, 60, 22);
+	color: #fff;
+	font-size: 25px;
+}
+
+.link {
+	color: rgb(238, 161, 161);
+}
