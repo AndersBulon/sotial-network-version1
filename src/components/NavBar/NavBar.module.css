@@ -7,20 +7,25 @@
 	align-self: center;
 	justify-self: stretch;
  }
- .link {
+ .link, .active_link {
+	font-weight: 600;
 	padding: 8px;
 	display: inline-block;
 	text-decoration: none;
-	color: #fff;
 	font-size: 22px;
  }
- .link:hover {
-	background: linear-gradient(180deg, #000, rgb(236, 14, 151), #000);
+ .link {
+	 color: #fff;
+ }
+ .active_link {
+	 color: #d0ecb7;
+ }
+ .link:hover, .active_link:hover{
+	background: linear-gradient(180deg, #000, #ec0e97, #000);
 	border-radius: 10px;
  }
- .active {
-	color: red;
- }
+
+
 
  @media (max-width: 1300px) {
 	.nav {

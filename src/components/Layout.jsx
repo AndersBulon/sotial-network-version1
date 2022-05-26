@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom"
+import {Outlet } from "react-router-dom"
 import Footer from "./Footer/Footer.jsx"
 import Header from "./Header/Header.jsx"
 import { NavBar } from "./NavBar/NavBar.jsx"
@@ -10,9 +10,9 @@ const Layout = () => {
 			<Header />
 			<TopImage />
 			<NavBar />
-			<div className="outletcontainer designe">
+			<main className="outletcontainer designe">
 				<Outlet />
-			</div>
+			</main>
 			<Footer />
 		</>
 	)

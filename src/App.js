@@ -20,11 +20,11 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route index element={<Homepage />} />
-					<Route path="/profile" element={<Profile />} />
-					<Route path="/messages" element={<Posts />} />
-					<Route path="/news" element={<News />} />
-					<Route path="/music" element={<Music />} />
-					<Route path="/settings" element={<Settings />} />
+					<Route path="profile" element={<Profile />} />
+					<Route path="messages" element={<Posts />} />
+					<Route path="news" element={<News />} />
+					<Route path="music" element={<Music />} />
+					<Route path="settings" element={<Settings />} />
 					<Route path="*" element={<Notfound />} />
 				</Route>
 			</Routes>

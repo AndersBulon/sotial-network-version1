@@ -18,9 +18,10 @@ body {
   grid-gap: 10px;
 }
 .outletcontainer {
-	/* height: 100%; */
-	background-color: #b6eb7b;
+	background-color: #d0ecb7;
 }
+
+
 /**------------------------------- */
 
 .header {
