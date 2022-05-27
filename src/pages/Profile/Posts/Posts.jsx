@@ -2,18 +2,19 @@ import React from "react";
 import Post from "./Post/Post";
 import style from "./Posts.module.css";
 
+let postsData = [
+	{ 'postId': 1, 'postText': 'Привет это пост 1', 'like': '2' },
+	{ 'postId': 2, 'postText': 'Привет это пост 2', 'like': '7' },
+]
+let postsElement = postsData.map(el => <Post key={el.postId} postText={el.postText} like={el.like} />)
 
-function Posts() {
+function Posts(props) {
 	return (
 		<div className={`${style.posts} grid`}>
 			<div className={`${style.coments} coments designe`}>
-					My posts...
+				My posts...
 			</div>
-			<Post message="Привет 1" like="1" />
-			<Post message="Привет 2" like="7" />
-			<Post message="Привет 3" like="5" />
-			<Post message="Привет 4" like="1212" />
-			<Post message="Привет 5" like="67" />
+			{postsElement}
 		</div>
 	);
 }

@@ -12,7 +12,7 @@ function Post (props) {
          />
        </div>
        <div className={style.posttext}>
-         {props.message}
+         {props.postText}
        </div>
 		 <div>
 			 Likes: <span  className={style.like}>{props.like}</span>
