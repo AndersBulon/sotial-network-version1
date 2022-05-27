@@ -1,0 +1,87 @@
+.profile {
+	grid-row-gap: 5px;
+	grid-template-columns: 200px auto;
+	grid-template-rows: 50px 200px 1fr;
+	grid-template-areas:
+	  "avatar nick"
+	  "avatar info"
+	  "posts posts";
+ }
+ .nick {
+	grid-area: nick;
+	background: #000;
+	color: #fff;
+	text-align: center;
+ }
+ .avatar {
+	grid-area: avatar;
+	display: flex;
+	justify-content: center;
+	box-shadow: rgb(59, 58, 58) 2px 2px 2px 2px;
+ }
+ .avatar:hover {
+	cursor: pointer;
+	padding: 2px;
+	background-color: #ffd700;
+	box-shadow: #ffd700 2px 2px 2px 2px;
+}
+.profileTitle {
+	font-size: 18px;
+	text-align: center;
+	font-weight: 700;
+}
+.profileTitle:not(:last-child) {
+	margin-bottom: 20px;
+}
+ .userinfo {
+	grid-area: info;
+	margin: 0 5px;
+	box-shadow: rgb(59, 58, 58) 0px 3px 0px 5px;
+	overflow: auto;
+ }
+ .avatar img {
+	width: 100%;
+	object-fit: cover;
+ }
+ .posts {
+	 grid-area: posts;
+	 padding: 10px;
+ }
+ 
+/**---------------------------------------*/
+ @media (max-width: 1050px) {
+	.profile {
+	  position: relative;
+	  grid-template-columns: 1fr;
+	  grid-template-rows: 75px min-content 1fr;
+	  grid-template-areas:
+	  "nick"
+	  "info"
+	  "posts";
+	}
+	.userinfo {
+	  padding: 5px;
+	}
+	.avatar {
+	  position: absolute;
+	  border-radius: 50%;
+	  padding: 3px;
+	  background-color: #fff;
+	  width: 60px;
+	  height: 60px;
+	  top: 5px;
+	  left: 5px;
+	}
+	.img {
+	  border-radius: 50%;
+	}
+ }
+@media (max-width: 400px) {
+	.profile {
+		grid-template-rows: min-content min-content 1fr;
+	 }
+	.nick {
+		padding-left: 70px;
+	}
+}
+ 

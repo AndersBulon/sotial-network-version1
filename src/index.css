@@ -12,11 +12,4 @@ code {
     monospace;
 }
 
-.active-link {
-	color: red;
-	padding: 8px;
-	display: inline-block;
-	text-decoration: none;
-	font-size: 22px;
-}
 

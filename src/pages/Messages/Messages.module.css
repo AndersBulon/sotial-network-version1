@@ -1,0 +1,39 @@
+.content {
+	padding: 10px;
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 2fr 8fr;
+	grid-template-rows: 70px 1fr;
+	grid-template-areas: 
+		"title title"
+		"dialogs messages";
+	height: 100%;
+	background-color: #617ddb;
+	
+}
+
+.title {
+	text-align: center;
+	grid-area: title;
+}
+.dialogs_list {
+	grid-area: dialogs;
+
+}
+.dialog_item {
+	font-weight: 700;
+	background-color: #fff;
+}
+
+.messages_list {
+	grid-area: messages;
+}
+.message_item {
+	background-color: #fff;
+}
+
+.dialogs_list, .messages_list {
+	grid-gap: 10px;
+	display: grid;
+	grid-auto-rows: min-content;	
+}
