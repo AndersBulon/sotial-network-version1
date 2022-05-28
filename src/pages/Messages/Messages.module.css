@@ -9,7 +9,6 @@
 		"dialogs messages";
 	height: 100%;
 	background-color: #617ddb;
-	
 }
 
 .title {
@@ -18,18 +17,9 @@
 }
 .dialogs_list {
 	grid-area: dialogs;
-
 }
-.dialog_item {
-	font-weight: 700;
-	background-color: #fff;
-}
-
 .messages_list {
 	grid-area: messages;
-}
-.message_item {
-	background-color: #fff;
 }
 
 .dialogs_list, .messages_list {
