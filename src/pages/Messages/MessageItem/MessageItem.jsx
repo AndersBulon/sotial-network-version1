@@ -1,7 +1,5 @@
 import React from "react";
-import { messagesData } from "../../../index.js";
 import style from "./MessageItem.module.css"
-
 
 const MessageItem = (props) => {
 	return (
@@ -11,6 +9,4 @@ const MessageItem = (props) => {
 	)
 }
 
-let mesages = messagesData.map(message => <MessageItem key={message.mesId} mesId={message.mesId} mesText={message.mesText} />)
-
-export {MessageItem, mesages};
+export {MessageItem}

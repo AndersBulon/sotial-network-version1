@@ -4,7 +4,7 @@ import Header from "./Header/Header.jsx"
 import { NavBar } from "./NavBar/NavBar.jsx"
 import TopImage from "./TopImage/TopImage.jsx"
 
-const Layout = () => {
+const Layout = (props) => {
 	return (
 		<>
 			<Header />

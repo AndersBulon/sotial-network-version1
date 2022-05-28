@@ -1,13 +1,14 @@
 import React from "react";
 import Posts from "./Posts/Posts.jsx";
-import Profileinfo from "./Profileinfo/Profileinfo.jsx"
+import Profileinfo from "./Profileinfo/Profileinfo"
 import style from "./Profile.module.css";
 
-function Profile() {
+
+function Profile(props) {
 	return (
 		<div className={style.content}>
 			<Profileinfo />
-			<Posts />
+			<Posts postdata={props.postdata} />
 		</div>
 	);
 }
