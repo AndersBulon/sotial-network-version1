@@ -3,7 +3,7 @@ import style from "./Profileinfo.module.css";
 
 function Profileinfo() {
 	return (
-		<div className={`${style.profile} profile grid`}>
+		<div className={`${style.profile} profile`}>
 			<h2 className={`${style.nick} nick designe`}>Profile Nickname</h2>
 			<div className={`${style.avatar} avatar`}>
 				<img

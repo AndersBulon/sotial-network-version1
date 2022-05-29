@@ -6,19 +6,30 @@
 }
 body {
   padding: 1vh;
+ 
 }
 /**--------------------------------------*/
 .designe {
   border-radius: 5px;
   padding: 5px;
-  background-color: rgb(245, 177, 177);
+  background-color: #db6363;
 }
 .grid {
   display: grid;
   grid-gap: 10px;
 }
-.outletcontainer {
-	background-color: #d0ecb7;
+.button {
+	background: linear-gradient(180deg, #000, #ec0e97, #000);
+	color: #fff;
+	border-radius: 5px;
+	box-shadow: rgb(161, 135, 135) 1px 1px 2px 2px;
+	cursor: pointer;
+	font-size: 16px;
+	height: 32px;
+	padding: 5px 15px;
+}
+.button:hover {
+	box-shadow: #50234e 2px 2px 3px 3px;
 }
 
 
@@ -36,7 +47,12 @@ body {
 .footer {
   grid-area: footer;
 }
-
+.outletcontainer {
+	border-radius: 5px;
+	padding: 10px;
+	grid-area: outlet;
+	background-color: #000;
+}
 .app-wrapper {
   min-height: 98vh;
   grid-template-columns: 200px 1fr;
@@ -47,11 +63,7 @@ body {
     "nav outlet"
     "footer footer";
 }
-.outlet {
-	padding-bottom: 15px ;
-	height: 100%;
-	background-color: #94d32f;
-}
+
 /**-----------------------------------------------*/
 @media (max-width: 1300px) {
   .app-wrapper {

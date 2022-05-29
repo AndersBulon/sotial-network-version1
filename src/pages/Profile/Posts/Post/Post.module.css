@@ -1,9 +1,9 @@
 .article {
-	border-radius: 0px 0px 10px 10px;
+	border-radius: 5px ;
 	background: linear-gradient(180deg, rgb(247, 162, 162), #fff);
 	padding: 10px 5px 5px 60px;
 	position: relative;
-	box-shadow: rgb(59, 58, 58) 2px 7px 2px 5px;
+
  }
  .posttext {
 	min-height: 50px;

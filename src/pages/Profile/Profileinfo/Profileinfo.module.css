@@ -1,29 +1,35 @@
 .profile {
-	grid-row-gap: 5px;
+	display: grid;
+	grid-gap: 10px;
 	grid-template-columns: 200px auto;
 	grid-template-rows: 50px 200px 1fr;
 	grid-template-areas:
 	  "avatar nick"
-	  "avatar info"
-	  "posts posts";
+	  "avatar info";
  }
  .nick {
+	border: 2px solid #fff;
 	grid-area: nick;
 	background: #000;
 	color: #fff;
 	text-align: center;
  }
+ .userinfo {
+	grid-area: info;
+	overflow: auto;
+ }
  .avatar {
 	grid-area: avatar;
 	display: flex;
 	justify-content: center;
-	box-shadow: rgb(59, 58, 58) 2px 2px 2px 2px;
+	border-radius: 5px;
+	overflow: hidden;
  }
  .avatar:hover {
 	cursor: pointer;
 	padding: 2px;
 	background-color: #ffd700;
-	box-shadow: #ffd700 2px 2px 2px 2px;
+
 }
 .profileTitle {
 	font-size: 18px;
@@ -31,23 +37,13 @@
 	font-weight: 700;
 }
 .profileTitle:not(:last-child) {
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 }
- .userinfo {
-	grid-area: info;
-	margin: 0 5px;
-	box-shadow: rgb(59, 58, 58) 0px 3px 0px 5px;
-	overflow: auto;
- }
  .avatar img {
 	width: 100%;
 	object-fit: cover;
  }
- .posts {
-	 grid-area: posts;
-	 padding: 10px;
- }
- 
+
 /**---------------------------------------*/
  @media (max-width: 1050px) {
 	.profile {
@@ -56,8 +52,7 @@
 	  grid-template-rows: 75px min-content 1fr;
 	  grid-template-areas:
 	  "nick"
-	  "info"
-	  "posts";
+	  "info";
 	}
 	.userinfo {
 	  padding: 5px;

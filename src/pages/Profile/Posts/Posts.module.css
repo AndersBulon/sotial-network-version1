@@ -1,17 +1,33 @@
-.posts {
-	padding-right: 10px;
-	/* background: #fff; */
-	grid-gap: 17px;
-	grid-auto-rows: min-content;
- }
- .coments {
-	width: 150px;
-	box-shadow: rgb(59, 58, 58) 2px 3px 2px 3px;
- }
-
-.coments:hover {
-	cursor: pointer;
-	font-weight: 700;
-	box-shadow: #50234e 2px 4px 2px 4px;
+.postsElement {
+	display: grid;
+	grid-gap: 20px;
 }
+.createNewPost {
+	
+	border-radius: 5px;
+	display: grid;
+	grid-gap: 15px;
+	background-color: #db6363;
+	padding: 15px 0px;
+}
+.newpostInput {
+	border: 1px solid #000;
+	resize: none;
+	font-size: 20px;
+	height: 100px;
+	width: 60%;
+	padding: 5px;
+	justify-self: center;
+}
+.addpostBtn {
+	justify-self: center;
+}
+.comentsBtn {
+	min-width: 150px;
+	margin-left: 20px;
+ }
+ .postcontainer {
+	 display: grid;
+	 grid-gap: 10px;
+ }
 

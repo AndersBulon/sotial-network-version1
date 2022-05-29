@@ -10,7 +10,7 @@ const Layout = (props) => {
 			<Header />
 			<TopImage />
 			<NavBar />
-			<main className="outletcontainer designe">
+			<main className="outletcontainer">
 				<Outlet />
 			</main>
 			<Footer />
