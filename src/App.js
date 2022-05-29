@@ -19,10 +19,10 @@ function App(props) {
 			<Routes >
 				<Route path="/" element={<Layout />}>
 					<Route index element={<Homepage />} />
-					<Route path="profile" element={<Profile postdata = {props.postdata}  />} />
-					<Route path="messages/" element = {
-							<Messages messagedata={props.messagedata} dialogdata={props.dialogdata}/>
-						}/>
+					<Route path="profile" element={
+						<Profile DataProfilePage={props.state.profilePage} />} />
+					<Route path="messages/" element={
+						<Messages DataMessagesPage={props.state.messagesPage} />} />
 					<Route path="news" element={<News />} />
 					<Route path="music" element={<Music />} />
 					<Route path="settings" element={<Settings />} />
