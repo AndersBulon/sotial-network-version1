@@ -36,3 +36,8 @@
 	 font-weight: 600;
 	 font-style: italic;
  }
+ .annotation {
+	display: grid;
+	grid-auto-flow: column;
+	justify-content: space-between;
+ }

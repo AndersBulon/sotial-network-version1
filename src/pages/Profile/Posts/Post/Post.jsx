@@ -14,9 +14,16 @@ function Post (props) {
        <div className={style.posttext}>
          {props.postText}
        </div>
-		 <div>
-			 Likes: <span  className={style.like}>{props.like}</span>
+		 <div className={style.annotation}>
+			 <div>
+				Likes: <span  className={style.like}>{props.like}</span> 
+			 </div>
+			 <div>
+				 ID: <span  className={style.like}>{props.id}</span>
+			 </div>
+			 
 		 </div>
+	
      </article>
    )
 }

@@ -2,30 +2,27 @@ import React from "react";
 import Post from "./Post/Post";
 import style from "./Posts.module.css";
 
-// const postCont = document.querySelectorAll('article')
-// const comentsBtn = document.querySelector('.comentsBtn')
-// function HiddenPosts() {
-// 	postCont.forEach(element => {
-// 		if (element.hidden === true) {
-// 			element.hidden = false;
-// 		}
-// 		else {
-// 			element.hidden = true;
-// 		}
-// 	});
-// }
 
 function Posts(props) {
+	let textAreaElement = React.createRef();
 
-	let postsElement = props.postdata.map(el => <Post key={el.postId} postText={el.postText} like={el.like} />)
+	let sendPost = () => {
+		
+		let text = textAreaElement.current.value;
+		props.addPost(text);
+		textAreaElement.current.value ="";
+	}
+
+	let postsElement = props.postdata.map(el => <Post key={el.Id} postText={el.postText} like={el.like} id={el.Id}/>)
+
 	return (
 		<div className={style.postsElement}>
 			<div className={style.createNewPost}>
-				<textarea className={style.newpostInput}></textarea>
-				<button className={`${style.addpostBtn} button`}>Add new post</button>
+				<textarea ref={textAreaElement} className={style.newpostInput}></textarea>
+				<button onClick={sendPost} className={`${style.sendPostBtn} button`}>Add new post</button>
 			</div>
 			<div >
-				<button  className={`${style.comentsBtn} comentsBtn button`}>Hidden my posts...</button>
+				<button className={`${style.comentsBtn} comentsBtn button`}>Hidden my posts...</button>
 			</div>
 			<div className={`${style.postcontainer} grid`} >
 				{postsElement}

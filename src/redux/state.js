@@ -1,34 +1,59 @@
+import { rerenderTree } from "../render.js";
 
 let state = {
 	profilePage: {
 		posts: [
-			{ 'postId': 1, 'postText': 'Привет это пост 1', 'like': '112' },
-			{ 'postId': 2, 'postText': 'Привет это пост 2', 'like': '67' },
-			{ 'postId': 3, 'postText': 'Привет это пост от Аниты', 'like': '72' },
-			{ 'postId': 4, 'postText': 'Привет это пост 4', 'like': '111' },
-			{ 'postId': 5, 'postText': 'Привет это пост 5', 'like': '93' },
+			{ 'Id': 1, 'postText': 'Привет это пост 1', 'like': '112' },
+			{ 'Id': 2, 'postText': 'Привет это пост 2', 'like': '67' },
+			{ 'Id': 7, 'postText': 'Привет это пост от Аниты', 'like': '72' },
+			{ 'Id': 4, 'postText': 'Привет это пост 4', 'like': '111' },
+			{ 'Id': 5, 'postText': 'Привет это пост 5', 'like': '93' },
 		],
 	},
 	messagesPage: {
-			messages: [
-			{ 'mesId': 1, 'mesText': 'Сообщение 1' },
-			{ 'mesId': 2, 'mesText': 'Привет это Катя )))' },
-			{ 'mesId': 3, 'mesText': 'Сообщение 3' },
-			{ 'mesId': 4, 'mesText': 'Сообщение 4' },
-			{ 'mesId': 5, 'mesText': 'Сообщение 5' },
-			{ 'mesId': 6, 'mesText': 'Сообщение 6' },
-			{ 'mesId': 7, 'mesText': 'Сообщение 7' },
+		messages: [
+			{ 'Id': 1, 'mesText': 'Сообщение 1' },
+			{ 'Id': 2, 'mesText': 'Привет это Катя )))' },
+			{ 'Id': 3, 'mesText': 'Сообщение 3' },
+			{ 'Id': 4, 'mesText': 'Сообщение 4' },
+			{ 'Id': 5, 'mesText': 'Сообщение 5' },
+			{ 'Id': 6, 'mesText': 'Сообщение 6' },
+			{ 'Id': 7, 'mesText': 'Сообщение 7' },
 		],
 		dialogs: [
-			{ 'dialogId': 1, 'dialogAuthor': 'Andrei' },
-			{ 'dialogId': 2, 'dialogAuthor': 'Katja' },
-			{ 'dialogId': 3, 'dialogAuthor': 'Anita' },
-			{ 'dialogId': 44, 'dialogAuthor': 'Sahsa' },
-			{ 'dialogId': 5, 'dialogAuthor': 'Boris' },
-			{ 'dialogId': 6, 'dialogAuthor': 'Petr' },
+			{ 'Id': 1, 'dialogAuthor': 'Andrei' },
+			{ 'Id': 2, 'dialogAuthor': 'Katja' },
+			{ 'Id': 3, 'dialogAuthor': 'Anita' },
+			{ 'Id': 44, 'dialogAuthor': 'Sahsa' },
+			{ 'Id': 5, 'dialogAuthor': 'Boris' },
+			{ 'Id': 6, 'dialogAuthor': 'Petr' },
 		]
 	}
-	
 }
 
-export {state};
+
+
+let createID = (arr) => {
+	let newArr = [];
+	arr.forEach(element => {
+		newArr.push(element.Id)
+	});
+	let max = newArr.sort((a, b) => a - b)[newArr.length - 1];
+	return max;
+}
+
+
+export let addPost = (text) => {
+
+	let newId = createID(state.profilePage.posts) + 1;
+	let newPost = {
+		'Id': newId,
+		'postText': text,
+		'like': '0'
+	}
+	state.profilePage.posts.push(newPost);
+
+	rerenderTree(state);
+}
+
+export { state };

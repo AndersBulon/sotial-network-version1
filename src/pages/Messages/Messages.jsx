@@ -7,9 +7,9 @@ import style from "./Messages.module.css"
 
 function Messages(props) {
 	let mesages = props.DataMessagesPage.messages.map
-		(message => <MessageItem key={message.mesId} mesId={message.mesId} mesText={message.mesText} />)
+		(message => <MessageItem key={message.Id} mesId={message.Id} mesText={message.mesText} />)
 	let dialogs = props.DataMessagesPage.dialogs.map
-		(dialog => <DialogItem key={dialog.dialogId} dialogId={dialog.dialogId} dialogAuthor={dialog.dialogAuthor} />)
+		(dialog => <DialogItem key={dialog.Id} dialogId={dialog.Id} dialogAuthor={dialog.dialogAuthor} />)
 	return (
 		<div className={`${style.content} designe`} >
 			<h2 className={style.title + " designe"}>Страничка сообщений</h2>

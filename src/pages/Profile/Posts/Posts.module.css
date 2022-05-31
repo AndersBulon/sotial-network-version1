@@ -19,7 +19,7 @@
 	padding: 5px;
 	justify-self: center;
 }
-.addpostBtn {
+.sendPostBtn {
 	justify-self: center;
 }
 .comentsBtn {
@@ -30,4 +30,5 @@
 	 display: grid;
 	 grid-gap: 10px;
  }
+
 

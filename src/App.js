@@ -20,7 +20,7 @@ function App(props) {
 				<Route path="/" element={<Layout />}>
 					<Route index element={<Homepage />} />
 					<Route path="profile" element={
-						<Profile DataProfilePage={props.state.profilePage} />} />
+						<Profile DataProfilePage={props.state.profilePage} addPost = {props.addPost}/>} />
 					<Route path="messages/" element={
 						<Messages DataMessagesPage={props.state.messagesPage} />} />
 					<Route path="news" element={<News />} />
