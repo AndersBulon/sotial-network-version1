@@ -9,6 +9,7 @@ let state = {
 			{ 'Id': 4, 'postText': 'Привет это пост 4', 'like': '111' },
 			{ 'Id': 5, 'postText': 'Привет это пост 5', 'like': '93' },
 		],
+		newPostText: '',
 	},
 	messagesPage: {
 		messages: [
@@ -32,7 +33,6 @@ let state = {
 }
 
 
-
 let createID = (arr) => {
 	let newArr = [];
 	arr.forEach(element => {
@@ -43,16 +43,22 @@ let createID = (arr) => {
 }
 
 
-export let addPost = (text) => {
+export let addPost = () => {
 
 	let newId = createID(state.profilePage.posts) + 1;
 	let newPost = {
 		'Id': newId,
-		'postText': text,
+		'postText': state.profilePage.newPostText,
 		'like': '0'
 	}
 	state.profilePage.posts.push(newPost);
+	changePostText('');
 
+	rerenderTree(state);
+}
+
+export let changePostText = (newValue) => {
+	state.profilePage.newPostText = newValue;
 	rerenderTree(state);
 }
 

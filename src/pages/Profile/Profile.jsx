@@ -8,7 +8,12 @@ function Profile(props) {
 	return (
 		<div className={style.content}>
 			<Profileinfo />
-			<Posts postdata={props.DataProfilePage.posts} addPost={props.addPost}/>
+			<Posts 
+				postdata={props.DataProfilePage.posts} 
+				newPostText = {props.DataProfilePage.newPostText} 
+				addPost={props.addPost}
+				changePostText = {props.changePostText}
+			/>
 		</div>
 	);
 }

@@ -7,18 +7,22 @@ function Posts(props) {
 	let textAreaElement = React.createRef();
 
 	let sendPost = () => {
-		
-		let text = textAreaElement.current.value;
-		props.addPost(text);
-		textAreaElement.current.value ="";
+		props.addPost();
 	}
+
+	let changeTextarea = () => {
+		let text = textAreaElement.current.value;
+		props.changePostText(text)
+	}
+
 
 	let postsElement = props.postdata.map(el => <Post key={el.Id} postText={el.postText} like={el.like} id={el.Id}/>)
 
 	return (
 		<div className={style.postsElement}>
 			<div className={style.createNewPost}>
-				<textarea ref={textAreaElement} className={style.newpostInput}></textarea>
+				<textarea ref={textAreaElement} className={style.newpostInput} 
+					value = {props.newPostText} onChange={changeTextarea}/>
 				<button onClick={sendPost} className={`${style.sendPostBtn} button`}>Add new post</button>
 			</div>
 			<div >
