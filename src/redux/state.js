@@ -1,4 +1,7 @@
-import { rerenderTree } from "../render.js";
+let rerenderTree = () => {
+	console.log("State changed");
+}
+
 
 let state = {
 	profilePage: {
@@ -33,7 +36,7 @@ let state = {
 }
 
 
-let createID = (arr) => {
+const createID = (arr) => {
 	let newArr = [];
 	arr.forEach(element => {
 		newArr.push(element.Id)
@@ -43,7 +46,7 @@ let createID = (arr) => {
 }
 
 
-export let addPost = () => {
+export const addPost = () => {
 
 	let newId = createID(state.profilePage.posts) + 1;
 	let newPost = {
@@ -57,9 +60,13 @@ export let addPost = () => {
 	rerenderTree(state);
 }
 
-export let changePostText = (newValue) => {
+export const changePostText = (newValue) => {
 	state.profilePage.newPostText = newValue;
 	rerenderTree(state);
+}
+
+export const subscribe = (observer) => {
+	rerenderTree = observer;
 }
 
 export { state };
