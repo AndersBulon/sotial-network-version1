@@ -26,7 +26,11 @@ function App(props) {
 						/>} 
 					/>
 					<Route path="messages/" element={
-						<Messages DataMessagesPage={props.state.messagesPage} />} />
+						<Messages 
+							DataMessagesPage={props.state.messagesPage}
+							dispatch = {props.dispatch}
+						/>} 
+					/>
 					<Route path="news" element={<News />} />
 					<Route path="music" element={<Music />} />
 					<Route path="settings" element={<Settings />} />

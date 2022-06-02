@@ -2,23 +2,30 @@
 	padding: 10px;
 	display: grid;
 	grid-gap: 10px;
-	grid-template-columns: 2fr 8fr;
-	grid-template-rows: 70px 1fr;
+	grid-template-columns: 3fr 8fr;
+	grid-template-rows: 50px 1fr;
 	grid-template-areas: 
 		"title title"
-		"dialogs messages";
+		"dialogs messages"
+		"sendscreen messages";
 	height: 100%;
-	background-color: #617ddb;
+	background-color: #000;
 }
 
 .title {
+	color: #fff;
 	text-align: center;
 	grid-area: title;
+	background-color: #db6363;
 }
 .dialogs_list {
 	grid-area: dialogs;
+	background-color: #db6363;
+	padding: 10px;
 }
 .messages_list {
+	padding: 10px;
+	background-color: #db6363;
 	grid-area: messages;
 }
 
@@ -26,4 +33,40 @@
 	grid-gap: 10px;
 	display: grid;
 	grid-auto-rows: min-content;	
+}
+.sendscreen {
+	display: grid;
+	grid-row-gap: 10px;
+	background-color: #000;
+	grid-area: sendscreen;
+	padding-bottom: 10px;
+}
+.textarea {
+	padding: 10px;
+	height: 180px;
+}
+.btn {
+	justify-self: center;
+}
+
+@media (max-width: 1000px) {
+	.content {
+		grid-template-columns: 1fr 2fr;
+		grid-template-rows: 50px 250px 2fr;
+		grid-template-areas: 
+			"title title"
+			"dialogs sendscreen "
+			"messages messages";
+	}
+}
+@media (max-width: 500px) {
+	.content {
+		grid-template-columns: 1fr;
+		grid-template-rows: 50px  1fr  2fr 250px ;
+		grid-template-areas: 
+			"title"
+			"dialogs"
+			"messages"
+			"sendscreen";
+	}
 }

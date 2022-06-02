@@ -2,4 +2,11 @@
 	font-weight: 700;
 	background-color: #fff;
 }
+.dialog_item a {
+	color: brown;
+	text-decoration: none;
+}
+.dialog_item a:hover {
+	color: coral;
+}
 

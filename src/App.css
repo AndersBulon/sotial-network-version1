@@ -49,9 +49,7 @@ body {
 }
 .outletcontainer {
 	border-radius: 5px;
-	padding: 10px;
 	grid-area: outlet;
-	background-color: #000;
 }
 .app-wrapper {
   min-height: 98vh;

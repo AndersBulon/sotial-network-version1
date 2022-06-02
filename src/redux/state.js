@@ -1,3 +1,12 @@
+//* =============  CONSTANTS  ===================================
+
+const ADD_POST = 'ADD-POST';
+const CHANGE_POST_TEXT = 'CHANGE-POST-TEXT';
+const ADD_MESSAGE = 'ADD_MESSAGE';
+const CHANGE_MESSAGE_TEXT = 'CHANGE-MESSAGE-TEXT';
+
+//* =============  STORE  STATE  DISPATC  ===================================
+
 let store = {
 	_state: {
 		profilePage: {
@@ -27,7 +36,8 @@ let store = {
 				{ 'Id': 44, 'dialogAuthor': 'Sahsa' },
 				{ 'Id': 5, 'dialogAuthor': 'Boris' },
 				{ 'Id': 6, 'dialogAuthor': 'Petr' },
-			]
+			],
+			newMessageText: '',
 		}
 	},
 	_callSubscriber() {
@@ -51,7 +61,7 @@ let store = {
 
 	dispatch(action) {
 
-		if (action.type === 'ADD-POST') {
+		if (action.type === ADD_POST) {
 			let newId = this.createID(this._state.profilePage.posts) + 1;
 			let newPost = {
 				'Id': newId,
@@ -62,12 +72,54 @@ let store = {
 			this._state.profilePage.newPostText = '';
 			this._callSubscriber(this._state);
 		}
-		else if (action.type === 'CHANGE-POST-TEXT') {
+		else if (action.type === CHANGE_POST_TEXT) {
 			this._state.profilePage.newPostText = action.newValue;
+			this._callSubscriber(this._state);
+		}
+		else if (action.type === ADD_MESSAGE) {
+			let enterMessage = this._state.messagesPage.newMessageText;
+			if (enterMessage === '') {
+				alert("Сообщение не должно быть пустым!!!")
+			}
+			else {
+				let newId = this.createID(this._state.messagesPage.messages) + 1;
+				let newMessage = {
+					'Id': newId,
+					'mesText': this._state.messagesPage.newMessageText,
+				}
+				this._state.messagesPage.messages.push(newMessage);
+			}
+			this._state.messagesPage.newMessageText = '';
+			this._callSubscriber(this._state);
+		}
+		else if (action.type === CHANGE_MESSAGE_TEXT) {
+			this._state.messagesPage.newMessageText = action.newValue;
 			this._callSubscriber(this._state);
 		}
 	}
 
 }
+
+//* =============  ActionCreators  _AC  ===================================
+
+export const addPost_AC = () => {
+	return {
+		type: ADD_POST
+	}
+}
+export const changeTextarea_AC = (text) => {
+	return { type: CHANGE_POST_TEXT, newValue: text }
+}
+export const addMessage_AC = () => {
+	return {
+		type: ADD_MESSAGE
+	}
+}
+export const changeMessageText_AC = (text) => {
+	return { type: CHANGE_MESSAGE_TEXT, newValue: text }
+}
+
+//* =============  EXPORTS  ===================================
+
 export { store };
 window.store = store;
