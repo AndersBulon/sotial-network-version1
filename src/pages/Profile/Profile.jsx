@@ -11,8 +11,7 @@ function Profile(props) {
 			<Posts 
 				postdata={props.DataProfilePage.posts} 
 				newPostText = {props.DataProfilePage.newPostText} 
-				addPost={props.addPost}
-				changePostText = {props.changePostText}
+				dispatch = {props.dispatch}
 			/>
 		</div>
 	);

@@ -7,12 +7,12 @@ function Posts(props) {
 	let textAreaElement = React.createRef();
 
 	let sendPost = () => {
-		props.addPost();
+		props.dispatch({ type: 'ADD-POST'});
 	}
 
 	let changeTextarea = () => {
 		let text = textAreaElement.current.value;
-		props.changePostText(text)
+		props.dispatch({ type: 'CHANGE-POST-TEXT', newValue: text})
 	}
 
 
