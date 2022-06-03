@@ -1,11 +1,9 @@
-//* =============  CONSTANTS  ===================================
+//* =============  IMPORTS  ===================================
 
-const ADD_POST = 'ADD-POST';
-const CHANGE_POST_TEXT = 'CHANGE-POST-TEXT';
-const ADD_MESSAGE = 'ADD_MESSAGE';
-const CHANGE_MESSAGE_TEXT = 'CHANGE-MESSAGE-TEXT';
+import { messagesReducer } from "./messages_reducer .js";
+import { profileReducer } from "./profile_reducer.js";
 
-//* =============  STORE  STATE  DISPATC  ===================================
+//* =============  STORE  STATE  DISPATCH  ===================================
 
 let store = {
 	_state: {
@@ -50,73 +48,16 @@ let store = {
 	subscribe(observer) {
 		this._callSubscriber = observer;
 	},
-	createID(arr) {
-		let newArr = [];
-		arr.forEach(element => {
-			newArr.push(element.Id)
-		});
-		let max = newArr.sort((a, b) => a - b)[newArr.length - 1];
-		return max;
-	},
-
+	
 	dispatch(action) {
 
-		if (action.type === ADD_POST) {
-			let newId = this.createID(this._state.profilePage.posts) + 1;
-			let newPost = {
-				'Id': newId,
-				'postText': this._state.profilePage.newPostText,
-				'like': '0'
-			}
-			this._state.profilePage.posts.push(newPost);
-			this._state.profilePage.newPostText = '';
-			this._callSubscriber(this._state);
-		}
-		else if (action.type === CHANGE_POST_TEXT) {
-			this._state.profilePage.newPostText = action.newValue;
-			this._callSubscriber(this._state);
-		}
-		else if (action.type === ADD_MESSAGE) {
-			let enterMessage = this._state.messagesPage.newMessageText;
-			if (enterMessage === '') {
-				alert("Сообщение не должно быть пустым!!!")
-			}
-			else {
-				let newId = this.createID(this._state.messagesPage.messages) + 1;
-				let newMessage = {
-					'Id': newId,
-					'mesText': this._state.messagesPage.newMessageText,
-				}
-				this._state.messagesPage.messages.push(newMessage);
-			}
-			this._state.messagesPage.newMessageText = '';
-			this._callSubscriber(this._state);
-		}
-		else if (action.type === CHANGE_MESSAGE_TEXT) {
-			this._state.messagesPage.newMessageText = action.newValue;
-			this._callSubscriber(this._state);
-		}
+		this._state.profilePage = profileReducer(this._state.profilePage, action);
+		this._state.messagesPage = messagesReducer(this._state.messagesPage, action);
+		
+		this._callSubscriber(this._state);
+
 	}
 
-}
-
-//* =============  ActionCreators  _AC  ===================================
-
-export const addPost_AC = () => {
-	return {
-		type: ADD_POST
-	}
-}
-export const changeTextarea_AC = (text) => {
-	return { type: CHANGE_POST_TEXT, newValue: text }
-}
-export const addMessage_AC = () => {
-	return {
-		type: ADD_MESSAGE
-	}
-}
-export const changeMessageText_AC = (text) => {
-	return { type: CHANGE_MESSAGE_TEXT, newValue: text }
 }
 
 //* =============  EXPORTS  ===================================

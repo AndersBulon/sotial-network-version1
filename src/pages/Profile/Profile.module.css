@@ -1,4 +1,7 @@
  .content {
+	 padding: 10px;
+	 background-color: #000 ;
 	 display: grid;
+	 border-radius: 5px;
 	 /* grid-row-gap: 5px; */
  }

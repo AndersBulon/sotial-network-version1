@@ -1,5 +1,5 @@
 import React from "react";
-import { addMessage_AC, changeMessageText_AC } from "../../redux/state.js";
+import { addMessage_AC, changeMessageText_AC } from "../../redux/messages_reducer .js";
 import { DialogItem } from "./DialogItem/DialogItem";
 import { MessageItem } from "./MessageItem/MessageItem";
 import style from "./Messages.module.css"

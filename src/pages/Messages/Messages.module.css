@@ -19,6 +19,7 @@
 	background-color: #db6363;
 }
 .dialogs_list {
+	overflow: auto;
 	grid-area: dialogs;
 	background-color: #db6363;
 	padding: 10px;

@@ -1,5 +1,5 @@
 import React from "react";
-import {addPost_AC, changeTextarea_AC } from "../../../redux/state.js";
+import {addPost_AC, changeTextarea_AC} from "../../../redux/profile_reducer.js";
 import Post from "./Post/Post";
 import style from "./Posts.module.css";
 
@@ -17,7 +17,6 @@ function Posts(props) {
 		props.dispatch(changeTextarea_AC(text))
 	}
 
-
 	let postsElement = props.postdata.map(el => <Post key={el.Id} postText={el.postText} like={el.like} id={el.Id} />)
 
 	return (
@@ -28,9 +27,9 @@ function Posts(props) {
 				<button onClick={sendPost} className={`${style.sendPostBtn} button`}>Add new post</button>
 			</div>
 			<div >
-				<button className={`${style.comentsBtn} comentsBtn button`}>Hidden my posts...</button>
+				<button  className={`${style.comentsBtn} comentsBtn button`}>Hidden my posts...</button>
 			</div>
-			<div className={`${style.postcontainer} grid`} >
+			<div  className={`${style.postcontainer} grid`} >
 				{postsElement}
 			</div>
 		</div>
