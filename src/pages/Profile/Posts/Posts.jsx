@@ -1,6 +1,4 @@
 import React from "react";
-import {addPost_AC, changeTextarea_AC} from "../../../redux/profile_reducer.js";
-import Post from "./Post/Post";
 import style from "./Posts.module.css";
 
 
@@ -9,27 +7,30 @@ function Posts(props) {
 	let textAreaElement = React.createRef();
 
 	let sendPost = () => {
-		props.dispatch(addPost_AC());
+		props.sendPost()
 	}
 
 	let changeTextarea = () => {
 		let text = textAreaElement.current.value;
-		props.dispatch(changeTextarea_AC(text))
+		props.changeTextarea(text);
 	}
 
-	let postsElement = props.postdata.map(el => <Post key={el.Id} postText={el.postText} like={el.like} id={el.Id} />)
-
+	let postsElement = props.postsElement
+	
 	return (
 		<div className={style.postsElement}>
 			<div className={style.createNewPost}>
-				<textarea ref={textAreaElement} className={style.newpostInput}
-					value={props.newPostText} onChange={changeTextarea} />
+				<textarea
+					value={props.newPostText} placeholder="Введите новый пост..."
+					onChange={changeTextarea} 
+					className={`${style.newpostInput} input`}
+					ref={textAreaElement}/>
 				<button onClick={sendPost} className={`${style.sendPostBtn} button`}>Add new post</button>
 			</div>
 			<div >
-				<button  className={`${style.comentsBtn} comentsBtn button`}>Hidden my posts...</button>
+				<button className={`${style.comentsBtn} comentsBtn button`}>Hidden my posts...</button>
 			</div>
-			<div  className={`${style.postcontainer} grid`} >
+			<div className={`${style.postcontainer} grid`} >
 				{postsElement}
 			</div>
 		</div>

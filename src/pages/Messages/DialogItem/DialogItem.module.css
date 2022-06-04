@@ -1,12 +1,13 @@
 .dialog_item {
 	font-weight: 700;
-	background-color: #fff;
+	background-color: #daf4a681;
 }
 .dialog_item a {
-	color: brown;
+	font-weight: 700;
+	color: #2b2b2a81;
 	text-decoration: none;
 }
 .dialog_item a:hover {
-	color: coral;
+	color: rgb(91, 31, 9);
 }
 

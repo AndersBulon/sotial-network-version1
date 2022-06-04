@@ -3,11 +3,12 @@
 	display: grid;
 	grid-gap: 10px;
 	grid-template-columns: 3fr 8fr;
-	grid-template-rows: 50px 1fr;
+	grid-template-rows: 50px 150px 1fr;
 	grid-template-areas: 
 		"title title"
+		"sendscreen sendscreen"
 		"dialogs messages"
-		"sendscreen messages";
+		;
 	height: 100%;
 	background-color: #000;
 }
@@ -43,27 +44,16 @@
 	padding-bottom: 10px;
 }
 .textarea {
-	padding: 10px;
-	height: 180px;
+	justify-self: center;
 }
 .btn {
 	justify-self: center;
 }
 
-@media (max-width: 1000px) {
-	.content {
-		grid-template-columns: 1fr 2fr;
-		grid-template-rows: 50px 250px 2fr;
-		grid-template-areas: 
-			"title title"
-			"dialogs sendscreen "
-			"messages messages";
-	}
-}
-@media (max-width: 500px) {
+@media (max-width: 700px) {
 	.content {
 		grid-template-columns: 1fr;
-		grid-template-rows: 50px  1fr  2fr 250px ;
+		grid-template-rows: 50px  1fr  2fr 150px ;
 		grid-template-areas: 
 			"title"
 			"dialogs"

@@ -31,6 +31,15 @@ body {
 .button:hover {
 	box-shadow: #50234e 2px 2px 3px 3px;
 }
+.input {
+	border: 1px solid #000;
+	resize: none;
+	font-size: 20px;
+	height: 100px;
+	width: 60%;
+	padding: 5px;
+	border-radius: 10px;
+}
 
 
 /**------------------------------- */

@@ -1,3 +1,4 @@
 .message_item {
 	background-color: #fff;
+	min-height: 32px;
 }
