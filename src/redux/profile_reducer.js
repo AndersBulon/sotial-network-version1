@@ -28,7 +28,7 @@ export const profileReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_POST:
 			if (state.newPostText === '') {
-				alert("Ваш пост не может быть пустым.")
+				alert("Ваш пост не может быть пустым.");
 			}
 			else {
 				let newId = createID(state.posts) + 1;
@@ -37,13 +37,18 @@ export const profileReducer = (state = initialState, action) => {
 					'postText': state.newPostText,
 					'like': '0'
 				}
-				state.posts.push(newPost);
-				state.newPostText = '';
-			}
-			return state;
-		case CHANGE_POST_TEXT:
-			state.newPostText = action.newValue;
-			return state;
+				return {
+					...state,
+					newPostText: '',
+					posts: [...state.posts, newPost]
+				};
+			} break
+		case CHANGE_POST_TEXT: {
+			return {
+				...state,
+				newPostText: action.newValue
+			};
+		}
 		default:
 			return state;
 	}

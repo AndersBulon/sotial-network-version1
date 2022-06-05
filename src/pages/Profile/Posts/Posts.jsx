@@ -1,4 +1,5 @@
 import React from "react";
+import Post from "./Post/Post.jsx";
 import style from "./Posts.module.css";
 
 
@@ -15,7 +16,7 @@ function Posts(props) {
 		props.changeTextarea(text);
 	}
 
-	let postsElement = props.postsElement
+	let postsElement = props.posts.map(el => <Post key={el.Id} postText={el.postText} like={el.like} id={el.Id} />)
 	
 	return (
 		<div className={style.postsElement}>

@@ -43,13 +43,18 @@ export const messagesReducer = (state = initialState, action) => {
 					'Id': newId,
 					'mesText': state.newMessageText
 				}
-				state.messages.push(newMessage);
-				state.newMessageText = '';
-			}
-			return state;
-		case CHANGE_MESSAGE_TEXT:
-			state.newMessageText = action.newValue;
-			return state;
+				return {
+					...state,
+					newMessageText: '',
+					messages: [...state.messages, newMessage]
+				};
+			} break
+		case CHANGE_MESSAGE_TEXT: {
+			return {
+				...state,
+				newMessageText: action.newValue
+			};
+		}
 		default:
 			return state;
 	}
