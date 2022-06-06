@@ -29,6 +29,7 @@ export const profileReducer = (state = initialState, action) => {
 		case ADD_POST:
 			if (state.newPostText === '') {
 				alert("Ваш пост не может быть пустым.");
+				return state;
 			}
 			else {
 				let newId = createID(state.posts) + 1;
@@ -42,7 +43,7 @@ export const profileReducer = (state = initialState, action) => {
 					newPostText: '',
 					posts: [...state.posts, newPost]
 				};
-			} break
+			}
 		case CHANGE_POST_TEXT: {
 			return {
 				...state,

@@ -36,6 +36,7 @@ export const messagesReducer = (state = initialState, action) => {
 		case ADD_MESSAGE:
 			if (state.newMessageText === '') {
 				alert("Сообщение не должно быть пустым")
+				return state;
 			}
 			else {
 				let newId = createID(state.messages) + 1;
@@ -48,7 +49,7 @@ export const messagesReducer = (state = initialState, action) => {
 					newMessageText: '',
 					messages: [...state.messages, newMessage]
 				};
-			} break
+			}
 		case CHANGE_MESSAGE_TEXT: {
 			return {
 				...state,

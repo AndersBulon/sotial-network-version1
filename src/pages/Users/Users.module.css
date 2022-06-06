@@ -1,0 +1,84 @@
+.content {
+	padding: 10px;
+	padding-bottom: 20px;
+	height: 100%;
+	background-color: #000;
+	text-align: center;
+	font-size: 30px;
+	color: #fff;
+}
+.content h4:not(:last-child) {
+	margin-bottom: 20px;
+}
+.userswrapper, .userswrapper1 {
+	color: #000;
+	display: grid;
+	align-items: space-between;
+	grid-column-gap: 20px;
+	font-size: 18px;
+	height: 100px;
+	grid-template-columns: minmax(100px, 2fr)  9fr;
+	grid-template-rows: 1fr 1fr;
+	grid-template-areas: 
+		"avatar info"
+		"followBtn info";
+}
+
+
+.avatar {
+	height: 60px;
+}
+.followBtn{
+	grid-area: followBtn;
+	align-self: end;
+}
+.avatar img {
+	grid-area: avatar;
+	height: 100%;
+	border-radius: 50%;
+	object-fit: cover;
+}
+.info_act, .info_disact{
+	grid-area: info;
+	display: grid;
+	padding: 10px;
+	background-color: #fff;
+	border-radius: 10px;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	grid-template-areas: 
+		"fullname country"
+		"status city";
+}
+.info_disact {
+	background-color: #ccc;
+	color: #555;
+}
+
+.fullname {
+	font-size: 20px;
+	font-weight: 700;
+	font-style: italic;
+	grid-area: fullname;
+	justify-self: start;
+}
+.city{
+	grid-area: city;
+	justify-self: end;
+	align-self: end;
+}
+.country{
+	grid-area: country;
+	justify-self: end;
+}
+.status{
+	font-size: 14px;
+	grid-area: status;
+	justify-self: start;
+	align-self: end;
+}
+.item {
+	display: grid;
+	grid-gap: 10px;
+}
+
