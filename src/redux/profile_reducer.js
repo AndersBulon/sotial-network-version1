@@ -12,11 +12,11 @@ const CHANGE_POST_TEXT = 'CHANGE-POST-TEXT';
 
 let initialState = {
 	posts: [
-		{ 'Id': 1, 'postText': 'Привет это пост 1', 'like': '112' },
-		{ 'Id': 2, 'postText': 'Привет это пост 2', 'like': '67' },
-		{ 'Id': 7, 'postText': 'Привет это пост от Аниты', 'like': '72' },
-		{ 'Id': 4, 'postText': 'Привет это пост 4', 'like': '111' },
-		{ 'Id': 5, 'postText': 'Привет это пост Федора', 'like': '93' },
+		{ 'Id': 1, postAvatar: 'https://avatarfiles.alphacoders.com/224/22482.jpg', 'postText': 'Привет это пост 1', 'like': '112' },
+		{ 'Id': 2, postAvatar: 'https://avatarfiles.alphacoders.com/224/224812.jpg', 'postText': 'Привет это пост 2', 'like': '67' },
+		{ 'Id': 7, postAvatar: 'https://avatarfiles.alphacoders.com/224/224823.jpg', 'postText': 'Привет это пост от Аниты', 'like': '72' },
+		{ 'Id': 4, postAvatar: 'https://avatarfiles.alphacoders.com/224/224809.jpg', 'postText': 'Привет это пост 4', 'like': '111' },
+		{ 'Id': 5, postAvatar: 'https://avatarfiles.alphacoders.com/224/224808.jpg', 'postText': 'Привет это пост Федора', 'like': '93' },
 	],
 	newPostText: '',
 }
@@ -35,6 +35,7 @@ export const profileReducer = (state = initialState, action) => {
 				let newId = createID(state.posts) + 1;
 				let newPost = {
 					'Id': newId,
+					postAvatar: 'https://avatarfiles.alphacoders.com/224/224801.jpg',
 					'postText': state.newPostText,
 					'like': '0'
 				}

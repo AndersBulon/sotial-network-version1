@@ -16,7 +16,7 @@ function Posts(props) {
 		props.changeTextarea(text);
 	}
 
-	let postsElement = props.posts.map(el => <Post key={el.Id} postText={el.postText} like={el.like} id={el.Id} />)
+	let postsElement = props.posts.map(el => <Post key={el.Id} postText={el.postText} like={el.like} id={el.Id} avatar={el.postAvatar} />)
 	
 	return (
 		<div className={style.postsElement}>

@@ -7,7 +7,7 @@ function Post (props) {
        <div className={style.logo}>
          <img
 			  className={style.postimg}
-           src="https://avatarfiles.alphacoders.com/224/224801.jpg"
+           src={props.avatar}
            alt=""
          />
        </div>

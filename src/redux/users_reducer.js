@@ -9,13 +9,7 @@ const SET_USERS = 'SET-USERS'
 //* =============  STATE  INITIOLISATION  =====================
 
 let initialState = {
-	users: [
-		{ 'Id': '1', photourl:'https://avatarfiles.alphacoders.com/224/224801.jpg', 'followed': false, 'fullName': 'Andrei K', 'status': 'I like football', 'country': 'Belarus', 'city': 'Minsk' },
-		{ 'Id': '2', photourl:'https://avatarfiles.alphacoders.com/224/224801.jpg', 'followed': true, 'fullName': 'Sergei F', 'status': 'I am a boss', 'country': 'Russia', 'city': 'Moskow' },
-		{ 'Id': '3', photourl:'https://avatarfiles.alphacoders.com/224/224801.jpg', 'followed': true, 'fullName': 'Olga S', 'status': 'Absent now', 'country': 'Italy', 'city': 'Rim' },
-		{ 'Id': '4', photourl:'https://avatarfiles.alphacoders.com/224/224801.jpg', 'followed': false, 'fullName': 'Patrik Korf', 'status': 'Thanks God its friday', 'country': 'Germany', 'city': 'Bavaria' },
-
-	],
+	users: []
 
 }
 

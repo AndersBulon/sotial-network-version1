@@ -24,7 +24,6 @@
 		"followBtn info";
 }
 
-
 .avatar {
 	height: 60px;
 }
@@ -51,7 +50,7 @@
 		"status city";
 }
 .info_disact {
-	background-color: #ccc;
+	background-color: #aaa;
 	color: #555;
 }
 
