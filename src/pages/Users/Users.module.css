@@ -4,7 +4,7 @@
 	height: 100%;
 	background-color: #000;
 	text-align: center;
-	font-size: 30px;
+	font-size: 28px;
 	color: #fff;
 }
 .content h4:not(:last-child) {
@@ -81,3 +81,44 @@
 	grid-gap: 10px;
 }
 
+.selectedPage {
+	color: #e22020;
+	font-weight: 700;
+}
+.pageNum {
+	font-size: 24px;
+	color: rgb(116, 224, 89);
+	font-weight: 400;
+}
+.pages {
+	grid-area: pages;
+}
+.pages:not(:last-child) {
+	margin-bottom: 10px;
+}
+.selectedPage:not(:last-child), .pageNum:not(:last-child) {
+	margin-right: 10px;
+}
+.selectedPage, .pageNum {
+	cursor: pointer;
+}
+.nextpageblock_activ, .prevpageblock_activ {
+	color: #e22020;
+	font-weight: 700;
+	cursor: pointer;
+}
+.nextpageblock, .prevpageblock{
+color: #fff;
+}
+.nextpageblock, .nextpageblock_activ {
+	display: inline-block;
+	padding-right: 10px;
+}
+.buttons_block {
+	padding: 25px 0;
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: 150px;
+	grid-gap: 20px;
+	justify-content:center;
+}
