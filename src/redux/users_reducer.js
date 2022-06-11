@@ -13,6 +13,7 @@ const SHOW_MORE = 'SHOW-MORE';
 const SHOW_PREVIOUS_BLOCK = 'SHOW-PREVIOUS-BLOCK';
 const GO_END_PAGE_NUMBER = 'GO-END-PAGE-NUMBER';
 const GO_FIRST_PAGE_NUMBER = 'GO-FIRST-PAGE-NUMBER';
+const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 
 //* =============  STATE  INITIOLISATION  =====================
 
@@ -26,6 +27,7 @@ let initialState = {
 	blockStructure : {'1':[1,2,3,4,5,6,7,8,9,10]},
 	currentPagesBlock: 1,
 	currentPage: 1,
+	isFetching: false,
 }
 
 //* =============  REDUCER  ===================================
@@ -110,6 +112,10 @@ export const usersReducer = (state = initialState, action) => {
 			return {
 				...state, currentPagesBlock: 1, currentPage: 1
 			}
+		case TOGGLE_IS_FETCHING:
+			return {
+				...state, isFetching: action.isFetching
+			}
 
 		default:
 			return state;
@@ -119,58 +125,64 @@ export const usersReducer = (state = initialState, action) => {
 
 //* =============  ActionCreators  _AC  ===================================
 
-export const follow_AC = (userId) => {
+export const follow = (userId) => {
 
 	return {
 		type: FOLLOW,
 		userId
 	}
 }
-export const unfollow_AC = (userId) => {
+export const unfollow = (userId) => {
 
 	return {
 		type: UNFOLLOW,
 		userId
 	}
 }
-export const setUsers_AC = (users) => {
+export const setUsers = (users) => {
 	return {
 		type: SET_USERS,
 		users
 	}
 }
-export const setCurrentPage_AC = (curPage) => {
+export const setCurrentPage = (curPage) => {
 	return {
 		type: SET_CURRENT_PAGE,
 		curPage
 	}
 }
-export const setTotalUsersCount_AC = (totalUsersCount) => {
+export const setTotalUsersCount = (totalUsersCount) => {
 	return {
 		type: SET_TOTAL_USERS_COUNT,
 		totalUsersCount
 	}
 }
-export const showMore_AC = (currBlock) => {
+export const showNextBlock = (currBlock) => {
 	return {
 		type: SHOW_MORE,
 		currBlock
 	}
 }
-export const showPrevBlock_AC = (currBlock) => {
+export const showPrevBlock = (currBlock) => {
 	return {
 		type: SHOW_PREVIOUS_BLOCK,
 		currBlock
 	}
 }
 
-export const goEndPageNumber_AC = () => {
+export const goEndPageNumber = () => {
 	return {
 		type: GO_END_PAGE_NUMBER,
 	}
 }
-export const goFirstPageNumber_AC = () => {
+export const goFirstPageNumber = () => {
 	return {
 		type: GO_FIRST_PAGE_NUMBER,
+	}
+}
+export const toggleIsFetching = (isFetching) => {
+	return {
+		type: TOGGLE_IS_FETCHING,
+		isFetching
 	}
 }
