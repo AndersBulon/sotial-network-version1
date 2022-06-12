@@ -6,6 +6,7 @@ import { createID } from "./createID.js";
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_POST_TEXT = 'CHANGE-POST-TEXT';
+const SET_PROFILE = 'SET-PROFILE';
 
 
 //* =============  STATE  INITIOLISATION  =====================
@@ -19,6 +20,28 @@ let initialState = {
 		{ 'Id': 5, postAvatar: 'https://avatarfiles.alphacoders.com/224/224808.jpg', 'postText': 'Привет это пост Федора', 'like': '93' },
 	],
 	newPostText: '',
+	profile: null
+	// {
+	// 	aboutMe: '',
+	// 	contacts: {
+	// 		facebook: "",
+	// 		website: "",
+	// 		vk: "",
+	// 		twitter: "",
+	// 		instagram: "",
+	// 		youtube: "",
+	// 		github: "",
+	// 		mainLink: ""
+	// 	},
+	// 	lookingForAJob: true,
+	// 	lookingForAJobDescription: "",
+	// 	fullName: "",
+	// 	userId: 1,
+	// 	photos: {
+	// 		small: "",
+	// 		large: ""
+	// 	}
+	// },
 }
 
 
@@ -51,6 +74,12 @@ export const profileReducer = (state = initialState, action) => {
 				newPostText: action.newValue
 			};
 		}
+		case SET_PROFILE: {
+			return {
+				...state,
+				profile: action.profile
+			};
+		}
 		default:
 			return state;
 	}
@@ -67,3 +96,4 @@ export const addPost_AC = () => {
 export const changeTextarea_AC = (text) => {
 	return { type: CHANGE_POST_TEXT, newValue: text }
 }
+export const setProfile = (profile) => { return { type: SET_PROFILE, profile } }

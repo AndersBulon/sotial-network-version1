@@ -116,7 +116,8 @@ let mapStateToProps = (state) => {
 }
 
 const UsersContainer = connect(mapStateToProps,
-	{follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, showNextBlock, showPrevBlock, goEndPageNumber, goFirstPageNumber, toggleIsFetching } )(UsersApiContainer)
+	{follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, showNextBlock,
+	showPrevBlock, goEndPageNumber, goFirstPageNumber, toggleIsFetching } )(UsersApiContainer)
 
 export default UsersContainer;
 

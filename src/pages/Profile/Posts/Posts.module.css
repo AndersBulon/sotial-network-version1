@@ -1,28 +1,49 @@
 .postsElement {
 	display: grid;
-	grid-gap: 20px;
+	grid-gap: 10px;
+	align-items: end;
+	grid-template-rows: 180px 1fr ;
+	grid-template-columns: 200px 1fr;
+	grid-template-areas: 
+	"hiddenBtn newpost"
+	"postcontainer postcontainer";
 }
 .createNewPost {
-	
+	grid-area: newpost;
 	border-radius: 5px;
 	display: grid;
 	grid-gap: 15px;
-	background-color: #db6363;
+	background-color: #f7a2a2;
 	padding: 15px 0px;
 }
 .newpostInput {
 	justify-self: center;
+	width: 80%;
 }
 .sendPostBtn {
 	justify-self: center;
 }
 .comentsBtn {
+	grid-area: hiddenBtn;
 	min-width: 150px;
-	margin-left: 20px;
  }
  .postcontainer {
+	grid-area: postcontainer;
 	 display: grid;
 	 grid-gap: 10px;
  }
 
-
+@media (max-width:800px) {
+	.postsElement {
+		grid-template-rows: 180px 30px 1fr ;
+		grid-template-columns: 1fr;
+		grid-template-areas: 
+		"newpost"
+		"hiddenBtn"
+		"postcontainer";
+	}
+	.newpostInput {
+		justify-self: center;
+		width: 90%;
+	}
+}
