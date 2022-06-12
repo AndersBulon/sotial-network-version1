@@ -1,6 +1,8 @@
+
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout.jsx";
+
 import Homepage from "./pages/Homepage/Homepage";
 import News from "./pages/News/News";
 import Music from "./pages/Music/Music";
@@ -18,9 +20,11 @@ function App() {
 			<Routes >
 				<Route path="/" element={<Layout />}>
 					<Route index element={<Homepage />} />
-					<Route path="profile" element={<ProfileContainer />} />
-					<Route path="messages/" element={<MessagesContainer />} />
-					<Route path="users/" element={<UsersContainer />} />
+					<Route path="/profile/" element={<ProfileContainer />} >
+						<Route path=":userId" element={<ProfileContainer />} />
+					</Route>
+					<Route path="messages" element={<MessagesContainer />} />
+					<Route path="users" element={<UsersContainer />} />
 					<Route path="news" element={<News />} />
 					<Route path="music" element={<Music />} />
 					<Route path="settings" element={<Settings />} />

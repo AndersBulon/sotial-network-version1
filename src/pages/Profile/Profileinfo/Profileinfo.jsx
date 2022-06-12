@@ -33,11 +33,7 @@ function Profileinfo(props) {
 				{props.profile.fullName ? " ID № : " + props.profile.userId : "Nickname is not defined"}
 			</div>
 			<div className={`${style.avatar} avatar`}>
-				<img
-					className={style.img}
-					src={props.profile.photos.large ? props.profile.photos.large : avatar}
-					alt="avatar"
-				/>
+				<img className={style.img} src={props.profile.photos.large ? props.profile.photos.large : avatar} alt="avatar" />
 			</div>
 			<div className={`${style.userinfo} userinfo designe`}>
 				<h3 className={style.profileTitle}>Profile : {props.profile.fullName}</h3>
