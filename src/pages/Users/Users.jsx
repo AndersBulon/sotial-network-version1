@@ -2,6 +2,7 @@ import React from "react";
 import style from "./Users.module.css"
 import image from "../../assets/images/user.jpg"
 import { NavLink } from "react-router-dom";
+import { usersAPI } from "../../api/api.js";
 
 let Users = (props) => {
 	return (
@@ -34,8 +35,22 @@ let Users = (props) => {
 							</NavLink>
 						</div>
 						{user.followed ?
-							<button onClick={() => { props.follow(user.id) }} className={`${style.followBtn} button`}>Follow</button> :
-							<button onClick={() => { props.unfollow(user.id) }} className={`${style.followBtn} button`}>Unfollow</button>}
+							<button onClick={() => {
+								usersAPI.delFollow(user.id)
+									.then(data => {
+										if (data.resultCode === 0) {
+											props.unfollow(user.id)
+										}
+									});
+							}} className={`${style.followBtn} button`}>Follow</button> :
+							<button onClick={() => {
+								usersAPI.setFollow(user.id)
+									.then(data => {
+										if (data.resultCode === 0) {
+											props.follow(user.id)
+										}
+									});
+							}} className={`${style.followBtn} button`}>Unfollow</button>}
 						<div className={user.followed ? style.info_act : style.info_disact}>
 							<div className={style.status}>{user.status ? user.status.slice(0, 30) : "Нет статуса"}</div>
 							<div className={style.fullname}>{user.name}</div>
@@ -44,7 +59,6 @@ let Users = (props) => {
 						</div>
 					</div>)}
 			</div>
-
 			<div className={style.buttons_block}>
 				<button onClick={() => { props.showPrevBlock() }} className={`${style.showbtn} button`}>PREVIOUS</button>
 				<button onClick={() => { props.showNextBlock() }} className={`${style.showbtn} button`}>NEXT</button>

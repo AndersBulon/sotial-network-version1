@@ -1,6 +1,6 @@
-import axios from "axios";
 import React from "react";
 import { connect } from "react-redux";
+import { usersAPI } from "../../api/api.js";
 import { Preloader } from "../../components/Preloader/Preloader.jsx";
 import { follow, goEndPageNumber, goFirstPageNumber, setCurrentPage, setTotalUsersCount, setUsers, showNextBlock, showPrevBlock, toggleIsFetching, unfollow } from "../../redux/users_reducer.js";
 import Users from "./Users.jsx";
@@ -13,18 +13,20 @@ class UsersApiContainer extends React.Component {
 
 	componentDidMount() {
 		this.props.toggleIsFetching(true)
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+		usersAPI.setUsersPageParams(this.props.currentPage,this.props.pageSize)
+		.then(data => {
 			this.props.toggleIsFetching(false)
-			this.props.setUsers(response.data.items)
-			this.props.setTotalUsersCount(response.data.totalCount)
+			this.props.setUsers(data.items)
+			this.props.setTotalUsersCount(data.totalCount)
 		})
 	}
 	numPageChanged = (el) => {
 		this.props.setCurrentPage(el)
 		this.props.toggleIsFetching(true)
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${el}&count=${this.props.pageSize}`).then(response => {
+		usersAPI.setUsersPageParams(el,this.props.pageSize)
+		.then(data => {
 			this.props.toggleIsFetching(false)
-			this.props.setUsers(response.data.items)
+			this.props.setUsers(data.items)
 		})
 	}
 	showNextBlock = () => {
@@ -33,9 +35,10 @@ class UsersApiContainer extends React.Component {
 			currBlock++;
 			this.props.showNextBlock(currBlock)
 			this.props.toggleIsFetching(true)
-			axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currBlock}&count=${this.props.pageSize}`).then(response => {
+			usersAPI.setUsersPageParams(currBlock,this.props.pageSize)
+			.then(data => {
 				this.props.toggleIsFetching(false)
-				this.props.setUsers(response.data.items)
+				this.props.setUsers(data.items)
 			})
 		}
 	}
@@ -45,9 +48,10 @@ class UsersApiContainer extends React.Component {
 			currBlock--;
 			this.props.showPrevBlock(currBlock)
 			this.props.toggleIsFetching(true)
-			axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currBlock}&count=${this.props.pageSize}`).then(response => {
+			usersAPI.setUsersPageParams(currBlock,this.props.pageSize)
+			.then(data => {
 				this.props.toggleIsFetching(false)
-				this.props.setUsers(response.data.items)
+				this.props.setUsers(data.items)
 			})
 		}
 	}
@@ -55,9 +59,10 @@ class UsersApiContainer extends React.Component {
 		if (this.props.currentPagesBlock < this.props.totalBlockCount) {
 			this.props.goEndPageNumber()
 			this.props.toggleIsFetching(true)
-			axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.pages}&count=${this.props.pageSize}`).then(response => {
+			usersAPI.setUsersPageParams(this.props.pages,this.props.pageSize)
+			.then(data => {
 				this.props.toggleIsFetching(false)
-				this.props.setUsers(response.data.items)
+				this.props.setUsers(data.items)
 			})
 		}
 	}
@@ -66,8 +71,9 @@ class UsersApiContainer extends React.Component {
 			this.props.goFirstPageNumber()
 			setTimeout(() => {
 				this.props.toggleIsFetching(true)
-				axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-					this.props.setUsers(response.data.items)
+				usersAPI.setUsersPageParams(this.props.currentPage,this.props.pageSize)
+				.then(data => {
+					this.props.setUsers(data.items)
 					this.props.toggleIsFetching(false)
 				})
 			}, 50);
@@ -95,7 +101,6 @@ class UsersApiContainer extends React.Component {
 					unfollow={this.props.unfollow}
 				/>
 			</>
-
 		)
 	}
 }

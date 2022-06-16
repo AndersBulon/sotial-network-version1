@@ -88,5 +88,6 @@ body {
 	.app-wrapper {
 		grid-template-rows: auto auto 250px 1fr auto;
 	}
+
 }
 

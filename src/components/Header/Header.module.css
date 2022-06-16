@@ -1,20 +1,62 @@
 .header{
-   grid-template-columns: repeat(2, auto);
-   justify-content: start;
+display: grid;
+grid-gap: 10px;
+justify-content: space-between;
+grid-template-columns: min-content min-content;
+grid-template-areas: "logotype login";
+
+}
+.logotype {
+	grid-area: logotype;
+	white-space: nowrap;
+	display: grid;
+	grid-template-columns: 60px 1fr;
+	grid-template-areas: "img title";
+}
+.login {
+	padding: 8px 10px;
+	grid-area: login;
+	font-size: 24px;
+	font-weight: 700;
+	letter-spacing: 200%;
 }
 .img {
+	grid-area: img;
    height: 50px;
  }
+ .title {
+	grid-area: title;
+ }
 
- @media (max-width: 350px) {
+ .link, .active_link {
+	font-weight: 600;
+	text-decoration: none;
+ }
+ .link {
+	 color: #fff;
+ }
+ .active_link {
+	 color: #d0ecb7;
+	 text-decoration: underline;
+ }
+ .link:hover, .active_link:hover{
+	color: #d0ecb7;
+ }
+
+ @media (max-width: 400px) {
 	 .header {
 		 min-width: 250px;
 	 }
-	.img {
-		height: 40px;
+	 .logotype{
+		white-space: normal;
+	 }
+	.login {
+		font-size: 18px;
+		padding: 14px 5px;
 	 }
 	 h1 {
-	 font-size: 25px;
- }
+		 font-size: 20px;
+		line-height: 120%;
+ 	}
  }
  
