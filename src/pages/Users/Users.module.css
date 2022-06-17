@@ -31,6 +31,12 @@
 	grid-area: followBtn;
 	align-self: end;
 }
+.followBtn:disabled, .prevbtn:disabled, .nextbtn:disabled {
+background: #555;
+color: #999;
+box-shadow: none;
+}
+
 .avatar img {
 	grid-area: avatar;
 	height: 100%;
@@ -41,7 +47,7 @@
 	grid-area: info;
 	display: grid;
 	padding: 10px;
-	background-color: #fff;
+	background-color: rgb(206, 233, 197);
 	border-radius: 10px;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr 1fr;
@@ -50,8 +56,8 @@
 		"status city";
 }
 .info_disact {
-	background-color: #aaa;
-	color: #555;
+	background-color: #fff;
+	color: #aaa;
 }
 
 .fullname {
@@ -102,18 +108,23 @@
 .selectedPage, .pageNum {
 	cursor: pointer;
 }
-.nextpageblock_activ, .prevpageblock_activ {
+
+
+.left_arr, .right_arr {
+	background: #000;
 	color: #e22020;
-	font-weight: 700;
+	font-size: 26px;
+	font-weight: 800;
 	cursor: pointer;
-}
-.nextpageblock, .prevpageblock{
-color: #fff;
-}
-.nextpageblock, .nextpageblock_activ {
-	display: inline-block;
+	letter-spacing: 5px;
 	padding-right: 10px;
 }
+.left_arr:disabled, .right_arr:disabled {
+	color: #443d3d;
+	cursor: auto;
+}
+
+
 .buttons_block {
 	padding: 25px 0;
 	display: grid;

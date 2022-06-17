@@ -9,11 +9,12 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT';
-const SHOW_MORE = 'SHOW-MORE';
+const SHOW_NEXT_BLOCK = 'SHOW-NEXT-BLOCK';
 const SHOW_PREVIOUS_BLOCK = 'SHOW-PREVIOUS-BLOCK';
 const GO_END_PAGE_NUMBER = 'GO-END-PAGE-NUMBER';
 const GO_FIRST_PAGE_NUMBER = 'GO-FIRST-PAGE-NUMBER';
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
+const LOCKED_BUTTON = 'LOCKED-BUTTON';
 
 //* =============  STATE  INITIOLISATION  =====================
 
@@ -24,10 +25,11 @@ let initialState = {
 	totalBlockCount: 1,
 	pagesInBlock: 10,
 	pages: 1,
-	blockStructure : {'1':[1,2,3,4,5,6,7,8,9,10]},
+	blockStructure: { '1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
 	currentPagesBlock: 1,
 	currentPage: 1,
 	isFetching: false,
+	lockedButton: [],
 }
 
 //* =============  REDUCER  ===================================
@@ -74,7 +76,7 @@ export const usersReducer = (state = initialState, action) => {
 			for (let i = 1; i <= totalBlockCount; i++) {
 				if (counter - state.pagesInBlock > 0) {
 					for (let j = 1; j <= state.pagesInBlock; j++) {
-						arr.push(j+10*(i-1))
+						arr.push(j + 10 * (i - 1))
 					}
 					blockStructure[i] = arr;
 					counter = counter - state.pagesInBlock;
@@ -82,26 +84,26 @@ export const usersReducer = (state = initialState, action) => {
 				}
 				else {
 					for (let k = 1; k <= counter; k++) {
-						arr.push(k+10*(i-1));
+						arr.push(k + 10 * (i - 1));
 					}
 					blockStructure[i] = arr;
 				}
 			}
-			
+
 			return {
 				...state,
-				 totalUsersCount: action.TotalUsersCount,
-				 totalBlockCount: totalBlockCount,
-				 pages: pages,
-				 blockStructure: blockStructure,
+				totalUsersCount: action.TotalUsersCount,
+				totalBlockCount: totalBlockCount,
+				pages: pages,
+				blockStructure: blockStructure,
 			}
-		case SHOW_MORE:
+		case SHOW_NEXT_BLOCK:
 			return {
-				...state, currentPagesBlock: action.currBlock, currentPage: (action.currBlock*10-9)
+				...state, currentPagesBlock: action.currBlock, currentPage: (action.currBlock * 10 - 9)
 			}
 		case SHOW_PREVIOUS_BLOCK:
 			return {
-				...state, currentPagesBlock: action.currBlock, currentPage: (action.currBlock*10-9)
+				...state, currentPagesBlock: action.currBlock, currentPage: (action.currBlock * 10 - 9)
 			}
 
 		case GO_END_PAGE_NUMBER:
@@ -116,7 +118,16 @@ export const usersReducer = (state = initialState, action) => {
 			return {
 				...state, isFetching: action.isFetching
 			}
+		case LOCKED_BUTTON: {
 
+			
+			return {
+				...state,
+				lockedButton: action.disabled
+					? [...state.lockedButton, action.id]
+					: state.lockedButton.filter(id => id !== action.id)
+			}
+		}
 		default:
 			return state;
 	}
@@ -159,7 +170,7 @@ export const setTotalUsersCount = (totalUsersCount) => {
 }
 export const showNextBlock = (currBlock) => {
 	return {
-		type: SHOW_MORE,
+		type: SHOW_NEXT_BLOCK,
 		currBlock
 	}
 }
@@ -184,5 +195,12 @@ export const toggleIsFetching = (isFetching) => {
 	return {
 		type: TOGGLE_IS_FETCHING,
 		isFetching
+	}
+}
+export const changeButtonsСondition = (disabled, id) => {
+	return {
+		type: LOCKED_BUTTON,
+		disabled,
+		id
 	}
 }

@@ -28,6 +28,7 @@ body {
 	height: 32px;
 	padding: 5px 15px;
 }
+
 .button:hover {
 	box-shadow: #50234e 2px 2px 3px 3px;
 }

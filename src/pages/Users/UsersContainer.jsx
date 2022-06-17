@@ -2,7 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { usersAPI } from "../../api/api.js";
 import { Preloader } from "../../components/Preloader/Preloader.jsx";
-import { follow, goEndPageNumber, goFirstPageNumber, setCurrentPage, setTotalUsersCount, setUsers, showNextBlock, showPrevBlock, toggleIsFetching, unfollow } from "../../redux/users_reducer.js";
+import { follow, goEndPageNumber, goFirstPageNumber, setCurrentPage,
+		   setTotalUsersCount, setUsers, showNextBlock, showPrevBlock,
+		   toggleIsFetching, unfollow, changeButtonsСondition } from "../../redux/users_reducer.js";
 import Users from "./Users.jsx";
 
 
@@ -30,7 +32,6 @@ class UsersApiContainer extends React.Component {
 		})
 	}
 	showNextBlock = () => {
-		if (this.props.currentPagesBlock < this.props.totalBlockCount) {
 			let currBlock = this.props.currentPagesBlock;
 			currBlock++;
 			this.props.showNextBlock(currBlock)
@@ -40,10 +41,8 @@ class UsersApiContainer extends React.Component {
 				this.props.toggleIsFetching(false)
 				this.props.setUsers(data.items)
 			})
-		}
 	}
 	showPrevBlock = () => {
-		if (this.props.currentPagesBlock > 1) {
 			let currBlock = this.props.currentPagesBlock;
 			currBlock--;
 			this.props.showPrevBlock(currBlock)
@@ -53,7 +52,6 @@ class UsersApiContainer extends React.Component {
 				this.props.toggleIsFetching(false)
 				this.props.setUsers(data.items)
 			})
-		}
 	}
 	goEndPageNumber = () => {
 		if (this.props.currentPagesBlock < this.props.totalBlockCount) {
@@ -79,23 +77,30 @@ class UsersApiContainer extends React.Component {
 			}, 50);
 		}
 	}
+	changeButtonsСondition = (disabled, id) => {
+		this.props.changeButtonsСondition(disabled, id)
+
+	}
 
 	render() {
 		return (
 			<>
 				{this.props.isFetching ? <Preloader/> : null}
 				<Users
+				
 					goFirstPageNumber={this.goFirstPageNumber}
 					numPageChanged={this.numPageChanged}
 					goEndPageNumber={this.goEndPageNumber}
 					showPrevBlock={this.showPrevBlock}
 					showNextBlock={this.showNextBlock}
+					changeButtonsСondition={this.changeButtonsСondition}
 
 					currentPagesBlock={this.props.currentPagesBlock}
 					blockStructure={this.props.blockStructure}
 					currentPage={this.props.currentPage}
 					totalBlockCount={this.props.totalBlockCount}
 					users={this.props.users}
+					lockedButton={this.props.lockedButton}
 
 					follow={this.props.follow}
 					unfollow={this.props.unfollow}
@@ -117,12 +122,14 @@ let mapStateToProps = (state) => {
 		totalUsersCount: state.usersPage.totalUsersCount,
 		pages: state.usersPage.pages,
 		isFetching: state.usersPage.isFetching,
+		lockedButton: state.usersPage.lockedButton
+
 	}
 }
 
 const UsersContainer = connect(mapStateToProps,
 	{follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, showNextBlock,
-	showPrevBlock, goEndPageNumber, goFirstPageNumber, toggleIsFetching } )(UsersApiContainer)
+	showPrevBlock, goEndPageNumber, goFirstPageNumber, toggleIsFetching, changeButtonsСondition} )(UsersApiContainer)
 
 export default UsersContainer;
 
