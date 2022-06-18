@@ -1,5 +1,6 @@
 //* =============  IMPORTS  =====================================
 
+import { usersAPI } from "../api/api.js";
 
 
 //* =============  CONSTANTS  ===================================
@@ -23,7 +24,7 @@ let initialState = {
 	totalUsersCount: 0,
 	pageSize: 5,
 	totalBlockCount: 1,
-	pagesInBlock: 10,
+	pagesInBlock:10,
 	pages: 1,
 	blockStructure: { '1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
 	currentPagesBlock: 1,
@@ -105,7 +106,6 @@ export const usersReducer = (state = initialState, action) => {
 			return {
 				...state, currentPagesBlock: action.currBlock, currentPage: (action.currBlock * 10 - 9)
 			}
-
 		case GO_END_PAGE_NUMBER:
 			return {
 				...state, currentPagesBlock: state.totalBlockCount, currentPage: state.pages
@@ -119,8 +119,6 @@ export const usersReducer = (state = initialState, action) => {
 				...state, isFetching: action.isFetching
 			}
 		case LOCKED_BUTTON: {
-
-			
 			return {
 				...state,
 				lockedButton: action.disabled
@@ -131,76 +129,56 @@ export const usersReducer = (state = initialState, action) => {
 		default:
 			return state;
 	}
-
 }
 
 //* =============  ActionCreators  _AC  ===================================
 
-export const follow = (userId) => {
+export const follow = (userId) => ({ type: FOLLOW, userId })
+export const unfollow = (userId) => ({ type: UNFOLLOW, userId })
+export const setUsers = (users) => ({ type: SET_USERS, users })
+export const setCurrentPage = (curPage) => ({ type: SET_CURRENT_PAGE, curPage })
+export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount })
+export const showNextBlock = (currBlock) => ({ type: SHOW_NEXT_BLOCK, currBlock })
+export const showPrevBlock = (currBlock) => ({ type: SHOW_PREVIOUS_BLOCK, currBlock })
+export const goEndPageNumber = () => ({ type: GO_END_PAGE_NUMBER })
+export const goFirstPageNumber = () => ({ type: GO_FIRST_PAGE_NUMBER })
+export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
+export const changeButtonsСondition = (disabled, id) => ({ type: LOCKED_BUTTON, disabled, id })
 
-	return {
-		type: FOLLOW,
-		userId
-	}
-}
-export const unfollow = (userId) => {
+//* =============  ActionCreators  _AC  THUNK  ===================================
 
-	return {
-		type: UNFOLLOW,
-		userId
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+	return (dispatch) => {
+		dispatch(toggleIsFetching(true));
+		usersAPI.setUsersPageParams(currentPage, pageSize)
+			.then(data => {
+				dispatch(setUsers(data.items));
+				dispatch(toggleIsFetching(false));
+				dispatch(setTotalUsersCount(data.totalCount));
+			});
 	}
 }
-export const setUsers = (users) => {
-	return {
-		type: SET_USERS,
-		users
+export const unFollowThunkCreator = (id) => {
+	return (dispatch) => {
+		dispatch(changeButtonsСondition(true, id));
+		usersAPI.delFollow(id)
+			.then(data => {
+				if (data.resultCode === 0) {
+					dispatch(unfollow(id))
+				}
+				dispatch(changeButtonsСondition(false, id));
+			});
 	}
 }
-export const setCurrentPage = (curPage) => {
-	return {
-		type: SET_CURRENT_PAGE,
-		curPage
-	}
-}
-export const setTotalUsersCount = (totalUsersCount) => {
-	return {
-		type: SET_TOTAL_USERS_COUNT,
-		totalUsersCount
-	}
-}
-export const showNextBlock = (currBlock) => {
-	return {
-		type: SHOW_NEXT_BLOCK,
-		currBlock
-	}
-}
-export const showPrevBlock = (currBlock) => {
-	return {
-		type: SHOW_PREVIOUS_BLOCK,
-		currBlock
-	}
-}
-
-export const goEndPageNumber = () => {
-	return {
-		type: GO_END_PAGE_NUMBER,
-	}
-}
-export const goFirstPageNumber = () => {
-	return {
-		type: GO_FIRST_PAGE_NUMBER,
-	}
-}
-export const toggleIsFetching = (isFetching) => {
-	return {
-		type: TOGGLE_IS_FETCHING,
-		isFetching
-	}
-}
-export const changeButtonsСondition = (disabled, id) => {
-	return {
-		type: LOCKED_BUTTON,
-		disabled,
-		id
+export const followThunkCreator = (id) => {
+	return (dispatch) => {
+		dispatch(changeButtonsСondition(true, id));
+		usersAPI.setFollow(id)
+			.then(data => {
+				if (data.resultCode === 0) {
+					dispatch(follow(id))
+				}
+				dispatch(changeButtonsСondition(false, id));
+			});
 	}
 }

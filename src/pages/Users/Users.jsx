@@ -2,7 +2,6 @@ import React from "react";
 import style from "./Users.module.css"
 import image from "../../assets/images/user.jpg"
 import { NavLink } from "react-router-dom";
-import { usersAPI } from "../../api/api.js";
 
 let Users = (props) => {
 
@@ -38,31 +37,15 @@ let Users = (props) => {
 
 						{user.followed ?
 							<button disabled={props.lockedButton.some(id=>id===user.id)} onClick={() => {
-
-								props.changeButtonsСondition(true, user.id);
-								usersAPI.delFollow(user.id)
-									.then(data => {
-										if (data.resultCode === 0) {
-											props.unfollow(user.id)
-										}
-										props.changeButtonsСondition(false, user.id);
-									});
+								props.unFollow(user.id)
 							}} className={`${style.followBtn} button`}>
-								Follow
+								Followed
 							</button>
 							:
 							<button disabled={props.lockedButton.some(id=>id===user.id)} onClick={() => {
-
-								props.changeButtonsСondition(true, user.id);
-								usersAPI.setFollow(user.id)
-									.then(data => {
-										if (data.resultCode === 0) {
-											props.follow(user.id)
-										}
-										props.changeButtonsСondition(false, user.id);
-									});
+								props.follow(user.id)
 							}} className={`${style.followBtn} button`}>
-								Unfollow
+								Unfollowed
 							</button>}
 
 						<div className={user.followed ? style.info_act : style.info_disact}>
