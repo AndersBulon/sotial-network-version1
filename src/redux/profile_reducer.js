@@ -1,6 +1,6 @@
 //* =============  IMPORTS  =====================================
 import { createID } from "./createID.js";
-
+import { usersAPI } from "../api/api.js";
 
 //* =============  CONSTANTS  ===================================
 
@@ -20,8 +20,8 @@ let initialState = {
 		{ 'Id': 5, postAvatar: 'https://avatarfiles.alphacoders.com/224/224808.jpg', 'postText': 'Привет это пост Федора', 'like': '93' },
 	],
 	newPostText: '',
-	profile: null
-	// {
+	profile: [],
+	// profile: {
 	// 	aboutMe: '',
 	// 	contacts: {
 	// 		facebook: "",
@@ -41,7 +41,7 @@ let initialState = {
 	// 		small: "",
 	// 		large: ""
 	// 	}
-	// },
+	// }
 }
 
 
@@ -83,17 +83,21 @@ export const profileReducer = (state = initialState, action) => {
 		default:
 			return state;
 	}
-
 }
 
 //* =============  ActionCreators  _AC  ===================================
 
-export const addPost_AC = () => {
-	return {
-		type: ADD_POST
+export const addPost_AC = () => ({ type: ADD_POST });
+export const changeTextarea_AC = (text) => ({ type: CHANGE_POST_TEXT, newValue: text });
+export const setProfile_AC = (profile) => ({ type: SET_PROFILE, profile: profile });
+
+//* =============  ActionCreators  _AC  THUNK===========================
+
+export const setProfileThunkCreator = (id) => {
+	return (dispatch) => {
+		usersAPI.getUser(id)
+			.then(profile => {
+				dispatch(setProfile_AC(profile));
+			})
 	}
 }
-export const changeTextarea_AC = (text) => {
-	return { type: CHANGE_POST_TEXT, newValue: text }
-}
-export const setProfile = (profile) => { return { type: SET_PROFILE, profile } }

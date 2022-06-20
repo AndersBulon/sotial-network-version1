@@ -16,6 +16,7 @@ const GO_END_PAGE_NUMBER = 'GO-END-PAGE-NUMBER';
 const GO_FIRST_PAGE_NUMBER = 'GO-FIRST-PAGE-NUMBER';
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 const LOCKED_BUTTON = 'LOCKED-BUTTON';
+const CHANGE_NEXT_PREV = 'CHANGE-NEXT-PREV';
 
 //* =============  STATE  INITIOLISATION  =====================
 
@@ -24,13 +25,14 @@ let initialState = {
 	totalUsersCount: 0,
 	pageSize: 5,
 	totalBlockCount: 1,
-	pagesInBlock:10,
+	pagesInBlock: 10,
 	pages: 1,
 	blockStructure: { '1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
 	currentPagesBlock: 1,
 	currentPage: 1,
 	isFetching: false,
 	lockedButton: [],
+	nextPrevButtonStatus: 1
 }
 
 //* =============  REDUCER  ===================================
@@ -68,7 +70,10 @@ export const usersReducer = (state = initialState, action) => {
 			return {
 				...state, currentPage: action.curPage
 			}
+
+
 		case SET_TOTAL_USERS_COUNT:
+
 			let totalBlockCount = (Math.ceil(action.totalUsersCount / state.pagesInBlock / state.pageSize));
 			let pages = (Math.ceil(action.totalUsersCount / state.pageSize));
 			let blockStructure = {};
@@ -77,7 +82,7 @@ export const usersReducer = (state = initialState, action) => {
 			for (let i = 1; i <= totalBlockCount; i++) {
 				if (counter - state.pagesInBlock > 0) {
 					for (let j = 1; j <= state.pagesInBlock; j++) {
-						arr.push(j + 10 * (i - 1))
+						arr.push(j + state.pagesInBlock * (i - 1))
 					}
 					blockStructure[i] = arr;
 					counter = counter - state.pagesInBlock;
@@ -85,7 +90,7 @@ export const usersReducer = (state = initialState, action) => {
 				}
 				else {
 					for (let k = 1; k <= counter; k++) {
-						arr.push(k + 10 * (i - 1));
+						arr.push(k + state.pagesInBlock * (i - 1));
 					}
 					blockStructure[i] = arr;
 				}
@@ -98,14 +103,16 @@ export const usersReducer = (state = initialState, action) => {
 				pages: pages,
 				blockStructure: blockStructure,
 			}
+
 		case SHOW_NEXT_BLOCK:
 			return {
-				...state, currentPagesBlock: action.currBlock, currentPage: (action.currBlock * 10 - 9)
+				...state, currentPagesBlock: state.currentPagesBlock+1, currentPage: state.blockStructure[state.currentPagesBlock+1][0]
 			}
 		case SHOW_PREVIOUS_BLOCK:
 			return {
-				...state, currentPagesBlock: action.currBlock, currentPage: (action.currBlock * 10 - 9)
+				...state, currentPagesBlock: state.currentPagesBlock-1, currentPage: state.blockStructure[state.currentPagesBlock-1][0]
 			}
+
 		case GO_END_PAGE_NUMBER:
 			return {
 				...state, currentPagesBlock: state.totalBlockCount, currentPage: state.pages
@@ -138,12 +145,13 @@ export const unfollow = (userId) => ({ type: UNFOLLOW, userId })
 export const setUsers = (users) => ({ type: SET_USERS, users })
 export const setCurrentPage = (curPage) => ({ type: SET_CURRENT_PAGE, curPage })
 export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount })
-export const showNextBlock = (currBlock) => ({ type: SHOW_NEXT_BLOCK, currBlock })
-export const showPrevBlock = (currBlock) => ({ type: SHOW_PREVIOUS_BLOCK, currBlock })
+export const showNextBlock = () => ({ type: SHOW_NEXT_BLOCK })
+export const showPrevBlock = () => ({ type: SHOW_PREVIOUS_BLOCK })
 export const goEndPageNumber = () => ({ type: GO_END_PAGE_NUMBER })
 export const goFirstPageNumber = () => ({ type: GO_FIRST_PAGE_NUMBER })
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
 export const changeButtonsСondition = (disabled, id) => ({ type: LOCKED_BUTTON, disabled, id })
+export const changeNextPrev = (value) => ({ type: CHANGE_NEXT_PREV, value })
 
 //* =============  ActionCreators  _AC  THUNK  ===================================
 

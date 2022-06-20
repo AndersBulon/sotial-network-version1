@@ -1,18 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Preloader } from "../../components/Preloader/Preloader.jsx";
-import {
-	goEndPageNumber, goFirstPageNumber, setCurrentPage,
-	showNextBlock, showPrevBlock,
-	getUsersThunkCreator, unFollowThunkCreator, followThunkCreator
-} from "../../redux/users_reducer.js";
+import {goEndPageNumber, goFirstPageNumber, setCurrentPage, showNextBlock, showPrevBlock,
+	getUsersThunkCreator, unFollowThunkCreator, followThunkCreator} from "../../redux/users_reducer.js";
 import Users from "./Users.jsx";
 
 
 class UsersApiContainer extends React.Component {
-	// constructor (props) {
-	// 	super(props);
-	// }
+
 
 	componentDidMount() {
 		this.props.getUsers(this.props.currentPage, this.props.pageSize)
@@ -20,20 +15,23 @@ class UsersApiContainer extends React.Component {
 	numPageChanged = (el) => {
 		this.props.setCurrentPage(el)
 		this.props.getUsers(el, this.props.pageSize)
+	}
 
-	}
-	showNextBlock = () => {
-		let currBlock = this.props.currentPagesBlock;
-		currBlock++;
-		this.props.showNextBlock(currBlock)
-		this.props.getUsers(currBlock, this.props.pageSize)
-	}
 	showPrevBlock = () => {
-		let currBlock = this.props.currentPagesBlock;
-		currBlock--;
-		this.props.showPrevBlock(currBlock)
-		this.props.getUsers(currBlock, this.props.pageSize)
+		this.props.showPrevBlock();
+		setTimeout(() => {
+			this.props.getUsers(this.props.currentPage, this.props.pageSize)
+		}, 100);
 	}
+
+	showNextBlock = () => {
+		this.props.showNextBlock()
+		setTimeout(() => {
+			this.props.getUsers(this.props.currentPage, this.props.pageSize)
+		}, 100);
+	}
+
+
 	goEndPageNumber = () => {
 		this.props.goEndPageNumber()
 		this.props.getUsers(this.props.pages, this.props.pageSize)
@@ -47,6 +45,7 @@ class UsersApiContainer extends React.Component {
 	changeButtonsСondition = (disabled, id) => {
 		this.props.changeButtonsСondition(disabled, id)
 	}
+
 
 	render() {
 		return (
@@ -66,6 +65,7 @@ class UsersApiContainer extends React.Component {
 					totalBlockCount={this.props.totalBlockCount}
 					users={this.props.users}
 					lockedButton={this.props.lockedButton}
+					nextPrevButton={this.props.nextPrevButton}
 
 					follow={this.props.follow}
 					unFollow={this.props.unFollow}
@@ -73,6 +73,8 @@ class UsersApiContainer extends React.Component {
 			</>
 		)
 	}
+
+
 }
 
 
@@ -87,15 +89,14 @@ let mapStateToProps = (state) => {
 		totalUsersCount: state.usersPage.totalUsersCount,
 		pages: state.usersPage.pages,
 		isFetching: state.usersPage.isFetching,
-		lockedButton: state.usersPage.lockedButton
-
+		lockedButton: state.usersPage.lockedButton,
+		pagesInBlock: state.usersPage.pagesInBlock,
 	}
 }
 
 const UsersContainer = connect(mapStateToProps,
 	{
-		setCurrentPage,showNextBlock, showPrevBlock,
-		goEndPageNumber, goFirstPageNumber,
+		setCurrentPage, showNextBlock, showPrevBlock, goEndPageNumber, goFirstPageNumber,
 		getUsers: getUsersThunkCreator, unFollow: unFollowThunkCreator, follow: followThunkCreator,
 	})(UsersApiContainer)
 

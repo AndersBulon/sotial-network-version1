@@ -11,7 +11,7 @@ import { Notfound } from "./pages/Notfound/Notfound";
 import MessagesContainer from "./pages/Messages/MessagesContainer.jsx";
 import UsersContainer from "./pages/Users/UsersContainer.jsx";
 import { NewsSport } from "./pages/News/NewsSport.jsx";
-import { Profile } from "./pages/Profile/Profile.jsx";
+import  Profile  from "./pages/Profile/Profile.jsx";
 
 
 //*----------------------------------------------------
