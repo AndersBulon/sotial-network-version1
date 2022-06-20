@@ -3,6 +3,7 @@ import { messagesReducer } from "./messages_reducer .js";
 import { profileReducer } from "./profile_reducer.js";
 import { usersReducer } from "./users_reducer.js";
 import { sideBarReducer } from "./sidebar_reducer.js";
+import { authReducer } from "./auth_reducer.js";
 import thunkMiddleware from "redux-thunk";
 
 let reducers = combineReducers(
@@ -11,6 +12,7 @@ let reducers = combineReducers(
 		profilePage: profileReducer,
 		usersPage: usersReducer,
 		sideBar: sideBarReducer,
+		auth: authReducer,
 	}
 )
 
