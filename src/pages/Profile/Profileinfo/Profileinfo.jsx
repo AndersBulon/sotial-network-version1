@@ -3,6 +3,7 @@ import style from "./Profileinfo.module.css";
 import avatar from "../../../assets/images/avatar.png"
 import sadFace from "../../../assets/images/sadFace.png"
 import { Preloader } from "../../../components/Preloader/Preloader.jsx"
+import { ProfileStatus } from "../../../components/ProfileStatus/ProfileStatus.jsx";
 
 
 function Profileinfo(props) {
@@ -69,6 +70,9 @@ function Profileinfo(props) {
 					<span className={style.contacts}>Looking for a job description: </span> {props.profile.lookingForAJobDescription ? props.profile.lookingForAJobDescription : "Нет данных"}
 				</p>
 
+			</div>
+			<div className={style.profileStatus}>
+				<ProfileStatus status="Привет это мой статусищщще"  />
 			</div>
 		</div>
 	);

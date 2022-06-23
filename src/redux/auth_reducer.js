@@ -10,7 +10,11 @@ const SET_MY_PROFILE = 'SET-MY-PROFILE';
 //* =============  STATE  INITIOLISATION  =====================
 
 let initialState = {
-	myProfile: [],
+
+	userId: null,
+	email: null,
+	login: null,
+	isAuth: false
 }
 
 
@@ -22,7 +26,8 @@ export const authReducer = (state = initialState, action) => {
 		case SET_MY_PROFILE: {
 			return {
 				...state,
-				myProfile: action.profile
+				...action.data,
+				isAuth: true
 			};
 		}
 		default:
@@ -33,15 +38,18 @@ export const authReducer = (state = initialState, action) => {
 //* =============  ActionCreators  _AC  ===================================
 
 
-export const setMyProfile_AC = (profile) => ({ type: SET_MY_PROFILE, profile: profile });
+export const setMyProfile_AC = (userId, email, login) => ({ type: SET_MY_PROFILE, data: { userId, email, login } });
 
 //* =============  ActionCreators  _AC  THUNK===========================
 
 export const setMyProfileThunkCreator = () => {
 	return (dispatch) => {
 		usersAPI.getAuthorisation()
-			.then(profile => {
-				dispatch(setMyProfile_AC(profile));
+			.then(data => {
+				if (data.resultCode === 0) {
+					let { id, email, login } = data.data;
+					dispatch(setMyProfile_AC(id, email, login));
+				}
 			})
 	}
 }

@@ -11,7 +11,8 @@ import { Notfound } from "./pages/Notfound/Notfound";
 import MessagesContainer from "./pages/Messages/MessagesContainer.jsx";
 import UsersContainer from "./pages/Users/UsersContainer.jsx";
 import { NewsSport } from "./pages/News/NewsSport.jsx";
-import  Profile  from "./pages/Profile/Profile.jsx";
+import Login from "./pages/Login/Login.jsx";
+import ProfileContainer from "./pages/Profile/ProfileContainer.jsx";
 
 
 //*----------------------------------------------------
@@ -21,12 +22,13 @@ function App() {
 			<Routes >
 				<Route path="/" element={<Layout />}>
 					<Route index element={<Homepage />} />
-					<Route path="profile" element={<Profile />} />
-					<Route path="profile/:id" element={<Profile />} />
+					<Route path="profile" element={<ProfileContainer />} />
+					<Route path="profile/:id" element={<ProfileContainer />} />
 					<Route path="messages" element={<MessagesContainer />} />
 					<Route path="users" element={<UsersContainer />} />
 					<Route path="news" element={<News />} />
 					<Route path="news/:id" element={<NewsSport />} />
+					<Route path="login" element={<Login />} />
 					<Route path="music" element={<Music />} />
 					<Route path="settings" element={<Settings />} />
 					<Route path="*" element={<Notfound />} />

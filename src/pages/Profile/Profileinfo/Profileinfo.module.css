@@ -3,10 +3,11 @@
 	display: grid;
 	grid-gap: 10px;
 	grid-template-columns: 200px auto;
-	grid-template-rows: 200px 1fr;
+	grid-template-rows: 200px 1fr auto;
 	grid-template-areas:
 	  "avatar info"
-	  "id info";
+	  "id info"
+	  "status status";
  }
  .id {
 	grid-area: id;
@@ -64,6 +65,9 @@
 	text-align: center;
 	font-size: 40px;
 	font-weight: 700;
+ }
+ .profileStatus {
+	grid-area: status;
  }
 
 

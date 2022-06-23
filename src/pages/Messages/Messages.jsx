@@ -15,6 +15,7 @@ function Messages(props) {
 	}
 	let message = props.messages.map(message => <MessageItem key={message.Id} mesId={message.Id} mesText={message.mesText} />);
 	let dialog =  props.dialogs.map(dialog => <DialogItem key={dialog.Id} dialogId={dialog.Id} dialogAuthor={dialog.dialogAuthor} />);
+	
 
 	return (
 		<div className={`${style.content} designe`} >

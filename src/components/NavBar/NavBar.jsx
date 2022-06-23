@@ -2,7 +2,7 @@ import { React } from "react";
 import style from "./NavBar.module.css";
 import { NavLink } from "react-router-dom";
 
-const linkclass = ({isActive}) => isActive ? `${style.active_link}` : `${style.link}`;
+const linkclass = ({ isActive }) => isActive ? `${style.active_link}` : `${style.link}`;
 
 const NavBar = () => {
 	return (
@@ -13,18 +13,18 @@ const NavBar = () => {
 				</NavLink>
 			</div>
 			<div className={style.item}>
-				<NavLink to="/profile" className={linkclass}>
-					Profile
+				<NavLink to="/login" className={linkclass}>
+					Login
 				</NavLink>
 			</div>
 			<div className={style.item}>
-				<NavLink  to="/messages" className={linkclass}>
+				<NavLink to="/messages" className={linkclass}>
 					Messages
 				</NavLink>
 			</div>
 			<div className={style.item}>
-				<NavLink to="/users" className={linkclass}>
-					Users
+				<NavLink to="/music" className={linkclass}>
+					Music
 				</NavLink>
 			</div>
 			<div className={style.item}>
@@ -33,8 +33,13 @@ const NavBar = () => {
 				</NavLink>
 			</div>
 			<div className={style.item}>
-				<NavLink to="/music" className={linkclass}>
-					Music
+				<NavLink to="/profile" className={linkclass}>
+					Profile
+				</NavLink>
+			</div>
+			<div className={style.item}>
+				<NavLink to="/users" className={linkclass}>
+					Users
 				</NavLink>
 			</div>
 			<div className={style.item}>

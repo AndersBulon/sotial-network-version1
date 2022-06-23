@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import style from "./Header.module.css"
 import logo from "../../assets/images/logo.png"
 import { NavLink } from "react-router-dom";
-import { Preloader } from "../Preloader/Preloader.jsx";
 import { connect } from "react-redux";
 import { setMyProfileThunkCreator } from "../../redux/auth_reducer.js";
 
@@ -11,15 +10,11 @@ import { setMyProfileThunkCreator } from "../../redux/auth_reducer.js";
 const linkclass = ({ isActive }) => isActive ? `${style.active_link}` : `${style.link}`;
 
 let Header = (props) => {
-
 	useEffect(() => {
 		props.setMyProfileThunkCreator()
 			// eslint-disable-next-line
 			}, []);
 
-
-	if (!Object.keys(props.myProfile).length) {
-		return <Preloader />}
 
 	return (
 		<header className={`${style.header} grid designe header`}>
@@ -32,7 +27,7 @@ let Header = (props) => {
 				<h1 className="title">Social NetworK</h1>
 			</div>
 			<div className={style.login}>
-				<NavLink className={linkclass} to="/login">{!props.myProfile.data.login ? "login": props.myProfile.data.login }</NavLink>
+				<NavLink className={linkclass} to="/login">{!props.login ? "login": props.login }</NavLink>
 			</div>
 		</header>
 	);
@@ -41,7 +36,10 @@ let Header = (props) => {
 
 const mapStateToProps = (state) => {
 	return {
-		myProfile: state.auth.myProfile,
+	userId: state.auth.userId,
+	email: state.auth.email,
+	login: state.auth.login,
+	isAuth: state.auth.isAuth
 	}
 }
 const mapDispatchToProps = (dispatch) => {

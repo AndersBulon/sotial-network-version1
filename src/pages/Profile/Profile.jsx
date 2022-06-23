@@ -4,11 +4,9 @@ import { Preloader } from "../../components/Preloader/Preloader.jsx";
 import Profileinfo from "./Profileinfo/Profileinfo"
 import style from "./Profile.module.css";
 import PostsContainer from "./Posts/PostsContainer.jsx";
-import { connect } from "react-redux";
-import { setProfileThunkCreator } from "../../redux/profile_reducer.js";
 
 
-function Profile(props) {
+export function Profile(props) {
 	const { id = 24479 } = useParams()
 
 	useEffect(() => {
@@ -26,17 +24,4 @@ function Profile(props) {
 			<PostsContainer />
 		</div>
 	)
-
 }
-const mapStateToProps = (state) => {
-	return {
-		profile: state.profilePage.profile,
-		isLoadingState: state.profilePage.isLoadingState
-	}
-}
-const mapDispatchToProps = (dispatch) => {
-	return {
-		setProfileThunkCreator: (profile) => { dispatch(setProfileThunkCreator(profile)) },
-	}
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
