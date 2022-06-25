@@ -11,7 +11,7 @@ const SET_MY_PROFILE = 'SET-MY-PROFILE';
 
 let initialState = {
 
-	userId: null,
+	myId: null,
 	email: null,
 	login: null,
 	isAuth: false
@@ -38,7 +38,7 @@ export const authReducer = (state = initialState, action) => {
 //* =============  ActionCreators  _AC  ===================================
 
 
-export const setMyProfile_AC = (userId, email, login) => ({ type: SET_MY_PROFILE, data: { userId, email, login } });
+export const setMyProfile_AC = (myId, email, login) => ({ type: SET_MY_PROFILE, data: { myId, email, login } });
 
 //* =============  ActionCreators  _AC  THUNK===========================
 

@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
 		profile: state.profilePage.profile,
 		isLoadingState: state.profilePage.isLoadingState,
 		status:  state.profilePage.status,
+		myId: state.auth.myId
 		
 	}
 }

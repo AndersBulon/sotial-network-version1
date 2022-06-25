@@ -62,9 +62,11 @@ class UsersApiContainer extends React.Component {
 					users={this.props.users}
 					lockedButton={this.props.lockedButton}
 					nextPrevButton={this.props.nextPrevButton}
+					myId={this.props.myId}
 
 					follow={this.props.follow}
 					unFollow={this.props.unFollow}
+
 				/>
 			</>
 		)
@@ -85,6 +87,7 @@ let mapStateToProps = (state) => {
 		isFetching: state.usersPage.isFetching,
 		lockedButton: state.usersPage.lockedButton,
 		pagesInBlock: state.usersPage.pagesInBlock,
+		myId: state.auth.myId
 	}
 }
 

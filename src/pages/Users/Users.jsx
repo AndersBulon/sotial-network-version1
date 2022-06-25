@@ -48,8 +48,9 @@ let Users = (props) => {
 								Unfollowed
 							</button>}
 
-						<div className={user.followed ? style.info_act : style.info_disact}>
-							<div className={style.status}>{user.status ? user.status.slice(0, 30) : "Нет статуса"}</div>
+						<div className={`${user.followed ? style.info_act : style.info_disact}
+						 ${(user.id===props.myId) ? style.my : style.a}`} >
+							<div className={style.status}>{user.status ? user.status.slice(0, 50) : "Нет статуса"}</div>
 							<div className={style.fullname}>{user.name}</div>
 							<div className={style.country}>{user.country ? user.country : "Страна нет данных"}</div>
 							<div className={style.city}>ID: {user.id}</div>

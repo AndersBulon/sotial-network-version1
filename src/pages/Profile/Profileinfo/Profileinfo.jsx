@@ -72,7 +72,8 @@ function Profileinfo(props) {
 
 			</div>
 			<div className={style.profileStatus}>
-				<ProfileStatus status={props.status} updateStatus = {props.updateStatus} />
+				<ProfileStatus status={props.status} 
+				updateStatus = {props.updateStatus} myId={props.myId} userId={props.profile.userId} />
 			</div>
 		</div>
 	);

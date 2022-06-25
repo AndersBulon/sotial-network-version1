@@ -1,4 +1,6 @@
 .profileStatus {
+	text-align: center;
+	width: 100%;
 	min-height: 70px;
 	padding: 5px;
  	background-color: brown;
@@ -6,8 +8,31 @@
 
 }
 
-.input {
-	font-size: 24px;
-	padding: 5px;
-	width: 500px;
+.statusSpan, .statusInput {
+	display: inline-block;
+	font-weight: 700;
+	font-size: 30px;
+	padding: 5px 10px;
+	width: 90%;
+}
+.statusSpan {
+	color: bisque;
+}
+.statusInput {
+	color: rgb(24, 34, 21);
+}
+
+@media (max-width: 600px) {
+	.statusSpan, .statusInput {
+		font-weight: 400;
+		font-size: 25px;
+
+	}
+}
+@media (max-width: 400px) {
+	.statusSpan, .statusInput {
+		font-weight: 400;
+		font-size: 20px;
+
+	}
 }

@@ -7,14 +7,14 @@ class ProfileStatus extends React.Component {
 		editMode: false,
 		status: this.props.status
 	}
-
+	
 	activateEditMode = () => {
-		//*=============setState -это асинхронный метод!!!===================================
+		if(this.props.myId === this.props.userId) {
+			//*=============setState -это асинхронный метод!!!===================================
 		this.setState({
 			editMode: true
 		})
-		//*=============forceUpdate -насильный перерендеринг===================================
-		// this.forceUpdate();
+		}
 	}
 	deactivateEditMode() {
 		this.setState({
@@ -41,12 +41,12 @@ class ProfileStatus extends React.Component {
 			<div className={style.profileStatus}>
 				{!this.state.editMode &&
 					<div >
-						<span onClick={this.activateEditMode}>{this.props.status ? this.props.status : "No status"}</span>
+						<span className={style.statusSpan} onClick={this.activateEditMode}>{this.props.status ? this.props.status : "No status"}</span>
 					</div>
 				}
 				{this.state.editMode &&
 					<div >
-						<input autoFocus={true} className={style.input} onBlur={this.deactivateEditMode.bind(this)}
+						<input autoFocus={true} className={style.statusInput} onBlur={this.deactivateEditMode.bind(this)}
 							onChange={this.onStatusChange} value={this.state.status} />
 					</div>
 				}

@@ -7,7 +7,6 @@ import PostsContainer from "./Posts/PostsContainer.jsx";
 
 
 export function Profile(props) {
-	console.log(props);
 	const { id = 24479 } = useParams()
 
 	useEffect(() => {
@@ -25,6 +24,7 @@ export function Profile(props) {
 			<Profileinfo profile={props.profile} 
 				status={props.status} 
 				updateStatus = {props.updateStatus}
+				myId={props.myId}
 				 />
 			<PostsContainer />
 		</div>

@@ -11,12 +11,14 @@ import { Notfound } from "./pages/Notfound/Notfound";
 import MessagesContainer from "./pages/Messages/MessagesContainer.jsx";
 import UsersContainer from "./pages/Users/UsersContainer.jsx";
 import { NewsSport } from "./pages/News/NewsSport.jsx";
-import Login from "./pages/Login/Login.jsx";
 import ProfileContainer from "./pages/Profile/ProfileContainer.jsx";
+import LoginContainer from "./pages/Login/LoginContainer.jsx";
+
 
 
 //*----------------------------------------------------
 function App() {
+	
 	return (
 		<div className="app-wrapper grid">
 			<Routes >
@@ -28,7 +30,7 @@ function App() {
 					<Route path="users" element={<UsersContainer />} />
 					<Route path="news" element={<News />} />
 					<Route path="news/:id" element={<NewsSport />} />
-					<Route path="login" element={<Login />} />
+					<Route path="login" element={<LoginContainer />} />
 					<Route path="music" element={<Music />} />
 					<Route path="settings" element={<Settings />} />
 					<Route path="*" element={<Notfound />} />
