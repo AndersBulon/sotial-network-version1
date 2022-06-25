@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { setProfileThunkCreator } from "../../redux/profile_reducer.js";
+import { getStatusThunkCreator, setProfileThunkCreator, updateStatusThunkCreator } from "../../redux/profile_reducer.js";
 import { WithAuthRediredct } from "../../components/HOC/WithAuthRedirect.js";
 import { compose } from "redux";
 import {Profile} from "./Profile.jsx";
@@ -9,12 +9,15 @@ const mapStateToProps = (state) => {
 	return {
 		profile: state.profilePage.profile,
 		isLoadingState: state.profilePage.isLoadingState,
+		status:  state.profilePage.status,
 		
 	}
 }
 const mapDispatchToProps = (dispatch) => {
 	return {
-		setProfileThunkCreator: (profile) => { dispatch(setProfileThunkCreator(profile)) },
+		setProfile: (profile) => { dispatch(setProfileThunkCreator(profile)) },
+		getStatus: (userId) => {dispatch(getStatusThunkCreator(userId))},
+		updateStatus: (status) => {dispatch(updateStatusThunkCreator(status))}
 	}
 }
 

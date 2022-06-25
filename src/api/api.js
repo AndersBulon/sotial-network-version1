@@ -7,19 +7,8 @@ const instance = axios.create({
 	headers:{"API-KEY": "7c280ff0-da28-44c2-814f-6d7952212b4e"}
 });
 
-const usersAPI = {
-	getAuthorisation() {
-		return (
-			instance.get(`auth/me`)
-				.then(response => response.data)
-		);
-	},
-	getUser(id) {
-		return (
-			instance.get(`profile/${id}`)
-				.then(response => response.data)
-		);
-	},
+export const usersAPI = {
+
 	setFollow(id) {
 		return (
 			instance.post(`follow/${id}`,
@@ -41,9 +30,29 @@ const usersAPI = {
 				.then(response => response.data)
 		);
 	},
-
 }
 
+export const authAPI = {
+	getAuthorisation() {
+		return (
+			instance.get(`auth/me`)
+				.then(response => response.data)
+		);
+	},
+}
 
+export const profileAPI = {
+	getProfile(id) {
+		return instance.get(`profile/${id}`)
+	},
+	getStatus(usrId) {
+		return (
+			instance.get(`profile/status/${usrId}`)
+				.then(response => response.data)
+		);
+	},
+	updateStatus(status) {
+		return instance.put(`profile/status`, { status: status });
+	},
 
-export { usersAPI }
+}

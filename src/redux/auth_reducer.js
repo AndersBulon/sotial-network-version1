@@ -1,5 +1,5 @@
 //* =============  IMPORTS  =====================================
-import { usersAPI } from "../api/api.js";
+import { authAPI } from "../api/api.js";
 
 //* =============  CONSTANTS  ===================================
 
@@ -44,7 +44,7 @@ export const setMyProfile_AC = (userId, email, login) => ({ type: SET_MY_PROFILE
 
 export const setMyProfileThunkCreator = () => {
 	return (dispatch) => {
-		usersAPI.getAuthorisation()
+		authAPI.getAuthorisation()
 			.then(data => {
 				if (data.resultCode === 0) {
 					let { id, email, login } = data.data;

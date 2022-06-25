@@ -4,10 +4,11 @@ import style from "./ProfileStatus.module.css"
 class ProfileStatus extends React.Component {
 
 	state = {
-		editMode: false
+		editMode: false,
+		status: this.props.status
 	}
 
-	activateEditMode ()  {
+	activateEditMode = () => {
 		//*=============setState -это асинхронный метод!!!===================================
 		this.setState({
 			editMode: true
@@ -15,23 +16,38 @@ class ProfileStatus extends React.Component {
 		//*=============forceUpdate -насильный перерендеринг===================================
 		// this.forceUpdate();
 	}
-	deactivateEditMode ()  {
+	deactivateEditMode() {
 		this.setState({
 			editMode: false
-		})
+		});
+		this.props.updateStatus(this.state.status)
 	}
+	onStatusChange = (e) => {
+	this.setState({
+		status: e.currentTarget.value
+	})	
+	}
+
+	componentDidUpdate(prevProps, prevState){
+		if (prevProps.status !== this.props.status) {
+			this.setState({
+				status: this.props.status
+			});
+		}
+	}
+
 	render() {
 		return (
 			<div className={style.profileStatus}>
 				{!this.state.editMode &&
 					<div >
-						<span onDoubleClick={this.activateEditMode.bind(this)}>{this.props.status}</span>
+						<span onClick={this.activateEditMode}>{this.props.status ? this.props.status : "No status"}</span>
 					</div>
 				}
 				{this.state.editMode &&
 					<div >
 						<input autoFocus={true} className={style.input} onBlur={this.deactivateEditMode.bind(this)}
-						 onChange={()=>{}} value={this.props.status} />
+							onChange={this.onStatusChange} value={this.state.status} />
 					</div>
 				}
 			</div>

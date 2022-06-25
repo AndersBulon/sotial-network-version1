@@ -7,10 +7,12 @@ import PostsContainer from "./Posts/PostsContainer.jsx";
 
 
 export function Profile(props) {
+	console.log(props);
 	const { id = 24479 } = useParams()
 
 	useEffect(() => {
-		props.setProfileThunkCreator(id)
+		props.setProfile(id)
+		props.getStatus(id)
 		// eslint-disable-next-line 
 	}, [id]);
 
@@ -20,7 +22,10 @@ export function Profile(props) {
 
 	return (
 		<div className={style.content}>
-			<Profileinfo profile={props.profile} />
+			<Profileinfo profile={props.profile} 
+				status={props.status} 
+				updateStatus = {props.updateStatus}
+				 />
 			<PostsContainer />
 		</div>
 	)

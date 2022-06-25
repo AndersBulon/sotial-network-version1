@@ -70,8 +70,6 @@ export const usersReducer = (state = initialState, action) => {
 			return {
 				...state, currentPage: action.curPage
 			}
-
-
 		case SET_TOTAL_USERS_COUNT:
 
 			let totalBlockCount = (Math.ceil(action.totalUsersCount / state.pagesInBlock / state.pageSize));
