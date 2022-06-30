@@ -1,10 +1,17 @@
-import React from "react";
+
 import style from "./Music.module.css"
+import { useForm } from "react-hook-form";
 
 
-function Music () {
+
+function Music() {
+
 	return (
-		<div className={`${style.content} designe`} >Это Музыка</div>
+		<div className={`${style.content} designe`} >
+
+		Страничка Музыки
+
+		</div>
 	)
 }
 

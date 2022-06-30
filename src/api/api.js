@@ -36,10 +36,9 @@ export const authAPI = {
 	getAuthorisation() {
 		return (
 			instance.get(`auth/me`)
-				.then(response => response.data)
 		);
 	},
-	setLogin(email, password, rememberMe) {
+	setLogin(email, password, rememberMe = false) {
 		return (
 			instance.post(`auth/login`, { email: email, password: password, rememberMe: rememberMe })
 		);

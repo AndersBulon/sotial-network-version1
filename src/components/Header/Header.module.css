@@ -13,13 +13,6 @@ grid-template-areas: "logotype login";
 	grid-template-columns: 60px 1fr;
 	grid-template-areas: "img title";
 }
-.login {
-	padding: 8px 10px;
-	grid-area: login;
-	font-size: 24px;
-	font-weight: 700;
-	letter-spacing: 200%;
-}
 .img {
 	grid-area: img;
    height: 50px;
@@ -28,6 +21,39 @@ grid-template-areas: "logotype login";
 	grid-area: title;
  }
 
+.loginBlock {
+	grid-area: login;
+	padding: 8px 10px;
+	font-size: 24px;
+	font-weight: 700;
+	letter-spacing: 200%;
+	
+}
+
+.login {
+	grid-gap: 10px;
+	display: grid;
+	grid-template-columns: min-content min-content;
+	grid-template-areas: "nick logOutBtn";
+}
+
+.loginString {
+	grid-area: nick;
+}
+.logoutBtn {
+	grid-area: logOutBtn;
+	cursor: pointer;
+	font-size: 18px;
+	background-color: #000;
+	padding: 5px 15px;
+	color: #fff;
+	border-radius: 8px;
+	border: #fff solid 2px;
+}
+.logoutBtn:hover {
+	color: #d0ecb7;
+	border: #d0ecb7 solid 2px;
+}
  .link, .active_link {
 	font-weight: 600;
 	text-decoration: none;

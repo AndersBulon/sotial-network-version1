@@ -7,7 +7,7 @@ import PostsContainer from "./Posts/PostsContainer.jsx";
 
 
 export function Profile(props) {
-	const { id = 24479 } = useParams()
+	const { id = props.myId } = useParams()
 
 	useEffect(() => {
 		props.setProfile(id)
@@ -18,7 +18,6 @@ export function Profile(props) {
 	if (!Object.keys(props.profile).length) {
 		return <Preloader />
 	}
-
 	return (
 		<div className={style.content}>
 			<Profileinfo profile={props.profile} 

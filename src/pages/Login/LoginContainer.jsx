@@ -1,19 +1,20 @@
 import { connect } from "react-redux";
 import { compose } from "redux";
 import Login from "./Login.jsx";
-import { setMyLoginThunkCreator, setMyLogin_AC, unLoginThunkCreator } from "../../redux/form_reducer.js";
+
+import { loginThunkCreator, logOutThunkCreator } from "../../redux/auth_reducer.js";
 
 
 const mapStateToProps = (state) => {
+	// console.log(state.auth);
 	return {
-		isAuth: state.auth.isAuth
+		authdata: state.auth,
 	}
 }
 const mapDispatchToProps = (dispatch) => {
 	return {
-		setMyLogin: (email, password, rememberMe) => { dispatch(setMyLogin_AC(email, password, rememberMe)) },
-		setMyLoginThunkCreator:  (email, password, rememberMe) => { dispatch(setMyLoginThunkCreator(email, password, rememberMe)) },
-		unLoginThunkCreator:  () => { dispatch(unLoginThunkCreator()) },
+		loginThunkCreator:  (email, password, rememberMe) => { dispatch(loginThunkCreator(email, password, rememberMe)) },
+		logOut:  () => { dispatch(logOutThunkCreator()) },
 	}
 }
 
