@@ -38,14 +38,19 @@ export const authAPI = {
 			instance.get(`auth/me`)
 		);
 	},
-	setLogin(email, password, rememberMe = false) {
+	setLogin(email, password, rememberMe = false, captcha = '') {
 		return (
-			instance.post(`auth/login`, { email: email, password: password, rememberMe: rememberMe })
+			instance.post(`auth/login`, { email: email, password: password, rememberMe: rememberMe, captcha: captcha })
 		);
 	},
 	unLogin() {
 		return (
 			instance.delete(`auth/login`)
+		);
+	},
+	getCaptchaURL() {
+		return (
+			instance.get(`security/get-captcha-url`)
 		);
 	},
 }

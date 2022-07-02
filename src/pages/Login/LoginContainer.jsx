@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import Login from "./Login.jsx";
 
-import { loginThunkCreator, logOutThunkCreator } from "../../redux/auth_reducer.js";
+import { getCaptchaThunkCreator, loginThunkCreator, logOutThunkCreator } from "../../redux/auth_reducer.js";
 
 
 const mapStateToProps = (state) => {
@@ -13,8 +13,9 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
 	return {
-		loginThunkCreator:  (email, password, rememberMe) => { dispatch(loginThunkCreator(email, password, rememberMe)) },
-		logOut:  () => { dispatch(logOutThunkCreator()) },
+		loginThunkCreator: (email, password, rememberMe, captcha) => { dispatch(loginThunkCreator(email, password, rememberMe, captcha)) },
+		logOut: () => { dispatch(logOutThunkCreator()) },
+		getCaptcha: () => (dispatch(getCaptchaThunkCreator))
 	}
 }
 
