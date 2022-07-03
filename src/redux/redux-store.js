@@ -5,6 +5,7 @@ import { usersReducer } from "./users_reducer.js";
 import { sideBarReducer } from "./sidebar_reducer.js";
 import { authReducer } from "./auth_reducer.js";
 import thunkMiddleware from "redux-thunk";
+import { appReducer } from "./app_reducer.js";
 
 
 let reducers = combineReducers(
@@ -14,6 +15,7 @@ let reducers = combineReducers(
 		usersPage: usersReducer,
 		sideBar: sideBarReducer,
 		auth: authReducer,
+		app: appReducer
 	}
 )
 

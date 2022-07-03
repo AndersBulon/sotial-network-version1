@@ -7,7 +7,7 @@ import {
 } from "../../redux/users_reducer.js";
 import Users from "./Users.jsx";
 import { compose } from "redux";
-import { WithAuthRediredct } from "../../components/HOC/WithAuthRedirect.js";
+// import { WithAuthRediredct } from "../../components/HOC/WithAuthRedirect.js";
 
 
 class UsersApiContainer extends React.Component {
@@ -106,6 +106,6 @@ let mapDispatchToProps = (dispatch) => {
 
 const UsersContainer = compose(
 	connect(mapStateToProps, mapDispatchToProps),
-	WithAuthRediredct
+	// WithAuthRediredct
 )(UsersApiContainer)
 export default UsersContainer;

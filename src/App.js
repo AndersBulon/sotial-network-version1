@@ -13,31 +13,57 @@ import UsersContainer from "./pages/Users/UsersContainer.jsx";
 import { NewsSport } from "./pages/News/NewsSport.jsx";
 import ProfileContainer from "./pages/Profile/ProfileContainer.jsx";
 import LoginContainer from "./pages/Login/LoginContainer.jsx";
+import { Component } from "react";
+import { connect } from "react-redux";
+import { initializeAppThunkCreator } from "./redux/app_reducer.js";
+import { Preloader } from "./components/Preloader/Preloader.jsx";
 
 
 
 //*----------------------------------------------------
-function App() {
-	
-	return (
-		<div className="app-wrapper grid">
-			<Routes >
-				<Route path="/" element={<Layout />}>
-					<Route index element={<Homepage />} />
-					<Route path="profile" element={<ProfileContainer />} />
-					<Route path="profile/:id" element={<ProfileContainer />} />
-					<Route path="messages" element={<MessagesContainer />} />
-					<Route path="users" element={<UsersContainer />} />
-					<Route path="news" element={<News />} />
-					<Route path="news/:id" element={<NewsSport />} />
-					<Route path="login" element={<LoginContainer />} />
-					<Route path="music" element={<Music />} />
-					<Route path="settings" element={<Settings />} />
-					<Route path="*" element={<Notfound />} />
-				</Route>
-			</Routes>
-		</div>
-	);
+class App extends Component {
+
+	componentDidMount() {
+		this.props.initializeAppThunkCreator()
+	}
+	render() {
+		if (!this.props.initialized) {
+			return <Preloader />
+		}
+		
+		return (
+			<div className="app-wrapper grid">
+				<Routes >
+					<Route path="/" element={<Layout />}>
+						<Route index element={<Homepage />} />
+						<Route path="profile" element={<ProfileContainer />} />
+						<Route path="profile/:id" element={<ProfileContainer />} />
+						<Route path="messages" element={<MessagesContainer />} />
+						<Route path="users" element={<UsersContainer />} />
+						<Route path="news" element={<News />} />
+						<Route path="news/:id" element={<NewsSport />} />
+						<Route path="login" element={<LoginContainer />} />
+						<Route path="music" element={<Music />} />
+						<Route path="settings" element={<Settings />} />
+						<Route path="*" element={<Notfound />} />
+					</Route>
+				</Routes>
+			</div>
+		);
+	}
+
 }
+const mapDispatchToProps = (dispatch) => {
+	return {
+		initializeAppThunkCreator: () => dispatch(initializeAppThunkCreator())
+	}
+}
+const mapStateToProps = (state) => {
+	return {
+		initialized: state.app.initialized
+	}
+}
+
+
 //*--------------------------------------------------
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);

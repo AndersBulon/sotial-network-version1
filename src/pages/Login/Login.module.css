@@ -24,6 +24,7 @@ h1{
 	font-style: italic;
 	font-weight: 700;
 }
+
 .input, .inputErr, .inputDesable {
 	height: 35px;
 	padding: 10px;
@@ -119,19 +120,18 @@ legend {
 .submitBtn{
 	cursor: pointer;
 	position: relative;
-	color: #38ea0c;
+	color: rgb(81, 66, 66);
 	box-shadow: -2px 2px 20px 3px #aaa;
 	padding: 10px 20px;
 	width:100px;
 	border-radius: 10px;
 	margin:30px auto;
 	display: block;
-	background-image: linear-gradient(to left,transparent,transparent 50%,#38ea0c 50%,#38ea0c);
+	background-image: linear-gradient(to left,transparent,transparent 50%,#e9b1a4 50%,#fff);
 	background-position: 100% 0;
 	background-size: 200% 100%;
 	transition: all .25s ease-in;
 	font: 700 18px tahoma;
-	border: 2px solid #38ea0c;
   }
 .submitBtn:active {
 	top: 1px;
@@ -140,5 +140,5 @@ legend {
   }
 .submitBtn:hover {
 	background-position: 0 0;
-	color:#fff;
+	color:#000;
   }

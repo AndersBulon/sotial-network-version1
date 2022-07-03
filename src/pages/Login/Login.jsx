@@ -14,7 +14,9 @@ function LoginForm(props) {
 	const onSubmit = (data) => {
 		props.loginThunkCreator(data.login, data.password, data.remember_me, data.captcha)
 	}
+	console.log("RENDER");
 	return (
+
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<fieldset>
 				<legend> Логин и пароль </legend>

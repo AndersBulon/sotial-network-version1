@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
+// import React, { useEffect } from "react";
 import style from "./Header.module.css"
 import logo from "../../assets/images/logo.png"
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { logOutThunkCreator, setMyProfileThunkCreator } from "../../redux/auth_reducer.js";
+import { logOutThunkCreator } from "../../redux/auth_reducer.js";
 
 
 
 const linkclass = ({ isActive }) => isActive ? `${style.active_link}` : `${style.link}`;
 
 let Header = (props) => {
-	useEffect(() => {
-		props.setMyProfileThunkCreator()
-		// eslint-disable-next-line
-	}, []);
+	// useEffect(() => {
+	// 	props.setMyProfileThunkCreator()
+	// 	// eslint-disable-next-line
+	// }, []);
 
 
 	return (
@@ -49,7 +49,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
 	return {
-		setMyProfileThunkCreator: (profile) => { dispatch(setMyProfileThunkCreator(profile)) },
+		// setMyProfileThunkCreator: () => { dispatch(setMyProfileThunkCreator()) },
 		logOut: () => { dispatch(logOutThunkCreator()) },
 	}
 }

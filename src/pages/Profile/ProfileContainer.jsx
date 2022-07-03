@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { getStatusThunkCreator, setProfileThunkCreator, updateStatusThunkCreator } from "../../redux/profile_reducer.js";
-import { WithAuthRediredct } from "../../components/HOC/WithAuthRedirect.js";
+// import { WithAuthRediredct } from "../../components/HOC/WithAuthRedirect.js";
 import { compose } from "redux";
 import {Profile} from "./Profile.jsx";
 
@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const ProfileContainer = compose(
 	connect(mapStateToProps, mapDispatchToProps),
-	WithAuthRediredct
+	// WithAuthRediredct
 )(Profile)
 
 export default ProfileContainer;
