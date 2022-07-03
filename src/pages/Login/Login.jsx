@@ -4,7 +4,15 @@ import React from "react"
 import { Navigate } from "react-router-dom"
 
 function LoginForm(props) {
-	 
+	
+	let errRef = React.createRef();
+	let handleClick=()=> {
+		const wrapper = errRef.current;
+		wrapper.classList.add("err")
+		setTimeout(() => {
+			wrapper.classList.remove("err")
+		}, 850);
+  }
 	const {
 		register,
 		handleSubmit,
@@ -14,13 +22,12 @@ function LoginForm(props) {
 	const onSubmit = (data) => {
 		props.loginThunkCreator(data.login, data.password, data.remember_me, data.captcha)
 	}
-	console.log("RENDER");
 	return (
 
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<fieldset>
 				<legend> Логин и пароль </legend>
-				{<p className={style.error}>{props.authdata.messages}</p>}
+				{<p ref={errRef} className={`${style.error}`}>{props.authdata.messages}</p>}
 				<div>
 					{!props.authdata.isAuth ?
 						<input autoFocus={true} type="text" placeholder={"Login"}
@@ -88,6 +95,7 @@ function LoginForm(props) {
 				</button>
 				:
 				<button className={style.submitBtn}
+					onClick={()=>{handleClick()}}
 					id="submBtn"
 					{...register("loginBtn")}
 				>Login</button>

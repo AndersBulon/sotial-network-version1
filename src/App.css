@@ -8,7 +8,20 @@ body {
   padding: 1vh;
  
 }
-/**--------------------------------------*/
+/**----------------ОБЩИЕ CSS СТИЛИ----------------------*/
+
+/**----------------стиль для компоненты логин----------------------*/
+.err {
+	animation: err .8s ease;
+}
+@keyframes err {
+	0% {transform: translate(0px, 0px)}
+	33% {transform: translate(-20px, 0px)}
+	66% {transform: translate(20px, 0px)}
+	100% {transform: translate(0px, 0px)}
+}
+/** ------------------------------------------------------------------ */
+
 .designe {
   border-radius: 5px;
   padding: 5px;

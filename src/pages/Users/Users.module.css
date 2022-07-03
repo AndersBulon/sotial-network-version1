@@ -27,14 +27,35 @@
 .avatar {
 	height: 60px;
 }
-.followBtn{
+
+
+.btnCont {
 	grid-area: followBtn;
+	border-radius: 10px;
+	background-color: #bbb;
 	align-self: end;
+	max-width: 150px;
+	height: 32px;
+	margin: 0 auto;
+	padding: 2px 10px;
+	font-size: 18px;
+	font-weight: 700;
+}
+.followBtn{
+	min-width: 100px;	
 }
 .followBtn:disabled, .prevbtn:disabled, .nextbtn:disabled {
-background: #555;
-color: #999;
-box-shadow: none;
+	background: #555;
+	color: #999;
+	box-shadow: none;
+}
+.lockedBtn {
+	margin-left: 10px;
+	padding: 2px 0px 1px 0px;
+	height: 22px;
+	width: 22px;
+	background: url(../../assets//images/lockBtn.png)no-repeat ;
+	background-size:  100% ;
 }
 
 .avatar img {
