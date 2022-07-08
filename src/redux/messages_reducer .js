@@ -4,7 +4,6 @@ import { createID } from "./createID.js";
 //* =============  CONSTANTS  ===================================
 
 const ADD_MESSAGE = 'ADD_MESSAGE';
-const CHANGE_MESSAGE_TEXT = 'CHANGE-MESSAGE-TEXT';
 
 //* =============  STATE  INITIOLISATION  =====================
 
@@ -34,41 +33,25 @@ let initialState = {
 export const messagesReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_MESSAGE:
-			if (state.newMessageText === '') {
-				alert("Сообщение не должно быть пустым")
-				return state;
-			}
-			else {
 				let newId = createID(state.messages) + 1;
 				let newMessage = {
 					'Id': newId,
-					'mesText': state.newMessageText
+					'mesText': action.messageText
 				}
 				return {
 					...state,
-					newMessageText: '',
 					messages: [...state.messages, newMessage]
 				};
-			}
-		case CHANGE_MESSAGE_TEXT: {
-			return {
-				...state,
-				newMessageText: action.newValue
-			};
-		}
+			
 		default:
 			return state;
 	}
-
 }
 
 //* =============  ActionCreators  _AC  ===================================
 
-export const addMessage_AC = () => {
+export const addMessage_AC = (messageText) => {
 	return {
-		type: ADD_MESSAGE
+		type: ADD_MESSAGE, messageText: messageText
 	}
-}
-export const changeMessageText_AC = (text) => {
-	return { type: CHANGE_MESSAGE_TEXT, newValue: text }
 }

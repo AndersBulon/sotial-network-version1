@@ -10,11 +10,6 @@ import { logOutThunkCreator } from "../../redux/auth_reducer.js";
 const linkclass = ({ isActive }) => isActive ? `${style.active_link}` : `${style.link}`;
 
 let Header = (props) => {
-	// useEffect(() => {
-	// 	props.setMyProfileThunkCreator()
-	// 	// eslint-disable-next-line
-	// }, []);
-
 
 	return (
 		<header className={`${style.header} grid designe header`}>
@@ -49,7 +44,6 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
 	return {
-		// setMyProfileThunkCreator: () => { dispatch(setMyProfileThunkCreator()) },
 		logOut: () => { dispatch(logOutThunkCreator()) },
 	}
 }

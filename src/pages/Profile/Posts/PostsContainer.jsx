@@ -1,22 +1,18 @@
 import { connect } from "react-redux";
-import { addPost_AC, changeTextarea_AC } from "../../../redux/profile_reducer.js";
+import { addPost_AC } from "../../../redux/profile_reducer.js";
 import Posts from "./Posts.jsx";
 
 
 let mapDispatchToProps = (dispatch) => {
 	return {
-		sendPost: () => {
-			dispatch(addPost_AC())
-		},
-		changeTextarea: (text) => {
-			dispatch(changeTextarea_AC(text))
+		sendPost: (newPost) => {
+			dispatch(addPost_AC(newPost))
 		}
 	}
 }
 
 let mapStateToProps = (state) => {
 	return {
-		newPostText: state.profilePage.newPostText,
 		posts: state.profilePage.posts,
 	}
 

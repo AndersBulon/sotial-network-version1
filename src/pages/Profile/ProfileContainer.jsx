@@ -8,7 +8,6 @@ import {Profile} from "./Profile.jsx";
 const mapStateToProps = (state) => {
 	return {
 		profile: state.profilePage.profile,
-		isLoadingState: state.profilePage.isLoadingState,
 		status:  state.profilePage.status,
 		myId: state.auth.myId
 		

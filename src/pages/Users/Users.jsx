@@ -4,7 +4,6 @@ import image from "../../assets/images/user.jpg"
 import { NavLink } from "react-router-dom";
 
 let Users = (props) => {
-	console.log(props);
 	return (
 
 		<div className={`${style.content} designe`} >
@@ -36,12 +35,15 @@ let Users = (props) => {
 						</div>
 						{!props.isAuth
 							?
-							<div className={style.btnCont}>Locked
-								<img alt="" className={`${style.lockedBtn}`} />
+							<div className={style.btnCont}>
+								<div className={style.wrap}>
+									<div className={style.textus}>Locked</div>
+									<img alt="" className={`${style.lockedBtn}`} />
+								</div>
 							</div>
-							
+
 							:
-							<div >
+							<div className={style.btnCont}>
 								{user.followed ?
 									<button disabled={props.lockedButton.some(id => id === user.id)} onClick={() => {
 										props.unFollow(user.id)

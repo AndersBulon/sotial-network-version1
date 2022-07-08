@@ -2,26 +2,11 @@
 	display: grid;
 	grid-gap: 10px;
 	align-items: end;
-	grid-template-rows: 180px 1fr ;
+	grid-template-rows: min-content 1fr;
 	grid-template-columns: 200px 1fr;
 	grid-template-areas: 
-	"hiddenBtn newpost"
-	"postcontainer postcontainer";
-}
-.createNewPost {
-	grid-area: newpost;
-	border-radius: 5px;
-	display: grid;
-	grid-gap: 15px;
-	background-color: #f7a2a2;
-	padding: 15px 0px;
-}
-.newpostInput {
-	justify-self: center;
-	width: 80%;
-}
-.sendPostBtn {
-	justify-self: center;
+		"hiddenBtn newpost"
+		"postcontainer postcontainer";
 }
 .comentsBtn {
 	grid-area: hiddenBtn;
@@ -32,6 +17,45 @@
 	 display: grid;
 	 grid-gap: 10px;
  }
+
+/** ========================================================== */
+.createNewPost {
+	border: thick solid brown;
+	grid-area: newpost;
+	border-radius: 10px;
+	background-color: #000;
+	
+}
+.postForm {
+	display: grid;
+	grid-auto-flow: row;
+	justify-content: space-around;
+	grid-gap: 15px;
+	grid-template-rows: 20px 1fr 30px;
+	grid-template-columns: 1fr;
+	grid-template-areas:
+	"postErr" 
+	"newPost" 
+	"sendBtn";
+}
+.postErr {
+	min-height: 20px;
+	grid-area: postErr;
+	justify-self: center;
+
+
+}
+.newpostInput {
+	grid-area: newPost;
+	justify-self: center;
+	width: 80%;
+}
+.sendPostBtn {
+	grid-area: sendBtn;
+	justify-self: center;
+
+}
+/** ========================================================== */
 
 @media (max-width:800px) {
 	.postsElement {

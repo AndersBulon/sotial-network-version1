@@ -21,17 +21,25 @@ body {
 	100% {transform: translate(0px, 0px)}
 }
 /** ------------------------------------------------------------------ */
+.error {
+	min-height: 30px;
+	padding: 8px 10px;
+	font-size: 14px;
+	color: red;
+	font-style: italic;
+	font-weight: 700;
+}
 
 .designe {
   border-radius: 5px;
   padding: 5px;
-  background-color: #db6363;
+  background-color: brown;
 }
 .grid {
   display: grid;
   grid-gap: 10px;
 }
-.button {
+/* .button {
 	background: linear-gradient(180deg, #000, #ec0e97, #000);
 	color: #fff;
 	border-radius: 5px;
@@ -44,7 +52,7 @@ body {
 
 .button:hover {
 	box-shadow: #50234e 2px 2px 3px 3px;
-}
+} */
 .input {
 	border: 1px solid #000;
 	resize: none;
@@ -54,6 +62,32 @@ body {
 	padding: 5px;
 	border-radius: 10px;
 }
+.button{
+	position: relative;
+	cursor: pointer;
+	color: rgb(81, 66, 66);
+	box-shadow: -2px 2px 20px 3px #eee;
+	padding: 5px 10px;
+	min-width: 100px;
+	height: 32px;
+	border-radius: 10px;
+	margin:0px auto;
+	display: block;
+	background-image: linear-gradient(to left,transparent,transparent 50%,bisque 50%,#fff );
+	background-position: 100% 0;
+	background-size: 200% 100%;
+	transition: all .3s ease-in;
+	font: 700 16px tahoma; 
+  }
+.button:active {
+	top: 1px;
+	left: -1px;
+	box-shadow: -1px 1px 3px 1px #aaa;
+  }
+.button:hover {
+	background-position: 0 0;
+	color:#000;
+  }
 
 
 /**------------------------------- */

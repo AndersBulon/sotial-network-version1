@@ -69,22 +69,14 @@ export const getCaptcha_AC = (url) => ({ type: GET_CAPTCHA, url });
 
 //* =============  ActionCreators  _AC  THUNK===========================
 
-
-
-
-export const setMyProfileThunkCreator = () =>  (dispatch) => {
-		return authAPI.getAuthorisation()
-			.then(response => {
-				if (response.data.resultCode === 0) {
-					let { id, email, login } = response.data.data;
-					dispatch(setMyProfile_AC(id, email, login, true, ''));
-				}
-			});
-	}
-
-
-
-
+export const setMyProfileThunkCreator = () => (dispatch) => 
+	 authAPI.getAuthorisation()
+		.then(response => {
+			if (response.data.resultCode === 0) {
+				let { id, email, login } = response.data.data;
+				dispatch(setMyProfile_AC(id, email, login, true, ''));
+			}
+		});
 
 
 

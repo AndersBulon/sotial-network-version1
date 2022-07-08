@@ -5,7 +5,6 @@ import { profileAPI } from "../api/api.js";
 //* =============  CONSTANTS  ===================================
 
 const ADD_POST = 'ADD-POST';
-const CHANGE_POST_TEXT = 'CHANGE-POST-TEXT';
 const SET_PROFILE = 'SET-PROFILE';
 const SET_STATUS = 'SET-STATUS';
 
@@ -20,7 +19,6 @@ let initialState = {
 		{ 'Id': 4, postAvatar: 'https://avatarfiles.alphacoders.com/224/224809.jpg', 'postText': 'Привет это пост 4', 'like': '111' },
 		{ 'Id': 5, postAvatar: 'https://avatarfiles.alphacoders.com/224/224808.jpg', 'postText': 'Привет это пост Федора', 'like': '93' },
 	],
-	newPostText: '',
 	profile: [],
 	status: ''
 }
@@ -31,30 +29,17 @@ let initialState = {
 export const profileReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_POST:
-			if (state.newPostText === '') {
-				alert("Ваш пост не может быть пустым.");
-				return state;
+			let newId = createID(state.posts) + 1;
+			let newPost = {
+				'Id': newId,
+				postAvatar: 'https://avatarfiles.alphacoders.com/224/224801.jpg',
+				'postText': action.newPost,
+				'like': '0'
 			}
-			else {
-				let newId = createID(state.posts) + 1;
-				let newPost = {
-					'Id': newId,
-					postAvatar: 'https://avatarfiles.alphacoders.com/224/224801.jpg',
-					'postText': state.newPostText,
-					'like': '0'
-				}
-				return {
-					...state,
-					newPostText: '',
-					posts: [...state.posts, newPost]
-				};
-			}
-		case CHANGE_POST_TEXT: {
 			return {
 				...state,
-				newPostText: action.newValue
+				posts: [...state.posts, newPost],
 			};
-		}
 		case SET_PROFILE: {
 			return {
 				...state,
@@ -74,8 +59,7 @@ export const profileReducer = (state = initialState, action) => {
 
 //* =============  ActionCreators  _AC  ===================================
 
-export const addPost_AC = () => ({ type: ADD_POST });
-export const changeTextarea_AC = (text) => ({ type: CHANGE_POST_TEXT, newValue: text });
+export const addPost_AC = (newPost) => ({ type: ADD_POST, newPost: newPost });
 export const setProfile_AC = (profile) => ({ type: SET_PROFILE, profile: profile });
 export const setStatus_AC = (status) => ({ type: SET_STATUS, status: status });
 
@@ -93,7 +77,7 @@ export const getStatusThunkCreator = (usrId) => {
 	return (dispatch) => {
 		profileAPI.getStatus(usrId)
 			.then(response => {
-				dispatch(setStatus_AC(response));
+				dispatch(setStatus_AC(response.data));
 			})
 	}
 }

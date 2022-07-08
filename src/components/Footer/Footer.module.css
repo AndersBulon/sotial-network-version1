@@ -2,5 +2,6 @@
 	display: grid;
 	justify-content: center;
 	font-weight: 800;
-	color: #8b5789;
+	color: #fff;
+	letter-spacing: 1px;
 }

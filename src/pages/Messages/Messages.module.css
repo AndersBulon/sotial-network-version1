@@ -3,7 +3,7 @@
 	display: grid;
 	grid-gap: 10px;
 	grid-template-columns: 3fr 8fr;
-	grid-template-rows: 50px 150px 1fr;
+	grid-template-rows: 50px min-content 1fr;
 	grid-template-areas: 
 		"title title"
 		"sendscreen sendscreen"
@@ -17,17 +17,17 @@
 	color: #fff;
 	text-align: center;
 	grid-area: title;
-	background-color: #db6363;
+	background-color: brown;
 }
 .dialogs_list {
 	overflow: auto;
 	grid-area: dialogs;
-	background-color: #db6363;
+	background-color: brown;
 	padding: 10px;
 }
 .messages_list {
 	padding: 10px;
-	background-color: #db6363;
+	background-color: brown;
 	grid-area: messages;
 }
 
@@ -37,23 +37,46 @@
 	grid-auto-rows: min-content;	
 }
 .sendscreen {
-	display: grid;
-	grid-row-gap: 10px;
-	background-color: #000;
 	grid-area: sendscreen;
-	padding-bottom: 10px;
+	padding: 0;
+	background-color: #000;
 }
-.textarea {
+.messageForm {
+	padding: 10px 10px 20px 10px;
+	width: 100%;
+	display: grid;
+	grid-auto-flow: row;
+	border-radius: 10px;
+	border: thick solid brown;
+	/* box-shadow: 1px 1px 0 brown inset, -1px -1px 0 brown inset; */
+	align-items: center;
+	grid-gap: 20px;
+	grid-template-rows: 20px 1fr 30px;
+	grid-template-columns: 1fr;
+	grid-template-areas:
+	"messageErr" 
+	"messInput" 
+	"sendBtn";
+}
+.messageErr {
+	grid-area: messageErr;
+	min-height: 20px;
 	justify-self: center;
 }
-.btn {
+.messageInput {
+	grid-area: messInput;
+	justify-self: center;
+	width: 80%;
+}
+.sendBtn {
+	grid-area: sendBtn;
 	justify-self: center;
 }
 
 @media (max-width: 700px) {
 	.content {
 		grid-template-columns: 1fr;
-		grid-template-rows: 50px  1fr  2fr 150px ;
+		grid-template-rows: min-content  1fr  2fr min-content ;
 		grid-template-areas: 
 			"title"
 			"dialogs"
