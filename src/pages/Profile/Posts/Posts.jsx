@@ -12,7 +12,7 @@ function PostForm(props) {
 		reset,
 		register,
 		formState: { errors },
-	} = useForm({ mode: "onBlur" })
+	} = useForm({ mode: "onSubmit" })
 	
 	const onSubmit = () => {
 		props.sendPost(localState)

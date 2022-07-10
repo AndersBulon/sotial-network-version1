@@ -37,8 +37,11 @@ function Profileinfo(props) {
 				<img className={style.img} src={props.profile.photos.large ? props.profile.photos.large : avatar} alt="avatar" />
 			</div>
 			<div className={`${style.userinfo} userinfo designe`}>
-				<h3 className={style.profileTitle}>Profile : {props.profile.fullName}</h3>
+				<h3 className={style.profileTitle}>Full Name : {props.profile.fullName}</h3>
 
+				<p>
+					<span className={style.contacts}>AboutMe: </span> {props.profile.aboutMe ? props.profile.aboutMe : "Нет данных"}
+				</p>
 				<p>
 					<span className={style.contacts}>Facebook: </span> {props.profile.contacts.facebook ? props.profile.contacts.facebook : "Нет данных"}
 				</p>

@@ -1,6 +1,25 @@
 .content {
+	color: #fff;
 	height: 100%;
-	background-color: #e29015;
+	background-color: #000;
 	text-align: center;
 	font-size: 50px;
 }
+.link, .active_link {
+	font-weight: 600;
+	padding: 8px;
+	display: inline-block;
+	text-decoration: none;
+	font-size: 22px;
+ }
+ .link {
+	 color: #fff;
+ }
+ .active_link {
+	 color: #d0ecb7;
+	 text-decoration: underline;
+ }
+ .link:hover, .active_link:hover{
+	background: linear-gradient(180deg, #000, #ec0e97, #000);
+	border-radius: 10px;
+ }

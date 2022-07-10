@@ -39,20 +39,7 @@ body {
   display: grid;
   grid-gap: 10px;
 }
-/* .button {
-	background: linear-gradient(180deg, #000, #ec0e97, #000);
-	color: #fff;
-	border-radius: 5px;
-	box-shadow: rgb(161, 135, 135) 1px 1px 2px 2px;
-	cursor: pointer;
-	font-size: 16px;
-	height: 32px;
-	padding: 5px 15px;
-}
 
-.button:hover {
-	box-shadow: #50234e 2px 2px 3px 3px;
-} */
 .input {
 	border: 1px solid #000;
 	resize: none;

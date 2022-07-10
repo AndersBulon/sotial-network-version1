@@ -7,6 +7,8 @@ import { profileAPI } from "../api/api.js";
 const ADD_POST = 'ADD-POST';
 const SET_PROFILE = 'SET-PROFILE';
 const SET_STATUS = 'SET-STATUS';
+const UPDATE_PROFILE = 'UPDATE-PROFILE';
+const SET_RESULT_OF_CHEKING_ID = 'RESULT-OF-CHEKING-ID';
 
 
 //* =============  STATE  INITIOLISATION  =====================
@@ -19,8 +21,9 @@ let initialState = {
 		{ 'Id': 4, postAvatar: 'https://avatarfiles.alphacoders.com/224/224809.jpg', 'postText': 'Привет это пост 4', 'like': '111' },
 		{ 'Id': 5, postAvatar: 'https://avatarfiles.alphacoders.com/224/224808.jpg', 'postText': 'Привет это пост Федора', 'like': '93' },
 	],
-	profile: [],
-	status: ''
+	profile: {},
+	status: '',
+	resultOfCheckingId: true
 }
 
 
@@ -40,6 +43,19 @@ export const profileReducer = (state = initialState, action) => {
 				...state,
 				posts: [...state.posts, newPost],
 			};
+		case UPDATE_PROFILE: {
+			return {
+				...state,
+				profile: {
+					...state.profile,
+					aboutMe: action.aboutMe,
+					lookingForAJob: action.lookingForAJob,
+					lookingForAJobDescription: action.lookingForAJobDescription,
+					fullName: action.fullName,
+					contacts: {...state.profile.contacts},
+				}
+			};
+		}
 		case SET_PROFILE: {
 			return {
 				...state,
@@ -52,6 +68,12 @@ export const profileReducer = (state = initialState, action) => {
 				status: action.status
 			};
 		}
+		case SET_RESULT_OF_CHEKING_ID: {
+			return {
+				...state,
+				resultOfCheckingId: action.result
+			};
+		}
 		default:
 			return state;
 	}
@@ -62,6 +84,10 @@ export const profileReducer = (state = initialState, action) => {
 export const addPost_AC = (newPost) => ({ type: ADD_POST, newPost: newPost });
 export const setProfile_AC = (profile) => ({ type: SET_PROFILE, profile: profile });
 export const setStatus_AC = (status) => ({ type: SET_STATUS, status: status });
+export const setResultOfCheckingId_AC = (result) => ({ type: SET_RESULT_OF_CHEKING_ID, result });
+const updateProfile_AC = (aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName) => ({
+		type: UPDATE_PROFILE, aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName
+	});
 
 //* =============  ActionCreators  _AC  THUNK===========================
 
@@ -69,7 +95,13 @@ export const setProfileThunkCreator = (id) => {
 	return (dispatch) => {
 		profileAPI.getProfile(id)
 			.then(response => {
-				dispatch(setProfile_AC(response.data));
+				if (response) {
+					dispatch(setProfile_AC(response.data));
+					dispatch(setResultOfCheckingId_AC(true));
+				}
+				else if (!response) {
+					dispatch(setResultOfCheckingId_AC(false));
+				}
 			})
 	}
 }
@@ -77,7 +109,13 @@ export const getStatusThunkCreator = (usrId) => {
 	return (dispatch) => {
 		profileAPI.getStatus(usrId)
 			.then(response => {
-				dispatch(setStatus_AC(response.data));
+				if (response) {
+					dispatch(setStatus_AC(response.data));
+					dispatch(setResultOfCheckingId_AC(true));
+				}
+				else if (!response) {
+					dispatch(setResultOfCheckingId_AC(false));
+				}
 			})
 	}
 }
@@ -87,6 +125,17 @@ export const updateStatusThunkCreator = (status) => {
 			.then(response => {
 				if (response.data.resultCode === 0) {
 					dispatch(setStatus_AC(status));
+				}
+			})
+	}
+}
+export const updateProfileThunkCreator = (aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName) => {
+	return (dispatch) => {
+		profileAPI.updateProfile(aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName)
+			.then(response => {
+				debugger;
+				if (response.data.resultCode === 0) {
+					dispatch(updateProfile_AC(aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName));
 				}
 			})
 	}

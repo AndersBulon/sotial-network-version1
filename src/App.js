@@ -17,6 +17,7 @@ import { Component } from "react";
 import { connect } from "react-redux";
 import { initializeAppThunkCreator } from "./redux/app_reducer.js";
 import { Preloader } from "./components/Preloader/Preloader.jsx";
+import ProfileSettingsContainer from "./components/ProfileSettings/ProfileSettingsContainer.jsx";
 
 
 
@@ -45,6 +46,7 @@ class App extends Component {
 						<Route path="login" element={<LoginContainer />} />
 						<Route path="music" element={<Music />} />
 						<Route path="settings" element={<Settings />} />
+						<Route path="settings/profile" element={<ProfileSettingsContainer />} />
 						<Route path="*" element={<Notfound />} />
 					</Route>
 				</Routes>

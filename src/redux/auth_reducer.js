@@ -1,5 +1,6 @@
 //* =============  IMPORTS  =====================================
 import { authAPI } from "../api/api.js";
+import { setProfile_AC } from "./profile_reducer.js";
 
 //* =============  CONSTANTS  ===================================
 
@@ -102,6 +103,7 @@ export const logOutThunkCreator = () => {
 				dispatch(setResultCode_AC(response.data.resultCode));
 				if (response.data.resultCode === 0) {
 					dispatch(setMyProfile_AC(null, null, null, false, ''));
+					dispatch(setProfile_AC({}));
 				}
 			})
 	}

@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
-import { getStatusThunkCreator, setProfileThunkCreator, updateStatusThunkCreator } from "../../redux/profile_reducer.js";
+import { getStatusThunkCreator, setProfileThunkCreator, updateProfileThunkCreator, updateStatusThunkCreator } from "../../redux/profile_reducer.js";
 // import { WithAuthRediredct } from "../../components/HOC/WithAuthRedirect.js";
 import { compose } from "redux";
-import {Profile} from "./Profile.jsx";
+import { ProfileSettings } from "./ProfileSettings.jsx";
 
 
 const mapStateToProps = (state) => {
@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
 		profile: state.profilePage.profile,
 		status:  state.profilePage.status,
 		myId: state.auth.myId,
+		isAuth: state.auth.isAuth,
 		resultOfCheckingId: state.profilePage.resultOfCheckingId,
 		
 	}
@@ -18,13 +19,15 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		setProfile: (profile) => { dispatch(setProfileThunkCreator(profile)) },
 		getStatus: (userId) => {dispatch(getStatusThunkCreator(userId))},
+		updateProfile: (aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName) => {
+			dispatch(updateProfileThunkCreator(aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName))},
 		updateStatus: (status) => {dispatch(updateStatusThunkCreator(status))},
 	}
 }
 
-const ProfileContainer = compose(
+const ProfileSettingsContainer = compose(
 	connect(mapStateToProps, mapDispatchToProps),
 	// WithAuthRediredct
-)(Profile)
+)(ProfileSettings)
 
-export default ProfileContainer;
+export default ProfileSettingsContainer;

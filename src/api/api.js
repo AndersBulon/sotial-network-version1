@@ -56,16 +56,32 @@ export const authAPI = {
 }
 
 export const profileAPI = {
-	getProfile(id) {
-		return instance.get(`profile/${id}`)
+	async getProfile(id) {
+		try {
+			return await instance.get(`profile/${id}`)
+		} catch (err) {
+			console.log("ОШИБКА", err.toString());
+			return false
+		}
 	},
-	getStatus(usrId) {
-		return (
-			instance.get(`profile/status/${usrId}`)
-		);
+	async getStatus(usrId) {
+		try {
+			return await instance.get(`profile/status/${usrId}`)
+		} catch (err) {
+			console.log("ОШИБКА", err.toString());
+			return false
+		}
 	},
 	updateStatus(status) {
 		return instance.put(`profile/status`, { status: status });
+	},
+	updateProfile(aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName) {
+		return instance.put(`profile`, { aboutMe: aboutMe,
+									 				contacts: contacts,
+													lookingForAJob: lookingForAJob,
+													lookingForAJobDescription: lookingForAJobDescription,
+													fullName: fullName
+													 });
 	},
 
 }
