@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
 	return {
-		setProfile: (profile) => { dispatch(setProfileThunkCreator(profile)) },
+		setProfile: (id) => { dispatch(setProfileThunkCreator(id)) },
 		getStatus: (userId) => {dispatch(getStatusThunkCreator(userId))},
 		updateStatus: (status) => {dispatch(updateStatusThunkCreator(status))},
 	}

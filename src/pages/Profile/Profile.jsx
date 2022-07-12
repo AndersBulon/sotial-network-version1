@@ -21,7 +21,7 @@ export function Profile(props) {
 	}, [id]);
 
 	if (!id) return <Navigate replace to='/login' />
-	if (!props.resultOfCheckingId) return <Notfound message={` К сожалению, пользователя с ID:  ${id} не существует.`}/>
+	if (!props.resultOfCheckingId) return <Notfound message={`К сожалению, пользователя с ID:  ${id} не существует.`}/>
 	if (!Object.keys(props.profile).length) return <Preloader />
 	
 

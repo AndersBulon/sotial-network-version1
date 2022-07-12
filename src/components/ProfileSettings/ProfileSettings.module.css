@@ -8,6 +8,8 @@
 .input {
 	font-size: 20px;
 	padding: 5px 10px;
+	border-radius: 10px;
+	width: 80%;
 }
 .label {
 	text-align: left;
@@ -15,18 +17,26 @@
 	font-weight: 700;
 	color: #fff;
 }
+span.label {
+	text-align: left;
+	font-size: 18px;
+	font-weight: 700;
+	color: #000;
+	font-style: italic;
+}
 .block1 {
+	grid-area: block1;
 	display: grid;
 	grid-gap: 10px;
 	padding: 20px;
-	max-width: 80%;
-	grid-template-columns: min-content 1fr;
-	grid-template-rows: repeat(min-content);
+	min-width: 80%;
+	grid-template-columns: max-content 1fr;
+	grid-template-rows: repeat(max-content);
 	grid-template-areas: 
 	"fullNameLbl fullName"
 	"aboutMeLbl aboutMe"
 	"jobDescriptionLbl jobDescription"
-	"jobCheck jobCheckLbl"
+	" jobCheckLbl jobCheck"
 	;
 }
 .fullNameLbl{
@@ -53,5 +63,117 @@
 }
 .jobCheck{
 	grid-area: jobCheck;
-	justify-self: end;
+	width: 30px;
+}
+
+.block2 {
+	grid-area: block2;
+	display: grid;
+	grid-gap: 10px;
+	padding: 20px;
+	min-width: 80%;
+	grid-template-columns: max-content 1fr;
+	grid-template-rows: repeat(min-content);
+	grid-template-areas: 
+	"facebookLbl facebook"
+	"githubLbl github"
+	"instagramLbl instagram"
+	" mainLinkLbl mainLink"
+	" twitterLbl twitter"
+	" vkLbl vk"
+	" websiteLbl website"
+	" youtubeLbl youtube"
+	;
+}
+.facebookLbl{
+	grid-area: facebookLbl;
+}
+.facebook{
+	grid-area: facebook;
+	justify-self: start;
+}
+.githubLbl{
+	grid-area: githubLbl;
+}
+.github{
+	grid-area: github;
+	justify-self: start;
+}
+.instagramLbl{
+	grid-area: instagramLbl;
+}
+.instagram{
+	grid-area: instagram;
+	justify-self: start;
+}
+.mainLinkLbl{
+	grid-area: mainLinkLbl;
+}
+.mainLink{
+	grid-area: mainLink;
+	justify-self: start;
+}
+.twitterLbl{
+	grid-area: twitterLbl;
+}
+.twitter{
+	grid-area: twitter;
+	justify-self: start;
+}
+.vkLbl{
+	grid-area: vkLbl;
+}
+.vk{
+	grid-area: vk;
+	justify-self: start;
+}
+.websiteLbl{
+	grid-area: websiteLbl;
+}
+.website{
+	grid-area: website;
+	justify-self: start;
+}
+.youtubeLbl{
+	grid-area: youtubeLbl;
+}
+.youtube{
+	grid-area: youtube;
+	justify-self: start;
+}
+.buttonsBlock{
+	grid-area: buttons;
+	display: grid;
+	grid-gap: 20px;
+	justify-content: center;
+	grid-template-columns: max-content max-content;
+	grid-template-rows: 1fr;
+	grid-template-areas: "editBtn submitBtn";
+}
+.editBtn{
+	grid-area: editBtn;
+}
+.submitBtn{
+	grid-area: submitBtn;
+}
+.errorMessage {
+	text-align-last: left;
+	text-align: center;
+	grid-area: err;
+	margin: 20px auto;
+	font-size: 20px;
+	color: #fff;
+	border-radius: 10px;
+	width: 30%;
+}
+.form {
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 1fr;
+	grid-template-rows: min-content min-content minmax(40px, min-content ) 1fr;
+	grid-template-areas: 
+			"block1"
+			"block2"
+			"err"
+			"buttons";
 }

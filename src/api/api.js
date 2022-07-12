@@ -60,7 +60,7 @@ export const profileAPI = {
 		try {
 			return await instance.get(`profile/${id}`)
 		} catch (err) {
-			console.log("ОШИБКА", err.toString());
+			console.log("ОШИБКА из getProfile:", err.toString());
 			return false
 		}
 	},
@@ -68,7 +68,7 @@ export const profileAPI = {
 		try {
 			return await instance.get(`profile/status/${usrId}`)
 		} catch (err) {
-			console.log("ОШИБКА", err.toString());
+			console.log("ОШИБКА из getStatus:", err.toString());
 			return false
 		}
 	},

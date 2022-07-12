@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
 		profile: state.profilePage.profile,
 		status:  state.profilePage.status,
 		myId: state.auth.myId,
+		messages: state.profilePage.messages,
 		isAuth: state.auth.isAuth,
 		resultOfCheckingId: state.profilePage.resultOfCheckingId,
 		
@@ -19,8 +20,8 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		setProfile: (profile) => { dispatch(setProfileThunkCreator(profile)) },
 		getStatus: (userId) => {dispatch(getStatusThunkCreator(userId))},
-		updateProfile: (aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName) => {
-			dispatch(updateProfileThunkCreator(aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName))},
+		updateProfile: (aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName, myId) => {
+			dispatch(updateProfileThunkCreator(aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName, myId))},
 		updateStatus: (status) => {dispatch(updateStatusThunkCreator(status))},
 	}
 }

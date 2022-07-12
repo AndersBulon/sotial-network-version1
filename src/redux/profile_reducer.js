@@ -7,6 +7,7 @@ import { profileAPI } from "../api/api.js";
 const ADD_POST = 'ADD-POST';
 const SET_PROFILE = 'SET-PROFILE';
 const SET_STATUS = 'SET-STATUS';
+const SET_MESSAGES = 'SET-MESSAGES';
 const UPDATE_PROFILE = 'UPDATE-PROFILE';
 const SET_RESULT_OF_CHEKING_ID = 'RESULT-OF-CHEKING-ID';
 
@@ -23,7 +24,8 @@ let initialState = {
 	],
 	profile: {},
 	status: '',
-	resultOfCheckingId: true
+	resultOfCheckingId: true,
+	messages: ''
 }
 
 
@@ -59,13 +61,19 @@ export const profileReducer = (state = initialState, action) => {
 		case SET_PROFILE: {
 			return {
 				...state,
-				profile: action.profile
+				profile: {...state.profile, ...action.profile}
 			};
 		}
 		case SET_STATUS: {
 			return {
 				...state,
 				status: action.status
+			};
+		}
+		case SET_MESSAGES: {
+			return {
+				...state,
+				messages: action.messages
 			};
 		}
 		case SET_RESULT_OF_CHEKING_ID: {
@@ -84,10 +92,11 @@ export const profileReducer = (state = initialState, action) => {
 export const addPost_AC = (newPost) => ({ type: ADD_POST, newPost: newPost });
 export const setProfile_AC = (profile) => ({ type: SET_PROFILE, profile: profile });
 export const setStatus_AC = (status) => ({ type: SET_STATUS, status: status });
+export const setMessages_AC = (messages) => ({ type: SET_MESSAGES, messages: messages });
 export const setResultOfCheckingId_AC = (result) => ({ type: SET_RESULT_OF_CHEKING_ID, result });
-const updateProfile_AC = (aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName) => ({
-		type: UPDATE_PROFILE, aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName
-	});
+// const updateProfile_AC = (aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName) => ({
+// 		type: UPDATE_PROFILE, aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName
+// 	});
 
 //* =============  ActionCreators  _AC  THUNK===========================
 
@@ -129,13 +138,14 @@ export const updateStatusThunkCreator = (status) => {
 			})
 	}
 }
-export const updateProfileThunkCreator = (aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName) => {
+export const updateProfileThunkCreator = (aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName, myId) => {
 	return (dispatch) => {
 		profileAPI.updateProfile(aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName)
 			.then(response => {
-				debugger;
+				dispatch(setMessages_AC(response.data.messages));
 				if (response.data.resultCode === 0) {
-					dispatch(updateProfile_AC(aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName));
+					// dispatch(updateProfile_AC(aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName));
+					dispatch(setProfileThunkCreator(myId));
 				}
 			})
 	}

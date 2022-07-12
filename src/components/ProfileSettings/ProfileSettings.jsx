@@ -4,16 +4,22 @@ import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 
 const SettingsForm = (props) => {
-	console.log(props);
-	React.useEffect(() => {
-		props.setProfile(props.myId)
-		// eslint-disable-next-line 
-	}, [props.myId]);
-
-
+	let [editMode, setEditMode] = React.useState(false)
 	let [aboutMe, setAboutMe] = React.useState(props.profile.aboutMe)
 	let [fullName, setFullName] = React.useState(props.profile.fullName)
 	let [jobDescription, setJobDescription] = React.useState(props.profile.lookingForAJobDescription)
+	let [jobCheck, setJobCheck] = React.useState(props.profile.lookingForAJob)
+	let [contacts, setContacts] = React.useState(props.profile.contacts)
+	let [error, setError] = React.useState(props.messages)
+
+	React.useEffect(() => {
+		setAboutMe(props.profile.aboutMe)
+		setFullName(props.profile.fullName)
+		setJobDescription(props.profile.lookingForAJobDescription)
+		setContacts(props.profile.contacts)
+		setError(props.messages)
+		setJobCheck(props.profile.lookingForAJob)
+	}, [ props.profile, props.messages,])
 
 
 	const onAboutMe = (e) => {
@@ -25,6 +31,48 @@ const SettingsForm = (props) => {
 	const onJobDescription = (e) => {
 		setJobDescription(e.currentTarget.value)
 	}
+	const onJobCheck = (e) => {
+		setJobCheck(e.target.checked)
+	}
+	const activateEditMode = () => {
+		setEditMode(true)
+	}
+	const deActivateEditMode = () => {
+		setEditMode(false)
+	}
+
+	const onFacebook = (e) => {
+		let editValue = { ...contacts, facebook: e.currentTarget.value }
+		setContacts(editValue)
+	};
+	const onWebsite = (e) => {
+		let editValue = { ...contacts, website: e.currentTarget.value }
+		setContacts(editValue)
+	};
+	const onGithub = (e) => {
+		let editValue = { ...contacts, github: e.currentTarget.value }
+		setContacts(editValue)
+	};
+	const onInstagram = (e) => {
+		let editValue = { ...contacts, instagram: e.currentTarget.value }
+		setContacts(editValue)
+	};
+	const onMainLink = (e) => {
+		let editValue = { ...contacts, mainLink: e.currentTarget.value }
+		setContacts(editValue)
+	};
+	const onTwitter = (e) => {
+		let editValue = { ...contacts, twitter: e.currentTarget.value }
+		setContacts(editValue)
+	};
+	const onVk = (e) => {
+		let editValue = { ...contacts, vk: e.currentTarget.value }
+		setContacts(editValue)
+	};
+	const onYoutube = (e) => {
+		let editValue = { ...contacts, youtube: e.currentTarget.value }
+		setContacts(editValue)
+	};
 
 	const {
 		handleSubmit,
@@ -32,79 +80,216 @@ const SettingsForm = (props) => {
 	} = useForm({ mode: "onSubmit" })
 
 	const onSubmit = (data) => {
-		props.updateProfile(data.aboutMe, {}, data.lookingForAJob, data.jobDescription, data.fullName)
-		console.log("Из submit", data.lookingForAJob);
+		props.updateProfile(aboutMe, contacts, jobCheck, jobDescription, fullName, props.myId)
+		deActivateEditMode()
 	}
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
+		<form onSubmit={handleSubmit(onSubmit)} className={style.form}>
 			<fieldset className={style.block1}>
 				<legend>Общая информация</legend>
-				
-					<label
-						className={`${style.label} ${style.fullNameLbl}`}>
-						Full name
-					</label>
-					<input type={"text"} value={fullName}
-						className={`${style.input} ${style.fullName} input`}
-						{...register("fullName")}
-						onChange={(e) => { onFullName(e) }}
-					/>
-				
-				
-					<label
-						className={`${style.label} ${style.aboutMeLbl}`}>
-						About me
-					</label>
-					<input type={"textarea"} value={aboutMe}
-						className={`${style.input} ${style.aboutMe} input`}
-						{...register("aboutMe")}
-						onChange={(e) => { onAboutMe(e) }}
-					/>
-			
-			
-					<label
-						className={`${style.label} ${style.jobDescriptionLbl}`}>
-						Job description
-					</label>
-					<input type={"textarea"} value={jobDescription}
-						className={`${style.input} ${style.jobDescription} input`}
-						{...register("jobDescription")}
-						onChange={(e) => { onJobDescription(e) }}
-					/>
-			
 
-			
-					<input type={"checkbox"}
-						className={`${style.input} ${style.jobCheck}`}
-						{...register("lookingForAJob")}
+				<label
+					className={`${style.label} ${style.fullNameLbl}`}>
+					Full name :
+				</label>
+				{!editMode
+					? <span className={`${style.label} ${style.fullName}`}>{fullName}</span>
+					: <input type={"text"} value={fullName}
+						className={`${style.input} ${style.fullName} `}
+						{...register("fullName")}
+						onChange={onFullName}
 					/>
-					<label
-						className={`${style.label} ${style.jobCheckLbl}`}>
-						Looking for a job
-					</label>
-			
+				}
+
+				<label
+					className={`${style.label} ${style.aboutMeLbl}`}>
+					About me :
+				</label>
+				{!editMode
+					? <span className={`${style.label} ${style.aboutMe}`}>{aboutMe}</span>
+					: <textarea type="textarea" value={aboutMe} 
+						className={`${style.input} ${style.aboutMe}`}
+						{...register("aboutMe")}
+						onChange={onAboutMe}
+					/>
+				}
+
+				<label
+					className={`${style.label} ${style.jobDescriptionLbl}`}>
+					Job description :
+				</label>
+				{!editMode
+					? <span className={`${style.label} ${style.jobDescription}`}>{jobDescription}</span>
+					: <textarea type={"textarea"} value={jobDescription}
+						className={`${style.input} ${style.jobDescription}`}
+						{...register("jobDescription")}
+						onChange={onJobDescription}
+					/>
+				}
+
+				<label
+					className={`${style.label} ${style.jobCheckLbl}`}>
+					Looking for a job
+				</label>
+				{!editMode
+					? <input type={"checkbox"}
+						disabled={true}
+						className={`${style.input} ${style.jobCheck}`}
+						checked={jobCheck || ''}
+					/>
+					: <input type={"checkbox"}
+						className={`${style.input} ${style.jobCheck}`}
+						checked={jobCheck || ''}
+						{...register("lookingForAJob")}
+						onClick={(e) => { onJobCheck(e) }}
+					/>
+				}
+
 			</fieldset>
 
 
-			<input type={"submit"} className="button" />
+			<fieldset className={style.block2}>
+				<legend>Contacts</legend>
+				<label
+					className={`${style.label} ${style.facebookLbl}`}>
+					Facebook :
+				</label>
+				{!editMode 
+					? <span className={`${style.label} ${style.facebook}`}>{
+						contacts ? contacts.facebook : ""}</span>
+					: <input type={"text"} value={contacts.facebook ? contacts.facebook : ""}
+						className={`${style.input} ${style.facebook} `}
+						{...register("facebook")}
+						onChange={onFacebook}
+					/>
+				}
+				<label
+					className={`${style.label} ${style.githubLbl}`}>
+					Github :
+				</label>
+				{!editMode
+					? <span className={`${style.label} ${style.github}`}>{
+						contacts ? contacts.github : ""}</span>
+					: <input type={"text"} value={contacts.github ? contacts.github : ""}
+						className={`${style.input} ${style.github} `}
+						{...register("github")}
+						onChange={onGithub}
+					/>
+				}
+				<label
+					className={`${style.label} ${style.instagramLbl}`}>
+					Instagram :
+				</label>
+				{!editMode
+					? <span className={`${style.label} ${style.instagram}`}>{
+						contacts ? contacts.instagram : ""}</span>
+					: <input type={"text"} value={contacts.instagram ? contacts.instagram : ""}
+						className={`${style.input} ${style.instagram} `}
+						{...register("instagram")}
+						onChange={onInstagram}
+					/>
+				}
+				<label
+					className={`${style.label} ${style.mainLinkLbl}`}>
+					MainLink :
+				</label>
+				{!editMode
+					? <span className={`${style.label} ${style.mainLink}`}>{
+						contacts ? contacts.mainLink : ""}</span>
+					: <input type={"text"} value={contacts.mainLink ? contacts.mainLink : ""}
+						className={`${style.input} ${style.mainLink} `}
+						{...register("mainLink")}
+						onChange={onMainLink}
+					/>
+				}
+				<label
+					className={`${style.label} ${style.twitterLbl}`}>
+					Twitter :
+				</label>
+				{!editMode
+					? <span className={`${style.label} ${style.twitter}`}>{
+						contacts ? contacts.twitter : ""}</span>
+					: <input type={"text"} value={contacts.twitter ? contacts.twitter : ""}
+						className={`${style.input} ${style.twitter} `}
+						{...register("twitter")}
+						onChange={onTwitter}
+					/>
+				}
+				<label
+					className={`${style.label} ${style.vkLbl}`}>
+					VK :
+				</label>
+				{!editMode
+					? <span className={`${style.label} ${style.vk}`}>{
+						contacts ? contacts.vk : ""}</span>
+					: <input type={"text"} value={contacts.vk ? contacts.vk : ""}
+						className={`${style.input} ${style.vk} `}
+						{...register("vk")}
+						onChange={onVk}
+					/>
+				}
+		
+				
+				<label
+					className={`${style.label} ${style.websiteLbl}`}>
+					Website :
+				</label>
+				{!editMode
+					? <span className={`${style.label} ${style.website}`}>{
+						contacts ? contacts.website : ""}</span>
+					: <input type={"text"} value={contacts.website ? contacts.website : ""}
+						className={`${style.input} ${style.website} `}
+						{...register("website")}
+						onChange={onWebsite}
+					/>
+				}
+				<label
+					className={`${style.label} ${style.youtubeLbl}`}>
+					Youtube :
+				</label>
+				{!editMode
+					? <span className={`${style.label} ${style.youtube}`}>{
+						contacts ? contacts.youtube : ""}</span>
+					: <input type={"text"} value={contacts.youtube ? contacts.youtube : ""}
+						className={`${style.input} ${style.youtube} `}
+						{...register("youtube")}
+						onChange={onYoutube}
+					/>
+				}
+			</fieldset>
+			{error && <div className={style.errorMessage}>{error.map(el=><div key={props.Id}>{el}</div>)}</div>}
+			
+			<div className={style.buttonsBlock}>
+				<button type="button" className={`${style.editBtn} button`}
+					onClick={activateEditMode}
+				>
+					Edit Profile
+				</button>
+				<input type={"submit"} value='Send' className={`${style.submitBtn} button` } />
+			</div>
+
 		</form>
 	)
 }
 
 const ProfileSettings = (props) => {
-	if(!props.isAuth) return <Navigate replace to='/login' />
+	React.useEffect(() => {
+		props.setProfile(props.myId)
+		// eslint-disable-next-line
+	}, [props.myId])
+
+	if (!props.isAuth) return <Navigate replace to='/login' />
 	return (
 		<div className={style.contant}>
 			<h2>Settings Profile</h2>
 			<SettingsForm profile={props.profile}
+				messages={props.messages}
 				updateProfile={props.updateProfile}
-				myId={props.myId} setProfile={props.setProfile}
+				myId={props.myId} 
 			/>
 		</div>
 	)
-
-
-
 }
+
 
 export { ProfileSettings };
