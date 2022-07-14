@@ -85,6 +85,70 @@ span.label {
 	" youtubeLbl youtube"
 	;
 }
+.block3 {
+	grid-area: block3;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr;
+	grid-gap: 10px;
+	padding: 20px;
+	min-width: 80%;
+	grid-template-areas:
+	"imageBlock uploadContainer";
+}
+.imageBlock {
+	grid-area: imageBlock;
+	max-height: 400px;
+
+}
+.avatarImg {
+	border-radius: 50%;
+	height: 100%;
+	width: auto;
+	object-fit: cover;
+
+}
+.uploadContainer {
+	grid-area: uploadContainer;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	outline: 2px dashed #5d5d5d;
+	outline-offset: -12px;
+	background-color: #e0f2f7;
+	color: #1f3c44;
+}
+.uploadImg {
+	width: 40%;
+	user-select: none;
+}
+.uploadContainer div {
+	position: relative;
+	z-index: 10;
+}
+.fileInput {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	position: absolute;
+	z-index: -10;
+}
+.fileInput:focus + .fileBtn {
+	outline: 1px solid #0078d7;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+.fileBtn {
+	padding: 3px;
+	font-size: 18px;
+	font-weight: 700;
+	cursor: pointer;
+}
+.fileBtn:hover {
+	text-decoration: underline;
+}
+
 .facebookLbl{
 	grid-area: facebookLbl;
 }
@@ -156,24 +220,47 @@ span.label {
 .submitBtn{
 	grid-area: submitBtn;
 }
-.errorMessage {
-	text-align-last: left;
-	text-align: center;
-	grid-area: err;
-	margin: 20px auto;
+.errorBlock {
+	grid-area: blockErr;
+	text-align: left;
 	font-size: 20px;
+	font-style: italic;
 	color: #fff;
+	letter-spacing: 2px;
 	border-radius: 10px;
-	width: 30%;
+	padding: 20px;
+	min-width: 80%;
 }
+
 .form {
 	display: grid;
 	grid-gap: 10px;
 	grid-template-columns: 1fr;
-	grid-template-rows: min-content min-content minmax(40px, min-content ) 1fr;
+	grid-template-rows: min-content min-content min-content minmax(40px, min-content ) 1fr;
 	grid-template-areas: 
 			"block1"
 			"block2"
-			"err"
+			"block3"
+			"blockErr"
 			"buttons";
+}
+@media (max-width: 700px) {
+	.block3 {
+		grid-area: block3;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr 1fr;
+		grid-gap: 10px;
+		padding: 10px;
+		min-width: 80%;
+		grid-template-areas:
+		"imageBlock"
+		"uploadContainer"
+		;
+	}
+	.uploadImg {
+		width: 30%;
+		user-select: none;
+	}
+
 }

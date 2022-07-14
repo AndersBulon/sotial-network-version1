@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { getStatusThunkCreator, setProfileThunkCreator, updateProfileThunkCreator, updateStatusThunkCreator } from "../../redux/profile_reducer.js";
+import { getStatusThunkCreator, setProfileThunkCreator, updatePhotoThunkCreator, updateProfileThunkCreator, updateStatusThunkCreator } from "../../redux/profile_reducer.js";
 // import { WithAuthRediredct } from "../../components/HOC/WithAuthRedirect.js";
 import { compose } from "redux";
 import { ProfileSettings } from "./ProfileSettings.jsx";
@@ -23,6 +23,7 @@ const mapDispatchToProps = (dispatch) => {
 		updateProfile: (aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName, myId) => {
 			dispatch(updateProfileThunkCreator(aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName, myId))},
 		updateStatus: (status) => {dispatch(updateStatusThunkCreator(status))},
+		updatePhotos: (photos) => {dispatch(updatePhotoThunkCreator(photos))},
 	}
 }
 

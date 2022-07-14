@@ -108,6 +108,8 @@ fieldset:not(:last-child) {
 	margin-bottom: 20px;
 }
 legend {
+	font-family: monospace;
+	letter-spacing: 2px;
 	color: #fff;
 	font-size: 14px;
 	font-weight: 700;

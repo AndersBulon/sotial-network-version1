@@ -7,6 +7,7 @@ import { profileAPI } from "../api/api.js";
 const ADD_POST = 'ADD-POST';
 const SET_PROFILE = 'SET-PROFILE';
 const SET_STATUS = 'SET-STATUS';
+const SET_PHOTOS = 'SET-PHOTOS';
 const SET_MESSAGES = 'SET-MESSAGES';
 const UPDATE_PROFILE = 'UPDATE-PROFILE';
 const SET_RESULT_OF_CHEKING_ID = 'RESULT-OF-CHEKING-ID';
@@ -25,7 +26,7 @@ let initialState = {
 	profile: {},
 	status: '',
 	resultOfCheckingId: true,
-	messages: ''
+	messages: '',
 }
 
 
@@ -76,6 +77,12 @@ export const profileReducer = (state = initialState, action) => {
 				messages: action.messages
 			};
 		}
+		case SET_PHOTOS: {
+			return {
+				...state,
+				profile: {...state.profile, photos: action.photos}
+			};
+		}
 		case SET_RESULT_OF_CHEKING_ID: {
 			return {
 				...state,
@@ -92,6 +99,7 @@ export const profileReducer = (state = initialState, action) => {
 export const addPost_AC = (newPost) => ({ type: ADD_POST, newPost: newPost });
 export const setProfile_AC = (profile) => ({ type: SET_PROFILE, profile: profile });
 export const setStatus_AC = (status) => ({ type: SET_STATUS, status: status });
+export const setPhoto_AC = (photos) => ({ type: SET_PHOTOS, photos: photos });
 export const setMessages_AC = (messages) => ({ type: SET_MESSAGES, messages: messages });
 export const setResultOfCheckingId_AC = (result) => ({ type: SET_RESULT_OF_CHEKING_ID, result });
 // const updateProfile_AC = (aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName) => ({
@@ -150,3 +158,10 @@ export const updateProfileThunkCreator = (aboutMe, contacts, lookingForAJob, loo
 			})
 	}
 }
+export const updatePhotoThunkCreator = (file) => async (dispatch) => {
+		let response = await profileAPI.updatePhoto(file)
+				dispatch(setMessages_AC(response.data.messages));
+				if (response.resultCode === 0) {
+					dispatch(setPhoto_AC(response.data.photos));
+				}
+	}

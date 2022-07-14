@@ -2,6 +2,9 @@ import React from "react";
 import style from "./ProfileSettings.module.css";
 import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
+import photo from "../../assets/images/profilePhoto/PF.jpg"
+import upload from "../../assets/images/upload.png"
+import { Preloader } from "../Preloader/Preloader.jsx";
 
 const SettingsForm = (props) => {
 	let [editMode, setEditMode] = React.useState(false)
@@ -19,9 +22,12 @@ const SettingsForm = (props) => {
 		setContacts(props.profile.contacts)
 		setError(props.messages)
 		setJobCheck(props.profile.lookingForAJob)
-	}, [ props.profile, props.messages,])
+	}, [props.profile, props.messages])
 
 
+	const addPhoto = (e) => {
+		props.updatePhotos(e.target.files[0])
+	}
 	const onAboutMe = (e) => {
 		setAboutMe(e.currentTarget.value)
 	}
@@ -40,6 +46,7 @@ const SettingsForm = (props) => {
 	const deActivateEditMode = () => {
 		setEditMode(false)
 	}
+
 
 	const onFacebook = (e) => {
 		let editValue = { ...contacts, facebook: e.currentTarget.value }
@@ -79,14 +86,16 @@ const SettingsForm = (props) => {
 		register,
 	} = useForm({ mode: "onSubmit" })
 
-	const onSubmit = (data) => {
+	const onSubmit = () => {
 		props.updateProfile(aboutMe, contacts, jobCheck, jobDescription, fullName, props.myId)
 		deActivateEditMode()
 	}
+
+	if (!Object.keys(props.profile).length) return <Preloader />
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className={style.form}>
 			<fieldset className={style.block1}>
-				<legend>Общая информация</legend>
+				<legend>Information</legend>
 
 				<label
 					className={`${style.label} ${style.fullNameLbl}`}>
@@ -107,7 +116,7 @@ const SettingsForm = (props) => {
 				</label>
 				{!editMode
 					? <span className={`${style.label} ${style.aboutMe}`}>{aboutMe}</span>
-					: <textarea type="textarea" value={aboutMe} 
+					: <textarea type="textarea" value={aboutMe}
 						className={`${style.input} ${style.aboutMe}`}
 						{...register("aboutMe")}
 						onChange={onAboutMe}
@@ -154,7 +163,7 @@ const SettingsForm = (props) => {
 					className={`${style.label} ${style.facebookLbl}`}>
 					Facebook :
 				</label>
-				{!editMode 
+				{!editMode
 					? <span className={`${style.label} ${style.facebook}`}>{
 						contacts ? contacts.facebook : ""}</span>
 					: <input type={"text"} value={contacts.facebook ? contacts.facebook : ""}
@@ -228,8 +237,8 @@ const SettingsForm = (props) => {
 						onChange={onVk}
 					/>
 				}
-		
-				
+
+
 				<label
 					className={`${style.label} ${style.websiteLbl}`}>
 					Website :
@@ -257,18 +266,45 @@ const SettingsForm = (props) => {
 					/>
 				}
 			</fieldset>
-			{error && <div className={style.errorMessage}>{error.map(el=><div key={props.Id}>{el}</div>)}</div>}
-			
+
+
+			<fieldset className={style.block3}>
+				<legend>Photo</legend>
+				<div className={style.imageBlock}>
+				{/* <img src={avatar} alt="" className={style.avatarImg} /> */}
+					{!props.profile.photos.large
+						? <img src={photo} alt="" className={style.avatarImg} />
+						: <img src={props.profile.photos.large} alt="" className={style.avatarImg} />}
+
+				</div>
+				<div className={style.uploadContainer}>
+					<img id="upload-image" src={upload} className={`${style.uploadImg}`} alt="" />
+					<div>
+						<input id="file-input" type="file" className={`${style.fileInput}`} onChange={addPhoto} />
+						<label htmlFor="file-input" className={`${style.fileBtn}`}>Выберите файл </label>
+					</div>
+				</div>
+			</fieldset>
+
+
+			{(error.length > 0) &&
+				<fieldset country-info-list="true" className={style.errorBlock}>
+					<legend className={style.legend}>Errors</legend>{error.map(el => <div key={el}>{el}</div>)}
+				</fieldset>
+
+			}
+
+
 			<div className={style.buttonsBlock}>
 				<button type="button" className={`${style.editBtn} button`}
 					onClick={activateEditMode}
 				>
 					Edit Profile
 				</button>
-				<input type={"submit"} value='Send' className={`${style.submitBtn} button` } />
+				<input type={"submit"} value='Send' className={`${style.submitBtn} button`} />
 			</div>
 
-		</form>
+		</form >
 	)
 }
 
@@ -285,7 +321,8 @@ const ProfileSettings = (props) => {
 			<SettingsForm profile={props.profile}
 				messages={props.messages}
 				updateProfile={props.updateProfile}
-				myId={props.myId} 
+				updatePhotos={props.updatePhotos}
+				myId={props.myId}
 			/>
 		</div>
 	)

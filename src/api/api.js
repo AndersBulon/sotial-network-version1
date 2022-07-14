@@ -75,13 +75,23 @@ export const profileAPI = {
 	updateStatus(status) {
 		return instance.put(`profile/status`, { status: status });
 	},
+	updatePhoto(file) {
+		const formData = new FormData();
+		formData.append("image", file)
+		return instance.put(`profile/photo`, formData, {
+			headers: {
+				'Content-Type': "multipart/form-data"
+			}
+		});
+	},
 	updateProfile(aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName) {
-		return instance.put(`profile`, { aboutMe: aboutMe,
-									 				contacts: contacts,
-													lookingForAJob: lookingForAJob,
-													lookingForAJobDescription: lookingForAJobDescription,
-													fullName: fullName
-													 });
+		return instance.put(`profile`, {
+			aboutMe: aboutMe,
+			contacts: contacts,
+			lookingForAJob: lookingForAJob,
+			lookingForAJobDescription: lookingForAJobDescription,
+			fullName: fullName
+		});
 	},
 
 }
