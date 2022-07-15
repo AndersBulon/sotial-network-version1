@@ -1,9 +1,8 @@
 import React from "react";
 import style from "./ProfileSettings.module.css";
 import { useForm } from "react-hook-form";
-import { Navigate } from "react-router-dom";
-import photo from "../../assets/images/profilePhoto/PF.jpg"
-import upload from "../../assets/images/upload.png"
+import photo from "../../assets/images/profilePhoto/PF.jpg";
+import upload from "../../assets/images/upload.png";
 import { Preloader } from "../Preloader/Preloader.jsx";
 
 const SettingsForm = (props) => {
@@ -23,7 +22,6 @@ const SettingsForm = (props) => {
 		setError(props.messages)
 		setJobCheck(props.profile.lookingForAJob)
 	}, [props.profile, props.messages])
-
 
 	const addPhoto = (e) => {
 		props.updatePhotos(e.target.files[0])
@@ -46,7 +44,6 @@ const SettingsForm = (props) => {
 	const deActivateEditMode = () => {
 		setEditMode(false)
 	}
-
 
 	const onFacebook = (e) => {
 		let editValue = { ...contacts, facebook: e.currentTarget.value }
@@ -135,7 +132,6 @@ const SettingsForm = (props) => {
 						onChange={onJobDescription}
 					/>
 				}
-
 				<label
 					className={`${style.label} ${style.jobCheckLbl}`}>
 					Looking for a job
@@ -153,9 +149,7 @@ const SettingsForm = (props) => {
 						onClick={(e) => { onJobCheck(e) }}
 					/>
 				}
-
 			</fieldset>
-
 
 			<fieldset className={style.block2}>
 				<legend>Contacts</legend>
@@ -238,7 +232,6 @@ const SettingsForm = (props) => {
 					/>
 				}
 
-
 				<label
 					className={`${style.label} ${style.websiteLbl}`}>
 					Website :
@@ -267,11 +260,9 @@ const SettingsForm = (props) => {
 				}
 			</fieldset>
 
-
 			<fieldset className={style.block3}>
 				<legend>Photo</legend>
 				<div className={style.imageBlock}>
-				{/* <img src={avatar} alt="" className={style.avatarImg} /> */}
 					{!props.profile.photos.large
 						? <img src={photo} alt="" className={style.avatarImg} />
 						: <img src={props.profile.photos.large} alt="" className={style.avatarImg} />}
@@ -280,12 +271,13 @@ const SettingsForm = (props) => {
 				<div className={style.uploadContainer}>
 					<img id="upload-image" src={upload} className={`${style.uploadImg}`} alt="" />
 					<div>
-						<input id="file-input" type="file" className={`${style.fileInput}`} onChange={addPhoto} />
+						<input id="file-input" type="file" className={`${style.fileInput}`}
+						{...register("file")}
+						onChange={addPhoto} />
 						<label htmlFor="file-input" className={`${style.fileBtn}`}>Выберите файл </label>
 					</div>
 				</div>
 			</fieldset>
-
 
 			{(error.length > 0) &&
 				<fieldset country-info-list="true" className={style.errorBlock}>
@@ -293,7 +285,6 @@ const SettingsForm = (props) => {
 				</fieldset>
 
 			}
-
 
 			<div className={style.buttonsBlock}>
 				<button type="button" className={`${style.editBtn} button`}
@@ -303,7 +294,6 @@ const SettingsForm = (props) => {
 				</button>
 				<input type={"submit"} value='Send' className={`${style.submitBtn} button`} />
 			</div>
-
 		</form >
 	)
 }
@@ -313,20 +303,20 @@ const ProfileSettings = (props) => {
 		props.setProfile(props.myId)
 		// eslint-disable-next-line
 	}, [props.myId])
-
-	if (!props.isAuth) return <Navigate replace to='/login' />
+	console.log(props);
 	return (
 		<div className={style.contant}>
 			<h2>Settings Profile</h2>
-			<SettingsForm profile={props.profile}
-				messages={props.messages}
+			<SettingsForm
+				{...props}
+				// profile={props.profile}
+				// messages={props.messages}
+				// myId={props.myId}
 				updateProfile={props.updateProfile}
 				updatePhotos={props.updatePhotos}
-				myId={props.myId}
 			/>
 		</div>
 	)
 }
-
 
 export { ProfileSettings };

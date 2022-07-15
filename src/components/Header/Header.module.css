@@ -4,7 +4,6 @@ grid-gap: 10px;
 justify-content: space-between;
 grid-template-columns: min-content min-content;
 grid-template-areas: "logotype login";
-
 }
 .logotype {
 	grid-area: logotype;
@@ -20,23 +19,19 @@ grid-template-areas: "logotype login";
  .title {
 	grid-area: title;
  }
-
 .loginBlock {
 	grid-area: login;
 	padding: 8px 10px;
 	font-size: 24px;
 	font-weight: 700;
 	letter-spacing: 200%;
-	
 }
-
 .login {
 	grid-gap: 10px;
 	display: grid;
 	grid-template-columns: min-content min-content;
 	grid-template-areas: "nick logOutBtn";
 }
-
 .loginString {
 	grid-area: nick;
 }
@@ -85,4 +80,3 @@ grid-template-areas: "logotype login";
 		line-height: 120%;
  	}
  }
- 

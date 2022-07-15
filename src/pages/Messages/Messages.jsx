@@ -6,7 +6,6 @@ import style from "./Messages.module.css"
 
 const MessageForm = (props) => {
 	let [messageText, setMessage] = useState("")
-	console.log(props);
 	const {
 		handleSubmit,
 		reset,

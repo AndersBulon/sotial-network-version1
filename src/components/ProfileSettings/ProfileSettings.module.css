@@ -110,18 +110,17 @@ span.label {
 }
 .uploadContainer {
 	grid-area: uploadContainer;
-	border-radius: 10px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	outline: 2px dashed #5d5d5d;
+	outline: 2px dashed #fff;
 	outline-offset: -12px;
-	background-color: #e0f2f7;
+	background-color: brown;
 	color: #1f3c44;
 }
 .uploadImg {
-	width: 40%;
+	width: 30%;
 	user-select: none;
 }
 .uploadContainer div {
@@ -259,7 +258,7 @@ span.label {
 		;
 	}
 	.uploadImg {
-		width: 30%;
+		width: 20%;
 		user-select: none;
 	}
 

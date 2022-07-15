@@ -1,16 +1,15 @@
-// import React, { useEffect } from "react";
 import style from "./Header.module.css"
 import logo from "../../assets/images/logo.png"
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { logOutThunkCreator } from "../../redux/auth_reducer.js";
+import { getSelected_IsAuth, getSelected_Login } from "../../redux/auth_selectors.js";
 
 
 
 const linkclass = ({ isActive }) => isActive ? `${style.active_link}` : `${style.link}`;
 
 let Header = (props) => {
-
 	return (
 		<header className={`${style.header} grid designe header`}>
 			<div className={style.logotype}>
@@ -34,12 +33,10 @@ let Header = (props) => {
 	);
 };
 
-
 const mapStateToProps = (state) => {
 	return {
-
-		login: state.auth.login,
-		isAuth: state.auth.isAuth
+		login: getSelected_Login(state),
+		isAuth: getSelected_IsAuth(state)
 	}
 }
 const mapDispatchToProps = (dispatch) => {

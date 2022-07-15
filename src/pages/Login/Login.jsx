@@ -4,15 +4,15 @@ import React from "react"
 import { Navigate } from "react-router-dom"
 
 function LoginForm(props) {
-	
+
 	let errRef = React.createRef();
-	let handleClick=()=> {
+	let handleClick = () => {
 		const wrapper = errRef.current;
 		wrapper.classList.add("err")
 		setTimeout(() => {
 			wrapper.classList.remove("err")
 		}, 850);
-  }
+	}
 	const {
 		register,
 		handleSubmit,
@@ -23,13 +23,12 @@ function LoginForm(props) {
 		props.loginThunkCreator(data.login, data.password, data.remember_me, data.captcha)
 	}
 	return (
-
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<fieldset>
 				<legend> Логин и пароль </legend>
-				{<p ref={errRef} className={`${style.error}`}>{props.authdata.messages}</p>}
+				{<p ref={errRef} className={`${style.error}`}>{props.messages}</p>}
 				<div>
-					{!props.authdata.isAuth ?
+					{!props.isAuth ?
 						<input autoFocus={true} type="text" placeholder={"Login"}
 							className={errors.login ? style.inputErr : style.input}
 							{...register('login', {
@@ -43,7 +42,7 @@ function LoginForm(props) {
 					<div className={style.error}>{errors.login.message}</div> :
 					<div className={style.error}></div>}
 				<div>
-					{!props.authdata.isAuth ?
+					{!props.isAuth ?
 						<input
 							{...register('password', {
 								required: "Поле PASSWORD обязательно !",
@@ -62,7 +61,7 @@ function LoginForm(props) {
 					<div className={style.error}>{errors.password.message}</div> :
 					<div className={style.error}></div>}
 				<div className={style.checkField}>
-					{!props.authdata.isAuth ?
+					{!props.isAuth ?
 						<input className={style.check} type={"checkbox"} id="rememberCheck"
 							{...register('remember_me')} />
 						: <input className={style.check} type={"checkbox"} disabled={true} id="rememberCheck" />}
@@ -70,11 +69,11 @@ function LoginForm(props) {
 				</div>
 			</fieldset>
 
-			{props.authdata.captcha !== ""
+			{props.captcha !== ""
 				? <fieldset>
 					<legend> Защита антибот </legend>
 					<div className={style.captcha}>
-						<img className={style.captchaImg} src={props.authdata.captcha} alt="" />
+						<img className={style.captchaImg} src={props.captcha} alt="" />
 						{errors.captcha && <p className={style.error}>{errors.captcha.message}</p>}
 						<input className={`${errors.captcha ? style.inputErr : style.input} ${style.captchaInput}`}
 							{...register('captcha', {
@@ -87,7 +86,7 @@ function LoginForm(props) {
 				</fieldset>
 				: <div></div>}
 
-			<div>{props.authdata.isAuth ?
+			<div>{props.isAuth ?
 				<button type="button" className={`${style.submitBtn} button `}
 					onClick={props.logOut}
 					{...register("loginBtn")}>
@@ -95,7 +94,7 @@ function LoginForm(props) {
 				</button>
 				:
 				<button className={`${style.submitBtn}`}
-					onClick={()=>{handleClick()}}
+					onClick={() => { handleClick() }}
 					id="submBtn"
 					{...register("loginBtn")}
 				>Login</button>
@@ -106,17 +105,16 @@ function LoginForm(props) {
 }
 
 function Login(props) {
-	if (props.authdata.isAuth) {
+	if (props.isAuth) {
 		return <Navigate replace to='/profile' />
 	}
 	return (
 		<div className={`${style.content} designe`} >
 			<h1>Login</h1>
 			<LoginForm
-				loginThunkCreator={props.loginThunkCreator}
-				logOut={props.logOut}
-				authdata={props.authdata}
-				getCaptcha={props.getCaptcha} />
+				{...props} 
+				loginThunkCreator={props.loginThunkCreator} logOut={props.logOut} getCaptcha={props.getCaptcha}
+			/>
 		</div>
 	)
 }

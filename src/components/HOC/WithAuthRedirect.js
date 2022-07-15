@@ -2,11 +2,12 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
+import { getSelected_IsAuth } from "../../redux/auth_selectors.js";
 
 
 const mapStateToPropsForRedirect = (state) => {
 		return {
-			isAuth: state.auth.isAuth
+			isAuth: getSelected_IsAuth(state)
 		}
 	}
 

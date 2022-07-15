@@ -7,13 +7,13 @@ class ProfileStatus extends React.Component {
 		editMode: false,
 		status: this.props.status
 	}
-	
+
 	activateEditMode = () => {
-		if(this.props.myId === this.props.userId) {
+		if (this.props.myId === this.props.userId) {
 			//*=============setState -это асинхронный метод!!!===================================
-		this.setState({
-			editMode: true
-		})
+			this.setState({
+				editMode: true
+			})
 		}
 	}
 	deactivateEditMode() {
@@ -23,12 +23,12 @@ class ProfileStatus extends React.Component {
 		this.props.updateStatus(this.state.status)
 	}
 	onStatusChange = (e) => {
-	this.setState({
-		status: e.currentTarget.value
-	})	
+		this.setState({
+			status: e.currentTarget.value
+		})
 	}
 
-	componentDidUpdate(prevProps, prevState){
+	componentDidUpdate(prevProps, prevState) {
 		if (prevProps.status !== this.props.status) {
 			this.setState({
 				status: this.props.status
