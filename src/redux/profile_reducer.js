@@ -9,7 +9,6 @@ const SET_PROFILE = 'SET-PROFILE';
 const SET_STATUS = 'SET-STATUS';
 const SET_PHOTOS = 'SET-PHOTOS';
 const SET_MESSAGES = 'SET-MESSAGES';
-const UPDATE_PROFILE = 'UPDATE-PROFILE';
 const SET_RESULT_OF_CHEKING_ID = 'RESULT-OF-CHEKING-ID';
 
 
@@ -46,19 +45,6 @@ export const profileReducer = (state = initialState, action) => {
 				...state,
 				posts: [...state.posts, newPost],
 			};
-		case UPDATE_PROFILE: {
-			return {
-				...state,
-				profile: {
-					...state.profile,
-					aboutMe: action.aboutMe,
-					lookingForAJob: action.lookingForAJob,
-					lookingForAJobDescription: action.lookingForAJobDescription,
-					fullName: action.fullName,
-					contacts: {...state.profile.contacts},
-				}
-			};
-		}
 		case SET_PROFILE: {
 			return {
 				...state,
@@ -80,7 +66,7 @@ export const profileReducer = (state = initialState, action) => {
 		case SET_PHOTOS: {
 			return {
 				...state,
-				profile: {...state.profile, photos: action.photos}
+				profile: {...state.profile, photos: {...state.profile.photos, ...action.photos}}
 			};
 		}
 		case SET_RESULT_OF_CHEKING_ID: {
@@ -102,9 +88,7 @@ export const setStatus_AC = (status) => ({ type: SET_STATUS, status: status });
 export const setPhoto_AC = (photos) => ({ type: SET_PHOTOS, photos: photos });
 export const setMessages_AC = (messages) => ({ type: SET_MESSAGES, messages: messages });
 export const setResultOfCheckingId_AC = (result) => ({ type: SET_RESULT_OF_CHEKING_ID, result });
-// const updateProfile_AC = (aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName) => ({
-// 		type: UPDATE_PROFILE, aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName
-// 	});
+
 
 //* =============  ActionCreators  _AC  THUNK===========================
 
@@ -152,16 +136,15 @@ export const updateProfileThunkCreator = (aboutMe, contacts, lookingForAJob, loo
 			.then(response => {
 				dispatch(setMessages_AC(response.data.messages));
 				if (response.data.resultCode === 0) {
-					// dispatch(updateProfile_AC(aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName));
 					dispatch(setProfileThunkCreator(myId));
 				}
 			})
 	}
 }
 export const updatePhotoThunkCreator = (file) => async (dispatch) => {
-		let response = await profileAPI.updatePhoto(file)
+	let response = await profileAPI.updatePhoto(file)
 				dispatch(setMessages_AC(response.data.messages));
-				if (response.resultCode === 0) {
-					dispatch(setPhoto_AC(response.data.photos));
+				if (response.data.resultCode === 0) {
+					dispatch(setPhoto_AC(response.data.data.photos));
 				}
 	}

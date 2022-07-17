@@ -1,9 +1,14 @@
 .contant {
 	height: 100%;
+	padding: 10px;
 	background-color: brown;
 	text-align: center;
 	color: black;
 	font-size: 50px;
+}
+.contant h2 {
+	font-size: 70px;
+	min-width: 400px;
 }
 .input {
 	font-size: 20px;
@@ -29,7 +34,7 @@ span.label {
 	display: grid;
 	grid-gap: 10px;
 	padding: 20px;
-	min-width: 80%;
+	min-width: 100%;
 	grid-template-columns: max-content 1fr;
 	grid-template-rows: repeat(max-content);
 	grid-template-areas: 
@@ -71,7 +76,7 @@ span.label {
 	display: grid;
 	grid-gap: 10px;
 	padding: 20px;
-	min-width: 80%;
+	min-width: 100%;
 	grid-template-columns: max-content 1fr;
 	grid-template-rows: repeat(min-content);
 	grid-template-areas: 
@@ -87,12 +92,13 @@ span.label {
 }
 .block3 {
 	grid-area: block3;
+	align-items: center;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr;
 	grid-gap: 10px;
 	padding: 20px;
-	min-width: 80%;
+   min-width: 100%;
 	grid-template-areas:
 	"imageBlock uploadContainer";
 }
@@ -102,13 +108,15 @@ span.label {
 
 }
 .avatarImg {
-	border-radius: 50%;
-	height: 100%;
-	width: auto;
-	object-fit: cover;
+	/* align-self: center; */
+	max-height: 300px;
+	max-width: 100%;
+	
+	object-fit: contain;
 
 }
 .uploadContainer {
+	min-height: 300px;
 	grid-area: uploadContainer;
 	display: flex;
 	justify-content: center;
@@ -120,10 +128,13 @@ span.label {
 	color: #1f3c44;
 }
 .uploadImg {
-	width: 30%;
+	padding: 5px 15px;
+	max-height: 180px;
+	max-width: 100%;
 	user-select: none;
 }
 .uploadContainer div {
+
 	position: relative;
 	z-index: 10;
 }
@@ -219,8 +230,19 @@ span.label {
 .submitBtn{
 	grid-area: submitBtn;
 }
-.errorBlock {
-	grid-area: blockErr;
+.error1Block {
+	grid-area: blockErr1;
+	text-align: left;
+	font-size: 20px;
+	font-style: italic;
+	color: #fff;
+	letter-spacing: 2px;
+	border-radius: 10px;
+	padding: 20px;
+	min-width: 80%;
+}
+.error2Block{
+	grid-area: blockErr2;
 	text-align: left;
 	font-size: 20px;
 	font-style: italic;
@@ -232,16 +254,23 @@ span.label {
 }
 
 .form {
+	width: 100%;
 	display: grid;
 	grid-gap: 10px;
 	grid-template-columns: 1fr;
-	grid-template-rows: min-content min-content min-content minmax(40px, min-content ) 1fr;
+	grid-template-rows: min-content min-content min-content minmax(40px, min-content ) minmax(40px, min-content ) 1fr;
 	grid-template-areas: 
 			"block1"
 			"block2"
 			"block3"
-			"blockErr"
+			"blockErr1"
+			"blockErr2"
 			"buttons";
+}
+@media (min-width: 1200px) {
+	.block1, .block2, .block3{
+		min-width: 70%;
+	}
 }
 @media (max-width: 700px) {
 	.block3 {
@@ -250,16 +279,9 @@ span.label {
 		grid-template-columns: 1fr;
 		grid-template-rows: 1fr 1fr;
 		grid-gap: 10px;
-		padding: 10px;
-		min-width: 80%;
 		grid-template-areas:
 		"imageBlock"
 		"uploadContainer"
 		;
 	}
-	.uploadImg {
-		width: 20%;
-		user-select: none;
-	}
-
 }

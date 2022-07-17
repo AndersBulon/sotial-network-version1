@@ -1,8 +1,8 @@
 import React from "react";
 import style from "./ProfileSettings.module.css";
 import { useForm } from "react-hook-form";
-import photo from "../../assets/images/profilePhoto/PF.jpg";
 import upload from "../../assets/images/upload.png";
+import spinner from "../../assets/images/spinner.svg";
 import { Preloader } from "../Preloader/Preloader.jsx";
 
 const SettingsForm = (props) => {
@@ -13,6 +13,9 @@ const SettingsForm = (props) => {
 	let [jobCheck, setJobCheck] = React.useState(props.profile.lookingForAJob)
 	let [contacts, setContacts] = React.useState(props.profile.contacts)
 	let [error, setError] = React.useState(props.messages)
+	let [choosingPhoto, choosePhoto] = React.useState(upload)
+	let [photos, addPhotos] = React.useState((Object.keys(props.profile).length !== 0) ? props.profile.photos.large : spinner)
+	let [refreshingPhoto, refreshPhoto] = React.useState((Object.keys(props.profile).length !== 0) ? props.profile.photos.large : spinner)
 
 	React.useEffect(() => {
 		setAboutMe(props.profile.aboutMe)
@@ -21,10 +24,40 @@ const SettingsForm = (props) => {
 		setContacts(props.profile.contacts)
 		setError(props.messages)
 		setJobCheck(props.profile.lookingForAJob)
-	}, [props.profile, props.messages])
+		if (Object.keys(props.profile).length !== 0 && refreshingPhoto !== props.profile.photos.large) {
+			addPhotos(props.profile.photos.large)
+			refreshPhoto(props.profile.photos.large)
+		}
+	}, [props.profile, props.messages, refreshingPhoto])
 
-	const addPhoto = (e) => {
-		props.updatePhotos(e.target.files[0])
+	const {
+		handleSubmit,
+		formState: { errors },
+		register,
+		reset,
+	} = useForm({ mode: "onBlur" })
+
+	const onSubmit = (data) => {
+		if (choosingPhoto !== upload) {
+			props.updatePhotos(data.file[0])
+			choosePhoto(upload)
+			addPhotos(spinner)
+		}
+		props.updateProfile(aboutMe, contacts, jobCheck, jobDescription, fullName, props.myId)
+		reset()
+		deActivateEditMode()
+
+
+	}
+
+	const chooseAvatarPhoto = (e) => {
+		let reader = new FileReader();
+		if (e.target.files[0]) {
+			reader.readAsDataURL(e.target.files[0])
+			reader.onload = () => {
+				choosePhoto(reader.result)
+			}
+		}
 	}
 	const onAboutMe = (e) => {
 		setAboutMe(e.currentTarget.value)
@@ -78,15 +111,15 @@ const SettingsForm = (props) => {
 		setContacts(editValue)
 	};
 
-	const {
-		handleSubmit,
-		register,
-	} = useForm({ mode: "onSubmit" })
-
-	const onSubmit = () => {
-		props.updateProfile(aboutMe, contacts, jobCheck, jobDescription, fullName, props.myId)
-		deActivateEditMode()
+	const errGenerate = () => {
+		let arr = []
+		Object.entries(errors).forEach((entry) => {
+			const [, value] = entry;
+			arr.push(value.message)
+		});
+		return arr;
 	}
+
 
 	if (!Object.keys(props.profile).length) return <Preloader />
 	return (
@@ -102,7 +135,8 @@ const SettingsForm = (props) => {
 					? <span className={`${style.label} ${style.fullName}`}>{fullName}</span>
 					: <input type={"text"} value={fullName}
 						className={`${style.input} ${style.fullName} `}
-						{...register("fullName")}
+						{...register("fullName",
+							{ required: "Поле 'Full name' обязательно к заполнению!" })}
 						onChange={onFullName}
 					/>
 				}
@@ -115,7 +149,8 @@ const SettingsForm = (props) => {
 					? <span className={`${style.label} ${style.aboutMe}`}>{aboutMe}</span>
 					: <textarea type="textarea" value={aboutMe}
 						className={`${style.input} ${style.aboutMe}`}
-						{...register("aboutMe")}
+						{...register("aboutMe",
+							{ required: "Поле 'About me' обязательно к заполнению!" })}
 						onChange={onAboutMe}
 					/>
 				}
@@ -128,7 +163,8 @@ const SettingsForm = (props) => {
 					? <span className={`${style.label} ${style.jobDescription}`}>{jobDescription}</span>
 					: <textarea type={"textarea"} value={jobDescription}
 						className={`${style.input} ${style.jobDescription}`}
-						{...register("jobDescription")}
+						{...register("jobDescription",
+							{ required: "Поле 'Job description' обязательно к заполнению!" })}
 						onChange={onJobDescription}
 					/>
 				}
@@ -162,7 +198,15 @@ const SettingsForm = (props) => {
 						contacts ? contacts.facebook : ""}</span>
 					: <input type={"text"} value={contacts.facebook ? contacts.facebook : ""}
 						className={`${style.input} ${style.facebook} `}
-						{...register("facebook")}
+						{...register("facebook",
+							{
+								required: "Поле 'Facebook' обязательно к заполнению!",
+								pattern: {
+									// eslint-disable-next-line
+									value: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/,
+									message: `В поле 'Facebook' введен не корректный URL-адрес`
+								}
+							})}
 						onChange={onFacebook}
 					/>
 				}
@@ -175,7 +219,15 @@ const SettingsForm = (props) => {
 						contacts ? contacts.github : ""}</span>
 					: <input type={"text"} value={contacts.github ? contacts.github : ""}
 						className={`${style.input} ${style.github} `}
-						{...register("github")}
+						{...register("github",
+							{
+								required: "Поле 'Github' обязательно к заполнению!",
+								pattern: {
+									// eslint-disable-next-line
+									value: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/,
+									message: `В поле 'Github' введен не корректный URL-адрес`
+								}
+							})}
 						onChange={onGithub}
 					/>
 				}
@@ -188,7 +240,15 @@ const SettingsForm = (props) => {
 						contacts ? contacts.instagram : ""}</span>
 					: <input type={"text"} value={contacts.instagram ? contacts.instagram : ""}
 						className={`${style.input} ${style.instagram} `}
-						{...register("instagram")}
+						{...register("instagram",
+							{
+								required: "Поле 'Instagram' обязательно к заполнению!",
+								pattern: {
+									// eslint-disable-next-line
+									value: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/,
+									message: `В поле 'Instagram' введен не корректный URL-адрес`
+								}
+							})}
 						onChange={onInstagram}
 					/>
 				}
@@ -201,7 +261,15 @@ const SettingsForm = (props) => {
 						contacts ? contacts.mainLink : ""}</span>
 					: <input type={"text"} value={contacts.mainLink ? contacts.mainLink : ""}
 						className={`${style.input} ${style.mainLink} `}
-						{...register("mainLink")}
+						{...register("mainLink",
+							{
+								required: "Поле 'MainLink' обязательно к заполнению!",
+								pattern: {
+									// eslint-disable-next-line
+									value: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/,
+									message: `В поле 'MainLink' введен не корректный URL-адрес`
+								}
+							})}
 						onChange={onMainLink}
 					/>
 				}
@@ -214,7 +282,15 @@ const SettingsForm = (props) => {
 						contacts ? contacts.twitter : ""}</span>
 					: <input type={"text"} value={contacts.twitter ? contacts.twitter : ""}
 						className={`${style.input} ${style.twitter} `}
-						{...register("twitter")}
+						{...register("twitter",
+							{
+								required: "Поле 'Twitter' обязательно к заполнению!",
+								pattern: {
+									// eslint-disable-next-line
+									value: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/,
+									message: `В поле 'Twitter' введен не корректный URL-адрес`
+								}
+							})}
 						onChange={onTwitter}
 					/>
 				}
@@ -227,7 +303,15 @@ const SettingsForm = (props) => {
 						contacts ? contacts.vk : ""}</span>
 					: <input type={"text"} value={contacts.vk ? contacts.vk : ""}
 						className={`${style.input} ${style.vk} `}
-						{...register("vk")}
+						{...register("vk",
+							{
+								required: "Поле 'VK' обязательно к заполнению!",
+								pattern: {
+									// eslint-disable-next-line
+									value: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/,
+									message: `В поле 'VK' введен не корректный URL-адрес`
+								}
+							})}
 						onChange={onVk}
 					/>
 				}
@@ -241,7 +325,15 @@ const SettingsForm = (props) => {
 						contacts ? contacts.website : ""}</span>
 					: <input type={"text"} value={contacts.website ? contacts.website : ""}
 						className={`${style.input} ${style.website} `}
-						{...register("website")}
+						{...register("website",
+							{
+								required: "Поле 'Website' обязательно к заполнению!",
+								pattern: {
+									// eslint-disable-next-line
+									value: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/,
+									message: `В поле 'Website' введен не корректный URL-адрес`
+								}
+							})}
 						onChange={onWebsite}
 					/>
 				}
@@ -254,7 +346,15 @@ const SettingsForm = (props) => {
 						contacts ? contacts.youtube : ""}</span>
 					: <input type={"text"} value={contacts.youtube ? contacts.youtube : ""}
 						className={`${style.input} ${style.youtube} `}
-						{...register("youtube")}
+						{...register("youtube",
+						{
+							required: "Поле 'Youtube' обязательно к заполнению!",
+							pattern: {
+								// eslint-disable-next-line
+								value: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/,
+								message: `В поле 'Youtube' введен не корректный URL-адрес`
+							}
+						})}
 						onChange={onYoutube}
 					/>
 				}
@@ -264,27 +364,38 @@ const SettingsForm = (props) => {
 				<legend>Photo</legend>
 				<div className={style.imageBlock}>
 					{!props.profile.photos.large
-						? <img src={photo} alt="" className={style.avatarImg} />
-						: <img src={props.profile.photos.large} alt="" className={style.avatarImg} />}
+						? <img src={spinner} alt="" className={style.avatarImg} />
+						: <img src={photos} alt="" className={style.avatarImg} />}
 
 				</div>
 				<div className={style.uploadContainer}>
-					<img id="upload-image" src={upload} className={`${style.uploadImg}`} alt="" />
+					<img id="upload-image" src={choosingPhoto} className={`${style.uploadImg}`} alt="" />
 					<div>
 						<input id="file-input" type="file" className={`${style.fileInput}`}
-						{...register("file")}
-						onChange={addPhoto} />
+							{...register("file")}
+							onChange={chooseAvatarPhoto} />
 						<label htmlFor="file-input" className={`${style.fileBtn}`}>Выберите файл </label>
 					</div>
 				</div>
 			</fieldset>
 
-			{(error.length > 0) &&
-				<fieldset country-info-list="true" className={style.errorBlock}>
-					<legend className={style.legend}>Errors</legend>{error.map(el => <div key={el}>{el}</div>)}
+			{
+				Object.keys(errors).length !== 0 &&
+				<fieldset className={style.error1Block}>
+					<legend className={style.legend}>Errors</legend>
+					{errGenerate().map(el => <div key={el}>{el}</div>)}
 				</fieldset>
 
 			}
+
+			{
+				error.length > 0 &&
+				<fieldset className={style.error2Block}>
+					<legend className={style.legend}>Errors From Site</legend>
+					{error.map(el => <div key={el}>{el}</div>)}
+				</fieldset>
+			}
+
 
 			<div className={style.buttonsBlock}>
 				<button type="button" className={`${style.editBtn} button`}
@@ -303,15 +414,11 @@ const ProfileSettings = (props) => {
 		props.setProfile(props.myId)
 		// eslint-disable-next-line
 	}, [props.myId])
-	console.log(props);
 	return (
 		<div className={style.contant}>
 			<h2>Settings Profile</h2>
 			<SettingsForm
 				{...props}
-				// profile={props.profile}
-				// messages={props.messages}
-				// myId={props.myId}
 				updateProfile={props.updateProfile}
 				updatePhotos={props.updatePhotos}
 			/>
