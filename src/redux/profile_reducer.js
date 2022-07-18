@@ -11,7 +11,6 @@ const SET_PHOTOS = 'SET-PHOTOS';
 const SET_MESSAGES = 'SET-MESSAGES';
 const SET_RESULT_OF_CHEKING_ID = 'RESULT-OF-CHEKING-ID';
 
-
 //* =============  STATE  INITIOLISATION  =====================
 
 let initialState = {
@@ -27,7 +26,6 @@ let initialState = {
 	resultOfCheckingId: true,
 	messages: '',
 }
-
 
 //* =============  REDUCER  ===================================
 
@@ -48,7 +46,7 @@ export const profileReducer = (state = initialState, action) => {
 		case SET_PROFILE: {
 			return {
 				...state,
-				profile: {...state.profile, ...action.profile}
+				profile: { ...state.profile, ...action.profile }
 			};
 		}
 		case SET_STATUS: {
@@ -66,7 +64,7 @@ export const profileReducer = (state = initialState, action) => {
 		case SET_PHOTOS: {
 			return {
 				...state,
-				profile: {...state.profile, photos: {...state.profile.photos, ...action.photos}}
+				profile: { ...state.profile, photos: { ...state.profile.photos, ...action.photos } }
 			};
 		}
 		case SET_RESULT_OF_CHEKING_ID: {
@@ -89,62 +87,40 @@ export const setPhoto_AC = (photos) => ({ type: SET_PHOTOS, photos: photos });
 export const setMessages_AC = (messages) => ({ type: SET_MESSAGES, messages: messages });
 export const setResultOfCheckingId_AC = (result) => ({ type: SET_RESULT_OF_CHEKING_ID, result });
 
-
 //* =============  ActionCreators  _AC  THUNK===========================
 
-export const setProfileThunkCreator = (id) => {
-	return (dispatch) => {
-		profileAPI.getProfile(id)
-			.then(response => {
-				if (response) {
-					dispatch(setProfile_AC(response.data));
-					dispatch(setResultOfCheckingId_AC(true));
-				}
-				else if (!response) {
-					dispatch(setResultOfCheckingId_AC(false));
-				}
-			})
+export const setProfileThunkCreator = (id) => async (dispatch) => {
+	let response = await profileAPI.getProfile(id)
+	if (response) {
+		dispatch(setProfile_AC(response.data));
+		dispatch(setResultOfCheckingId_AC(true));
 	}
+	else if (!response) dispatch(setResultOfCheckingId_AC(false));
 }
-export const getStatusThunkCreator = (usrId) => {
-	return (dispatch) => {
-		profileAPI.getStatus(usrId)
-			.then(response => {
-				if (response) {
-					dispatch(setStatus_AC(response.data));
-					dispatch(setResultOfCheckingId_AC(true));
-				}
-				else if (!response) {
-					dispatch(setResultOfCheckingId_AC(false));
-				}
-			})
+
+export const getStatusThunkCreator = (usrId) => async (dispatch) => {
+	let response = await profileAPI.getStatus(usrId)
+	if (response) {
+		dispatch(setStatus_AC(response.data));
+		dispatch(setResultOfCheckingId_AC(true));
 	}
+	else if (!response) dispatch(setResultOfCheckingId_AC(false));
 }
-export const updateStatusThunkCreator = (status) => {
-	return (dispatch) => {
-		profileAPI.updateStatus(status)
-			.then(response => {
-				if (response.data.resultCode === 0) {
-					dispatch(setStatus_AC(status));
-				}
-			})
+
+export const updateStatusThunkCreator = (status) => async (dispatch) => {
+	let response = await profileAPI.updateStatus(status)
+	if (response.data.resultCode === 0) dispatch(setStatus_AC(status));
+}
+
+export const updateProfileThunkCreator = (aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName, myId) =>
+	async (dispatch) => {
+		let response = await profileAPI.updateProfile(aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName)
+		dispatch(setMessages_AC(response.data.messages));
+		if (response.data.resultCode === 0) dispatch(setProfileThunkCreator(myId));
 	}
-}
-export const updateProfileThunkCreator = (aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName, myId) => {
-	return (dispatch) => {
-		profileAPI.updateProfile(aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName)
-			.then(response => {
-				dispatch(setMessages_AC(response.data.messages));
-				if (response.data.resultCode === 0) {
-					dispatch(setProfileThunkCreator(myId));
-				}
-			})
-	}
-}
+
 export const updatePhotoThunkCreator = (file) => async (dispatch) => {
 	let response = await profileAPI.updatePhoto(file)
-				dispatch(setMessages_AC(response.data.messages));
-				if (response.data.resultCode === 0) {
-					dispatch(setPhoto_AC(response.data.data.photos));
-				}
-	}
+	dispatch(setMessages_AC(response.data.messages));
+	if (response.data.resultCode === 0) dispatch(setPhoto_AC(response.data.data.photos));
+}

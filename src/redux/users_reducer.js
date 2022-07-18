@@ -2,7 +2,6 @@
 
 import { usersAPI } from "../api/api.js";
 
-
 //* =============  CONSTANTS  ===================================
 
 const FOLLOW = 'FOLLOW';
@@ -104,11 +103,11 @@ export const usersReducer = (state = initialState, action) => {
 
 		case SHOW_NEXT_BLOCK:
 			return {
-				...state, currentPagesBlock: state.currentPagesBlock+1, currentPage: state.blockStructure[state.currentPagesBlock+1][0]
+				...state, currentPagesBlock: state.currentPagesBlock + 1, currentPage: state.blockStructure[state.currentPagesBlock + 1][0]
 			}
 		case SHOW_PREVIOUS_BLOCK:
 			return {
-				...state, currentPagesBlock: state.currentPagesBlock-1, currentPage: state.blockStructure[state.currentPagesBlock-1][0]
+				...state, currentPagesBlock: state.currentPagesBlock - 1, currentPage: state.blockStructure[state.currentPagesBlock - 1][0]
 			}
 
 		case GO_END_PAGE_NUMBER:
@@ -153,38 +152,24 @@ export const changeNextPrev = (value) => ({ type: CHANGE_NEXT_PREV, value })
 
 //* =============  ActionCreators  _AC  THUNK  ===================================
 
-export const getUsersThunkCreator = (currentPage, pageSize) => {
-	return (dispatch) => {
-		dispatch(toggleIsFetching(true));
-		usersAPI.setUsersPageParams(currentPage, pageSize)
-			.then(data => {
-				dispatch(setUsers(data.items));
-				dispatch(toggleIsFetching(false));
-				dispatch(setTotalUsersCount(data.totalCount));
-			});
-	}
+export const getUsersThunkCreator = (currentPage, pageSize) => async (dispatch) => {
+	dispatch(toggleIsFetching(true));
+	let data = await usersAPI.setUsersPageParams(currentPage, pageSize)
+	dispatch(setUsers(data.items));
+	dispatch(toggleIsFetching(false));
+	dispatch(setTotalUsersCount(data.totalCount));
 }
-export const unFollowThunkCreator = (id) => {
-	return (dispatch) => {
-		dispatch(changeButtonsСondition(true, id));
-		usersAPI.delFollow(id)
-			.then(data => {
-				if (data.resultCode === 0) {
-					dispatch(unfollow(id))
-				}
-				dispatch(changeButtonsСondition(false, id));
-			});
-	}
+
+export const unFollowThunkCreator = (id) => async (dispatch) => {
+	dispatch(changeButtonsСondition(true, id));
+	let data = await usersAPI.delFollow(id)
+	if (data.resultCode === 0) { dispatch(unfollow(id)) }
+	dispatch(changeButtonsСondition(false, id));
 }
-export const followThunkCreator = (id) => {
-	return (dispatch) => {
-		dispatch(changeButtonsСondition(true, id));
-		usersAPI.setFollow(id)
-			.then(data => {
-				if (data.resultCode === 0) {
-					dispatch(follow(id))
-				}
-				dispatch(changeButtonsСondition(false, id));
-			});
-	}
+
+export const followThunkCreator = (id) => async (dispatch) => {
+	dispatch(changeButtonsСondition(true, id));
+	let data = await usersAPI.setFollow(id)
+	if (data.resultCode === 0) { dispatch(follow(id)) }
+	dispatch(changeButtonsСondition(false, id));
 }
