@@ -18,8 +18,8 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		setProfile: (profile) => { dispatch(setProfileThunkCreator(profile)) },
 		getStatus: (userId) => { dispatch(getStatusThunkCreator(userId)) },
-		updateProfile: (aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName, myId) => {
-			dispatch(updateProfileThunkCreator(aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName, myId))
+		updateProfile: (fullName, aboutMe, lookingForAJobDescription, lookingForAJob, contacts, myId) => {
+			dispatch(updateProfileThunkCreator(fullName, aboutMe, lookingForAJobDescription, lookingForAJob, contacts, myId))
 		},
 		updateStatus: (status) => { dispatch(updateStatusThunkCreator(status)) },
 		updatePhotos: (photos) => { dispatch(updatePhotoThunkCreator(photos)) },

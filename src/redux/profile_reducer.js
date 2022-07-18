@@ -112,9 +112,9 @@ export const updateStatusThunkCreator = (status) => async (dispatch) => {
 	if (response.data.resultCode === 0) dispatch(setStatus_AC(status));
 }
 
-export const updateProfileThunkCreator = (aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName, myId) =>
+export const updateProfileThunkCreator = (fullName, aboutMe, lookingForAJobDescription, lookingForAJob, contacts, myId) =>
 	async (dispatch) => {
-		let response = await profileAPI.updateProfile(aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName)
+		let response = await profileAPI.updateProfile(fullName, aboutMe, lookingForAJobDescription, lookingForAJob, contacts)
 		dispatch(setMessages_AC(response.data.messages));
 		if (response.data.resultCode === 0) dispatch(setProfileThunkCreator(myId));
 	}

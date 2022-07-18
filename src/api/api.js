@@ -84,14 +84,8 @@ export const profileAPI = {
 			}
 		});
 	},
-	updateProfile(aboutMe, contacts, lookingForAJob, lookingForAJobDescription, fullName) {
-		return instance.put(`profile`, {
-			aboutMe: aboutMe,
-			contacts: contacts,
-			lookingForAJob: lookingForAJob,
-			lookingForAJobDescription: lookingForAJobDescription,
-			fullName: fullName
-		});
+	updateProfile(fullName, aboutMe, lookingForAJobDescription, lookingForAJob, contacts) {
+		return instance.put(`profile`, {fullName, aboutMe, lookingForAJobDescription, lookingForAJob, contacts});
 	},
 
 }

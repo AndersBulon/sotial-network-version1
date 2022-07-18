@@ -29,7 +29,6 @@ body {
 	font-style: italic;
 	font-weight: 700;
 }
-
 .designe {
   border-radius: 5px;
   padding: 5px;
@@ -75,10 +74,13 @@ body {
 	background-position: 0 0;
 	color:#000;
   }
-
-
+  .button:disabled {
+	background: #aaa;
+	box-shadow: none;
+	position: static;
+	color:#000;
+  }
 /**------------------------------- */
-
 .header {
   grid-area: header;
 }
@@ -105,7 +107,6 @@ body {
     "nav outlet"
     "footer footer";
 }
-
 /**-----------------------------------------------*/
 @media (max-width: 1300px) {
   .app-wrapper {
@@ -123,6 +124,4 @@ body {
 	.app-wrapper {
 		grid-template-rows: auto auto 250px 1fr auto;
 	}
-
 }
-

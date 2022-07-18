@@ -29,27 +29,42 @@ span.label {
 	color: #000;
 	font-style: italic;
 }
+/** =================================================================== */
 .block1 {
 	grid-area: block1;
 	display: grid;
 	grid-gap: 10px;
 	padding: 20px;
 	min-width: 100%;
-	grid-template-columns: max-content 1fr;
-	grid-template-rows: repeat(max-content);
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(min-content);
 	grid-template-areas: 
-	"fullNameLbl fullName"
-	"aboutMeLbl aboutMe"
-	"jobDescriptionLbl jobDescription"
-	" jobCheckLbl jobCheck"
-	;
+	"informblock1"
+	"informblock2"
+	"informblock3"
+	"informblock4";
+}
+.informblock1, .informblock2, .informblock3, .informblock4{
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 200px 1fr;
+	grid-template-rows: min-content;
+}
+.informblock1{
+	grid-area: informblock1;
+	grid-template-areas: 
+	"fullNameLbl fullName";
 }
 .fullNameLbl{
 	grid-area: fullNameLbl;
 }
 .fullName{
-	height: 30px;
 	grid-area: fullName;
+}
+.informblock2{
+	grid-area: informblock2;
+	grid-template-areas: 
+	"aboutMeLbl aboutMe";
 }
 .aboutMeLbl{
 	grid-area: aboutMeLbl;
@@ -57,11 +72,21 @@ span.label {
 .aboutMe{
 	grid-area: aboutMe;
 }
+.informblock3{
+	grid-area: informblock3;
+	grid-template-areas: 
+	"jobDescriptionLbl jobDescription";
+}
 .jobDescriptionLbl{
 	grid-area: jobDescriptionLbl;
 }
 .jobDescription{
 	grid-area: jobDescription;
+}
+.informblock4{
+	grid-area: informblock4;
+	grid-template-areas: 
+	"jobCheckLbl jobCheck";
 }
 .jobCheckLbl{
 	grid-area: jobCheckLbl;
@@ -70,26 +95,113 @@ span.label {
 	grid-area: jobCheck;
 	width: 30px;
 }
-
+/** =================================================================== */
 .block2 {
 	grid-area: block2;
 	display: grid;
 	grid-gap: 10px;
 	padding: 20px;
 	min-width: 100%;
-	grid-template-columns: max-content 1fr;
-	grid-template-rows: repeat(min-content);
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(minmax(10px, 30px));
 	grid-template-areas: 
-	"facebookLbl facebook"
-	"githubLbl github"
-	"instagramLbl instagram"
-	" mainLinkLbl mainLink"
-	" twitterLbl twitter"
-	" vkLbl vk"
-	" websiteLbl website"
-	" youtubeLbl youtube"
-	;
+	"contactblock1"
+	"contactblock2"
+	"contactblock3"
+	"contactblock4"
+	"contactblock5"
+	"contactblock6"
+	"contactblock7"
+	"contactblock8";
 }
+.contactblock1,.contactblock2,.contactblock3,.contactblock4,
+.contactblock5,.contactblock6,.contactblock7,.contactblock8 {
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 200px 1fr;
+	grid-template-rows: min-content;
+}
+.contactblock1{
+	grid-area: contactblock1;
+	grid-template-areas: "facebookLbl facebook";
+}
+.facebookLbl{
+	grid-area: facebookLbl;
+}
+.facebook{
+	grid-area: facebook;
+}
+.contactblock2{
+	grid-area: contactblock2;
+	grid-template-areas: "githubLbl github";
+}
+.githubLbl{
+	grid-area: githubLbl;
+}
+.github{
+	grid-area: github;
+}
+.contactblock3{
+	grid-area: contactblock3;
+	grid-template-areas: "instagramLbl instagram";
+}
+.instagramLbl{
+	grid-area: instagramLbl;
+}
+.instagram{
+	grid-area: instagram;
+}
+.contactblock4{
+	grid-area: contactblock4;
+	grid-template-areas: "mainLinkLbl mainLink";
+}
+.mainLinkLbl{
+	grid-area: mainLinkLbl;
+}
+.mainLink{
+	grid-area: mainLink;
+}
+.contactblock5{
+	grid-area: contactblock5;
+	grid-template-areas: "twitterLbl twitter";
+}
+.twitterLbl{
+	grid-area: twitterLbl;
+}
+.twitter{
+	grid-area: twitter;
+}
+.contactblock6{
+	grid-area: contactblock6;
+	grid-template-areas: "vkLbl vk";
+}
+.vkLbl{
+	grid-area: vkLbl;
+}
+.vk{
+	grid-area: vk;
+}
+.contactblock7{
+	grid-area: contactblock7;
+	grid-template-areas: "websiteLbl website";
+}
+.websiteLbl{
+	grid-area: websiteLbl;
+}
+.website{
+	grid-area: website;
+}
+.contactblock8{
+	grid-area: contactblock8;
+	grid-template-areas: "youtubeLbl youtube";
+}
+.youtubeLbl{
+	grid-area: youtubeLbl;
+}
+.youtube{
+	grid-area: youtube;
+}
+/** =================================================================== */
 .block3 {
 	grid-area: block3;
 	align-items: center;
@@ -112,13 +224,11 @@ span.label {
 	max-width: 100%;
 	object-fit: contain;
 	transition: all 0.5s ease 0s;
-	
 }
 .avatarImg:hover {
 	cursor: pointer;
 	padding: 0;
 }
-
 .uploadContainer {
 	min-height: 300px;
 	grid-area: uploadContainer;
@@ -161,63 +271,7 @@ span.label {
 .fileBtn:hover {
 	text-decoration: underline;
 }
-
-.facebookLbl{
-	grid-area: facebookLbl;
-}
-.facebook{
-	grid-area: facebook;
-	justify-self: start;
-}
-.githubLbl{
-	grid-area: githubLbl;
-}
-.github{
-	grid-area: github;
-	justify-self: start;
-}
-.instagramLbl{
-	grid-area: instagramLbl;
-}
-.instagram{
-	grid-area: instagram;
-	justify-self: start;
-}
-.mainLinkLbl{
-	grid-area: mainLinkLbl;
-}
-.mainLink{
-	grid-area: mainLink;
-	justify-self: start;
-}
-.twitterLbl{
-	grid-area: twitterLbl;
-}
-.twitter{
-	grid-area: twitter;
-	justify-self: start;
-}
-.vkLbl{
-	grid-area: vkLbl;
-}
-.vk{
-	grid-area: vk;
-	justify-self: start;
-}
-.websiteLbl{
-	grid-area: websiteLbl;
-}
-.website{
-	grid-area: website;
-	justify-self: start;
-}
-.youtubeLbl{
-	grid-area: youtubeLbl;
-}
-.youtube{
-	grid-area: youtube;
-	justify-self: start;
-}
+/** =================================================================== */
 .buttonsBlock{
 	grid-area: buttons;
 	display: grid;
@@ -255,7 +309,7 @@ span.label {
 	padding: 20px;
 	min-width: 80%;
 }
-
+/** =================================================================== */
 .form {
 	width: 100%;
 	display: grid;
@@ -270,6 +324,7 @@ span.label {
 			"blockErr2"
 			"buttons";
 }
+/** =================================================================== */
 @media (min-width: 1200px) {
 	.block1, .block2, .block3{
 		min-width: 70%;
@@ -288,3 +343,4 @@ span.label {
 		;
 	}
 }
+/** =================================================================== */

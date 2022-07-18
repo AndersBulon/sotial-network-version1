@@ -7,21 +7,14 @@ import { Preloader } from "../Preloader/Preloader.jsx";
 
 const SettingsForm = (props) => {
 	let [editMode, setEditMode] = React.useState(false)
-	let [aboutMe, setAboutMe] = React.useState(props.profile.aboutMe)
-	let [fullName, setFullName] = React.useState(props.profile.fullName)
-	let [jobDescription, setJobDescription] = React.useState(props.profile.lookingForAJobDescription)
+	let [isActiveSend, changeActiveSend] = React.useState(true)
 	let [jobCheck, setJobCheck] = React.useState(props.profile.lookingForAJob)
-	let [contacts, setContacts] = React.useState(props.profile.contacts)
 	let [error, setError] = React.useState(props.messages)
 	let [choosingPhoto, choosePhoto] = React.useState(upload)
 	let [photos, addPhotos] = React.useState((Object.keys(props.profile).length !== 0) ? props.profile.photos.large : spinner)
 	let [refreshingPhoto, refreshPhoto] = React.useState((Object.keys(props.profile).length !== 0) ? props.profile.photos.large : spinner)
 
 	React.useEffect(() => {
-		setAboutMe(props.profile.aboutMe)
-		setFullName(props.profile.fullName)
-		setJobDescription(props.profile.lookingForAJobDescription)
-		setContacts(props.profile.contacts)
 		setError(props.messages)
 		setJobCheck(props.profile.lookingForAJob)
 		if (Object.keys(props.profile).length !== 0 && refreshingPhoto !== props.profile.photos.large) {
@@ -34,7 +27,6 @@ const SettingsForm = (props) => {
 		handleSubmit,
 		formState: { errors },
 		register,
-		reset,
 	} = useForm({ mode: "onBlur" })
 
 	const onSubmit = (data) => {
@@ -43,13 +35,12 @@ const SettingsForm = (props) => {
 			choosePhoto(upload)
 			addPhotos(spinner)
 		}
-		props.updateProfile(aboutMe, contacts, jobCheck, jobDescription, fullName, props.myId)
-		reset()
+		props.updateProfile(data.fullName, data.aboutMe, data.jobDescription, jobCheck,
+			{facebook: data.facebook, github: data.github,
+			instagram: data.instagram, mainLink: data.mainLink, twitter: data.twitter,
+			vk: data.vk, website: data.website, youtube: data.youtube}, props.myId)    
 		deActivateEditMode()
-
-
 	}
-
 	const chooseAvatarPhoto = (e) => {
 		let reader = new FileReader();
 		if (e.target.files[0]) {
@@ -59,57 +50,19 @@ const SettingsForm = (props) => {
 			}
 		}
 	}
-	const onAboutMe = (e) => {
-		setAboutMe(e.currentTarget.value)
-	}
-	const onFullName = (e) => {
-		setFullName(e.currentTarget.value)
-	}
-	const onJobDescription = (e) => {
-		setJobDescription(e.currentTarget.value)
-	}
+	// eslint-disable-next-line
+	const pattern ="/^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/"
 	const onJobCheck = (e) => {
 		setJobCheck(e.target.checked)
 	}
 	const activateEditMode = () => {
 		setEditMode(true)
+		changeActiveSend(false)
 	}
 	const deActivateEditMode = () => {
 		setEditMode(false)
+		changeActiveSend(true)
 	}
-
-	const onFacebook = (e) => {
-		let editValue = { ...contacts, facebook: e.currentTarget.value }
-		setContacts(editValue)
-	};
-	const onWebsite = (e) => {
-		let editValue = { ...contacts, website: e.currentTarget.value }
-		setContacts(editValue)
-	};
-	const onGithub = (e) => {
-		let editValue = { ...contacts, github: e.currentTarget.value }
-		setContacts(editValue)
-	};
-	const onInstagram = (e) => {
-		let editValue = { ...contacts, instagram: e.currentTarget.value }
-		setContacts(editValue)
-	};
-	const onMainLink = (e) => {
-		let editValue = { ...contacts, mainLink: e.currentTarget.value }
-		setContacts(editValue)
-	};
-	const onTwitter = (e) => {
-		let editValue = { ...contacts, twitter: e.currentTarget.value }
-		setContacts(editValue)
-	};
-	const onVk = (e) => {
-		let editValue = { ...contacts, vk: e.currentTarget.value }
-		setContacts(editValue)
-	};
-	const onYoutube = (e) => {
-		let editValue = { ...contacts, youtube: e.currentTarget.value }
-		setContacts(editValue)
-	};
 
 	const errGenerate = () => {
 		let arr = []
@@ -121,243 +74,146 @@ const SettingsForm = (props) => {
 	}
 
 
+	const ContactField = (props) => {
+		let [value, setContact] = React.useState(props.contact)
+		React.useEffect(() => {
+			setContact(props.contact)
+		}, [props.contact])
+		const changeFunc = (e) => {
+			setContact(e.currentTarget.value)
+		};
+		return (
+			<div className={`${props.contactblock}`}>
+				<label
+					className={`${props.labelSpanCSS} ${props.labelCSS}`}>
+					{props.title}
+				</label>
+				{!editMode
+					? <span className={`${props.labelSpanCSS} ${props.spanCSS}`}>{
+						value}</span>
+					: <textarea value={value ? value : ""}
+						className={`${props.inpCSS1} ${props.inpCSS2} `}
+						{...register(props.regName,
+							{
+								required: props.text1,
+								pattern: {
+									value: props.pattern,
+									message: props.text2
+								}
+							})}
+						onChange={changeFunc}
+					/>
+				}
+			</div>
+		)
+	}
+
 	if (!Object.keys(props.profile).length) return <Preloader />
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className={style.form}>
 			<fieldset className={style.block1}>
 				<legend>Information</legend>
-
-				<label
-					className={`${style.label} ${style.fullNameLbl}`}>
-					Full name :
-				</label>
-				{!editMode
-					? <span className={`${style.label} ${style.fullName}`}>{fullName}</span>
-					: <input type={"text"} value={fullName}
-						className={`${style.input} ${style.fullName} `}
-						{...register("fullName",
-							{ required: "Поле 'Full name' обязательно к заполнению!" })}
-						onChange={onFullName}
-					/>
-				}
-
-				<label
-					className={`${style.label} ${style.aboutMeLbl}`}>
-					About me :
-				</label>
-				{!editMode
-					? <span className={`${style.label} ${style.aboutMe}`}>{aboutMe}</span>
-					: <textarea type="textarea" value={aboutMe}
-						className={`${style.input} ${style.aboutMe}`}
-						{...register("aboutMe",
-							{ required: "Поле 'About me' обязательно к заполнению!" })}
-						onChange={onAboutMe}
-					/>
-				}
-
-				<label
-					className={`${style.label} ${style.jobDescriptionLbl}`}>
-					Job description :
-				</label>
-				{!editMode
-					? <span className={`${style.label} ${style.jobDescription}`}>{jobDescription}</span>
-					: <textarea type={"textarea"} value={jobDescription}
-						className={`${style.input} ${style.jobDescription}`}
-						{...register("jobDescription",
-							{ required: "Поле 'Job description' обязательно к заполнению!" })}
-						onChange={onJobDescription}
-					/>
-				}
-				<label
-					className={`${style.label} ${style.jobCheckLbl}`}>
-					Looking for a job
-				</label>
-				{!editMode
-					? <input type={"checkbox"}
-						disabled={true}
-						className={`${style.input} ${style.jobCheck}`}
-						checked={jobCheck || ''}
-					/>
-					: <input type={"checkbox"}
-						className={`${style.input} ${style.jobCheck}`}
-						checked={jobCheck || ''}
-						{...register("lookingForAJob")}
-						onClick={(e) => { onJobCheck(e) }}
-					/>
-				}
+				<ContactField contactblock={style.informblock1} labelSpanCSS={style.label} labelCSS={style.fullNameLbl}
+					spanCSS={style.fullName} inpCSS1={style.input} inpCSS2={style.fullName}
+					regName="fullName" contact={props.profile.fullName} func="changeFunc"
+					text1="Поле 'Full name' обязательно к заполнению!" title="Full name :"
+				/>
+				<ContactField contactblock={style.informblock2} labelSpanCSS={style.label} labelCSS={style.aboutMeLbl}
+					spanCSS={style.aboutMe} inpCSS1={style.input} inpCSS2={style.aboutMe}
+					regName="aboutMe" contact={props.profile.aboutMe}
+					text1="Поле 'Поле 'About me' обязательно к заполнению!" title="About me :"
+				/>
+				<ContactField contactblock={style.informblock3} labelSpanCSS={style.label} labelCSS={style.jobDescriptionLbl}
+					spanCSS={style.jobDescription} inpCSS1={style.input} inpCSS2={style.jobDescription}
+					regName="jobDescription" contact={props.profile.lookingForAJobDescription}
+					text1="Поле 'Job description' обязательно к заполнению!" title="Job description :"
+				/>
+				<div className={style.informblock4}>
+					<label
+						className={`${style.label} ${style.jobCheckLbl}`}>
+						Looking for a job
+					</label>
+					{!editMode
+						? <input type={"checkbox"}
+							disabled={true}
+							className={`${style.input} ${style.jobCheck}`}
+							checked={jobCheck || ''}
+						/>
+						: <input type={"checkbox"}
+							className={`${style.input} ${style.jobCheck}`}
+							checked={jobCheck || ''}
+							{...register("lookingForAJob")}
+							onChange={ onJobCheck }
+						/>
+					}
+				</div>
 			</fieldset>
 
 			<fieldset className={style.block2}>
 				<legend>Contacts</legend>
-				<label
-					className={`${style.label} ${style.facebookLbl}`}>
-					Facebook :
-				</label>
-				{!editMode
-					? <span className={`${style.label} ${style.facebook}`}>{
-						contacts ? contacts.facebook : ""}</span>
-					: <input type={"text"} value={contacts.facebook ? contacts.facebook : ""}
-						className={`${style.input} ${style.facebook} `}
-						{...register("facebook",
-							{
-								required: "Поле 'Facebook' обязательно к заполнению!",
-								pattern: {
-									// eslint-disable-next-line
-									value: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/,
-									message: `В поле 'Facebook' введен не корректный URL-адрес`
-								}
-							})}
-						onChange={onFacebook}
-					/>
-				}
-				<label
-					className={`${style.label} ${style.githubLbl}`}>
-					Github :
-				</label>
-				{!editMode
-					? <span className={`${style.label} ${style.github}`}>{
-						contacts ? contacts.github : ""}</span>
-					: <input type={"text"} value={contacts.github ? contacts.github : ""}
-						className={`${style.input} ${style.github} `}
-						{...register("github",
-							{
-								required: "Поле 'Github' обязательно к заполнению!",
-								pattern: {
-									// eslint-disable-next-line
-									value: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/,
-									message: `В поле 'Github' введен не корректный URL-адрес`
-								}
-							})}
-						onChange={onGithub}
-					/>
-				}
-				<label
-					className={`${style.label} ${style.instagramLbl}`}>
-					Instagram :
-				</label>
-				{!editMode
-					? <span className={`${style.label} ${style.instagram}`}>{
-						contacts ? contacts.instagram : ""}</span>
-					: <input type={"text"} value={contacts.instagram ? contacts.instagram : ""}
-						className={`${style.input} ${style.instagram} `}
-						{...register("instagram",
-							{
-								required: "Поле 'Instagram' обязательно к заполнению!",
-								pattern: {
-									// eslint-disable-next-line
-									value: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/,
-									message: `В поле 'Instagram' введен не корректный URL-адрес`
-								}
-							})}
-						onChange={onInstagram}
-					/>
-				}
-				<label
-					className={`${style.label} ${style.mainLinkLbl}`}>
-					MainLink :
-				</label>
-				{!editMode
-					? <span className={`${style.label} ${style.mainLink}`}>{
-						contacts ? contacts.mainLink : ""}</span>
-					: <input type={"text"} value={contacts.mainLink ? contacts.mainLink : ""}
-						className={`${style.input} ${style.mainLink} `}
-						{...register("mainLink",
-							{
-								required: "Поле 'MainLink' обязательно к заполнению!",
-								pattern: {
-									// eslint-disable-next-line
-									value: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/,
-									message: `В поле 'MainLink' введен не корректный URL-адрес`
-								}
-							})}
-						onChange={onMainLink}
-					/>
-				}
-				<label
-					className={`${style.label} ${style.twitterLbl}`}>
-					Twitter :
-				</label>
-				{!editMode
-					? <span className={`${style.label} ${style.twitter}`}>{
-						contacts ? contacts.twitter : ""}</span>
-					: <input type={"text"} value={contacts.twitter ? contacts.twitter : ""}
-						className={`${style.input} ${style.twitter} `}
-						{...register("twitter",
-							{
-								required: "Поле 'Twitter' обязательно к заполнению!",
-								pattern: {
-									// eslint-disable-next-line
-									value: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/,
-									message: `В поле 'Twitter' введен не корректный URL-адрес`
-								}
-							})}
-						onChange={onTwitter}
-					/>
-				}
-				<label
-					className={`${style.label} ${style.vkLbl}`}>
-					VK :
-				</label>
-				{!editMode
-					? <span className={`${style.label} ${style.vk}`}>{
-						contacts ? contacts.vk : ""}</span>
-					: <input type={"text"} value={contacts.vk ? contacts.vk : ""}
-						className={`${style.input} ${style.vk} `}
-						{...register("vk",
-							{
-								required: "Поле 'VK' обязательно к заполнению!",
-								pattern: {
-									// eslint-disable-next-line
-									value: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/,
-									message: `В поле 'VK' введен не корректный URL-адрес`
-								}
-							})}
-						onChange={onVk}
-					/>
-				}
+				<ContactField contactblock={style.contactblock1} labelSpanCSS={style.label} labelCSS={style.facebookLbl}
+					spanCSS={style.facebook} inpCSS1={style.input} inpCSS2={style.facebook}
+					contact={props.profile.contacts.facebook} title="Facebook :" regName="facebook"
+					pattern={pattern}
+					text1="Поле 'Facebook' обязательно к заполнению!"
+					text2="В поле 'Facebook' введен не корректный URL-адрес"
+				/>
 
-				<label
-					className={`${style.label} ${style.websiteLbl}`}>
-					Website :
-				</label>
-				{!editMode
-					? <span className={`${style.label} ${style.website}`}>{
-						contacts ? contacts.website : ""}</span>
-					: <input type={"text"} value={contacts.website ? contacts.website : ""}
-						className={`${style.input} ${style.website} `}
-						{...register("website",
-							{
-								required: "Поле 'Website' обязательно к заполнению!",
-								pattern: {
-									// eslint-disable-next-line
-									value: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/,
-									message: `В поле 'Website' введен не корректный URL-адрес`
-								}
-							})}
-						onChange={onWebsite}
-					/>
-				}
-				<label
-					className={`${style.label} ${style.youtubeLbl}`}>
-					Youtube :
-				</label>
-				{!editMode
-					? <span className={`${style.label} ${style.youtube}`}>{
-						contacts ? contacts.youtube : ""}</span>
-					: <input type={"text"} value={contacts.youtube ? contacts.youtube : ""}
-						className={`${style.input} ${style.youtube} `}
-						{...register("youtube",
-						{
-							required: "Поле 'Youtube' обязательно к заполнению!",
-							pattern: {
-								// eslint-disable-next-line
-								value: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/,
-								message: `В поле 'Youtube' введен не корректный URL-адрес`
-							}
-						})}
-						onChange={onYoutube}
-					/>
-				}
+				<ContactField contactblock={style.contactblock2} labelSpanCSS={style.label} labelCSS={style.githubLbl}
+					spanCSS={style.github} inpCSS1={style.input} inpCSS2={style.github}
+					contact={props.profile.contacts.github}
+					title="Github :" regName="github"
+					text1="Поле 'Github' обязательно к заполнению!"
+					text2="В поле 'Github' введен не корректный URL-адрес"
+				/>
+
+				<ContactField contactblock={style.contactblock3} labelSpanCSS={style.label} labelCSS={style.instagramLbl}
+					spanCSS={style.instagram} inpCSS1={style.input} inpCSS2={style.instagram}
+					contact={props.profile.contacts.instagram}
+					title="Instagram :" regName="instagram" pattern={pattern}
+					text1="Поле 'Instagram' обязательно к заполнению!"
+					text2="В поле 'Instagram' введен не корректный URL-адрес"
+				/>
+
+				<ContactField contactblock={style.contactblock4} labelSpanCSS={style.label} labelCSS={style.mainLinkLbl}
+					spanCSS={style.mainLink} inpCSS1={style.input} inpCSS2={style.mainLink}
+					contact={props.profile.contacts.mainLink}
+					title="MainLink :" regName="mainLink" pattern={pattern}
+					text1="Поле 'MainLink' обязательно к заполнению!"
+					text2="В поле 'MainLink' введен не корректный URL-адрес"
+				/>
+
+				<ContactField contactblock={style.contactblock5} labelSpanCSS={style.label} labelCSS={style.twitterLbl}
+					spanCSS={style.twitter} inpCSS1={style.input} inpCSS2={style.twitter}
+					contact={props.profile.contacts.twitter}
+					title="Twitter :" regName="twitter" pattern={pattern}
+					text1="Поле 'Twitter' обязательно к заполнению!"
+					text2="В поле 'Twitter' введен не корректный URL-адрес"
+				/>
+
+				<ContactField contactblock={style.contactblock6} labelSpanCSS={style.label} labelCSS={style.vkLbl}
+					spanCSS={style.vk} inpCSS1={style.input} inpCSS2={style.vk}
+					contact={props.profile.contacts.vk}
+					title="VK :" regName="vk" pattern={pattern}
+					text1="Поле 'VK' обязательно к заполнению!"
+					text2="В поле 'VK' введен не корректный URL-адрес"
+				/>
+
+				<ContactField contactblock={style.contactblock7} labelSpanCSS={style.label} labelCSS={style.websiteLbl}
+					spanCSS={style.website} inpCSS1={style.input} inpCSS2={style.website}
+					contact={props.profile.contacts.website}
+					title="Website :" regName="website" pattern={pattern}
+					text1="Поле 'Website' обязательно к заполнению!"
+					text2="В поле 'Website' введен не корректный URL-адрес"
+				/>
+
+				<ContactField contactblock={style.contactblock8} labelSpanCSS={style.label} labelCSS={style.youtubeLbl}
+					spanCSS={style.youtube} inpCSS1={style.input} inpCSS2={style.youtube}
+					contact={props.profile.contacts.youtube}
+					title="Youtube :" regName="youtube" pattern={pattern}
+					text1="Поле 'Youtube' обязательно к заполнению!"
+					text2="В поле 'Youtube' введен не корректный URL-адрес"
+				/>
 			</fieldset>
 
 			<fieldset className={style.block3}>
@@ -366,14 +222,13 @@ const SettingsForm = (props) => {
 					{!props.profile.photos.large
 						? <img src={spinner} alt="" className={style.avatarImg} />
 						: <img src={photos} alt="" className={style.avatarImg} />}
-
 				</div>
 				<div className={style.uploadContainer}>
 					<img id="upload-image" src={choosingPhoto} className={`${style.uploadImg}`} alt="" />
 					<div>
 						<input id="file-input" type="file" className={`${style.fileInput}`}
 							{...register("file")}
-							onChange={chooseAvatarPhoto} />
+							onChange={chooseAvatarPhoto} onClick={activateEditMode}/>
 						<label htmlFor="file-input" className={`${style.fileBtn}`}>Выберите файл </label>
 					</div>
 				</div>
@@ -385,7 +240,6 @@ const SettingsForm = (props) => {
 					<legend className={style.legend}>Errors</legend>
 					{errGenerate().map(el => <div key={el}>{el}</div>)}
 				</fieldset>
-
 			}
 
 			{
@@ -396,14 +250,13 @@ const SettingsForm = (props) => {
 				</fieldset>
 			}
 
-
 			<div className={style.buttonsBlock}>
 				<button type="button" className={`${style.editBtn} button`}
 					onClick={activateEditMode}
 				>
 					Edit Profile
 				</button>
-				<input type={"submit"} value='Send' className={`${style.submitBtn} button`} />
+				<input disabled={isActiveSend} type={"submit"} value='Send' className={`${style.submitBtn} button`} />
 			</div>
 		</form >
 	)
