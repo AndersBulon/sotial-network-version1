@@ -9,6 +9,26 @@ body {
  
 }
 /**----------------ОБЩИЕ CSS СТИЛИ----------------------*/
+fieldset {
+	margin: 0 auto;
+	max-width: 500px;
+	border: 1px solid #fff;
+	border-radius: 10px;
+}
+fieldset:not(:last-child) {
+	margin-bottom: 20px;
+}
+legend {
+	font-family: monospace;
+	letter-spacing: 2px;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 700;
+	font-style: italic;
+	text-align: left;
+	margin-left: 30px;
+	padding: 0 10px;
+}
 
 /**----------------стиль для компоненты логин----------------------*/
 .err {

@@ -7,6 +7,7 @@ import { Preloader } from "../Preloader/Preloader.jsx";
 
 const SettingsForm = (props) => {
 	let [editMode, setEditMode] = React.useState(false)
+	let [title, sendFileControl] = React.useState("Выберите файл")
 	let [isActiveSend, changeActiveSend] = React.useState(true)
 	let [jobCheck, setJobCheck] = React.useState(props.profile.lookingForAJob)
 	let [error, setError] = React.useState(props.messages)
@@ -33,12 +34,15 @@ const SettingsForm = (props) => {
 		if (choosingPhoto !== upload) {
 			props.updatePhotos(data.file[0])
 			choosePhoto(upload)
+			sendFileControl("Выберите файл")
 			addPhotos(spinner)
 		}
 		props.updateProfile(data.fullName, data.aboutMe, data.jobDescription, jobCheck,
-			{facebook: data.facebook, github: data.github,
-			instagram: data.instagram, mainLink: data.mainLink, twitter: data.twitter,
-			vk: data.vk, website: data.website, youtube: data.youtube}, props.myId)    
+			{
+				facebook: data.facebook, github: data.github,
+				instagram: data.instagram, mainLink: data.mainLink, twitter: data.twitter,
+				vk: data.vk, website: data.website, youtube: data.youtube
+			}, props.myId)
 		deActivateEditMode()
 	}
 	const chooseAvatarPhoto = (e) => {
@@ -47,11 +51,11 @@ const SettingsForm = (props) => {
 			reader.readAsDataURL(e.target.files[0])
 			reader.onload = () => {
 				choosePhoto(reader.result)
+				sendFileControl("Файл успешно выбран")
 			}
 		}
 	}
-	// eslint-disable-next-line
-	const pattern ="/^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/"
+
 	const onJobCheck = (e) => {
 		setJobCheck(e.target.checked)
 	}
@@ -63,6 +67,10 @@ const SettingsForm = (props) => {
 		setEditMode(false)
 		changeActiveSend(true)
 	}
+	const controlFileSendButton =()=> {
+		choosePhoto(upload)
+		sendFileControl("Файл не выбран")
+	}
 
 	const errGenerate = () => {
 		let arr = []
@@ -72,16 +80,27 @@ const SettingsForm = (props) => {
 		});
 		return arr;
 	}
-
-
+	// eslint-disable-next-line
+	const pattern = /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/
 	const ContactField = (props) => {
-		let [value, setContact] = React.useState(props.contact)
+		let [value, setContact] = React.useState(props.element)
 		React.useEffect(() => {
-			setContact(props.contact)
-		}, [props.contact])
+			setContact(props.element)
+		}, [props.element])
 		const changeFunc = (e) => {
 			setContact(e.currentTarget.value)
 		};
+		function textAreaAdjust(e) {
+			e.target.style.height = "1px";
+			e.target.style.height = (10 + e.target.scrollHeight) + "px";
+			// e.target.style.backgroundColor = "#e4ffe4";
+			// if (props.err) {e.target.style.backgroundColor = "#ffcccc"}
+		}
+		function textAreaDeljust(e) {
+			e.target.style.height = "33px";
+			// e.target.style.backgroundColor = "#ffffff";
+			// if (props.err) {e.target.style.backgroundColor = "#ffcccc"}
+		}
 		return (
 			<div className={`${props.contactblock}`}>
 				<label
@@ -89,10 +108,13 @@ const SettingsForm = (props) => {
 					{props.title}
 				</label>
 				{!editMode
-					? <span className={`${props.labelSpanCSS} ${props.spanCSS}`}>{
+					? <span className={`${props.labelSpanCSS} ${props.fieldCSS}`}>{
 						value}</span>
 					: <textarea value={value ? value : ""}
-						className={`${props.inpCSS1} ${props.inpCSS2} `}
+						autoFocus={props.err}
+						onFocus={textAreaAdjust}
+						onBlurCapture={textAreaDeljust}
+						className={`${props.err ? style.inputErr : style.input} ${props.fieldCSS} `}
 						{...register(props.regName,
 							{
 								required: props.text1,
@@ -114,18 +136,18 @@ const SettingsForm = (props) => {
 			<fieldset className={style.block1}>
 				<legend>Information</legend>
 				<ContactField contactblock={style.informblock1} labelSpanCSS={style.label} labelCSS={style.fullNameLbl}
-					spanCSS={style.fullName} inpCSS1={style.input} inpCSS2={style.fullName}
-					regName="fullName" contact={props.profile.fullName} func="changeFunc"
+					fieldCSS={style.fullName} err={errors.fullName}
+					regName="fullName" element={props.profile.fullName} func="changeFunc"
 					text1="Поле 'Full name' обязательно к заполнению!" title="Full name :"
 				/>
 				<ContactField contactblock={style.informblock2} labelSpanCSS={style.label} labelCSS={style.aboutMeLbl}
-					spanCSS={style.aboutMe} inpCSS1={style.input} inpCSS2={style.aboutMe}
-					regName="aboutMe" contact={props.profile.aboutMe}
+					fieldCSS={style.aboutMe} err={errors.aboutMe}
+					regName="aboutMe" element={props.profile.aboutMe}
 					text1="Поле 'Поле 'About me' обязательно к заполнению!" title="About me :"
 				/>
 				<ContactField contactblock={style.informblock3} labelSpanCSS={style.label} labelCSS={style.jobDescriptionLbl}
-					spanCSS={style.jobDescription} inpCSS1={style.input} inpCSS2={style.jobDescription}
-					regName="jobDescription" contact={props.profile.lookingForAJobDescription}
+					fieldCSS={style.jobDescription} err={errors.jobDescription}
+					regName="jobDescription" element={props.profile.lookingForAJobDescription}
 					text1="Поле 'Job description' обязательно к заполнению!" title="Job description :"
 				/>
 				<div className={style.informblock4}>
@@ -143,7 +165,7 @@ const SettingsForm = (props) => {
 							className={`${style.input} ${style.jobCheck}`}
 							checked={jobCheck || ''}
 							{...register("lookingForAJob")}
-							onChange={ onJobCheck }
+							onChange={onJobCheck}
 						/>
 					}
 				</div>
@@ -152,65 +174,72 @@ const SettingsForm = (props) => {
 			<fieldset className={style.block2}>
 				<legend>Contacts</legend>
 				<ContactField contactblock={style.contactblock1} labelSpanCSS={style.label} labelCSS={style.facebookLbl}
-					spanCSS={style.facebook} inpCSS1={style.input} inpCSS2={style.facebook}
-					contact={props.profile.contacts.facebook} title="Facebook :" regName="facebook"
-					pattern={pattern}
+					fieldCSS={style.facebook}
+					element={props.profile.contacts.facebook} title="Facebook :" regName="facebook"
+					pattern={pattern} err={errors.facebook}
 					text1="Поле 'Facebook' обязательно к заполнению!"
 					text2="В поле 'Facebook' введен не корректный URL-адрес"
 				/>
 
 				<ContactField contactblock={style.contactblock2} labelSpanCSS={style.label} labelCSS={style.githubLbl}
-					spanCSS={style.github} inpCSS1={style.input} inpCSS2={style.github}
-					contact={props.profile.contacts.github}
+					fieldCSS={style.github}
+					element={props.profile.contacts.github}
+					pattern={pattern} err={errors.github}
 					title="Github :" regName="github"
 					text1="Поле 'Github' обязательно к заполнению!"
 					text2="В поле 'Github' введен не корректный URL-адрес"
 				/>
 
 				<ContactField contactblock={style.contactblock3} labelSpanCSS={style.label} labelCSS={style.instagramLbl}
-					spanCSS={style.instagram} inpCSS1={style.input} inpCSS2={style.instagram}
-					contact={props.profile.contacts.instagram}
-					title="Instagram :" regName="instagram" pattern={pattern}
+					fieldCSS={style.instagram}
+					element={props.profile.contacts.instagram}
+					pattern={pattern} err={errors.instagram}
+					title="Instagram :" regName="instagram"
 					text1="Поле 'Instagram' обязательно к заполнению!"
 					text2="В поле 'Instagram' введен не корректный URL-адрес"
 				/>
 
 				<ContactField contactblock={style.contactblock4} labelSpanCSS={style.label} labelCSS={style.mainLinkLbl}
-					spanCSS={style.mainLink} inpCSS1={style.input} inpCSS2={style.mainLink}
-					contact={props.profile.contacts.mainLink}
-					title="MainLink :" regName="mainLink" pattern={pattern}
+					fieldCSS={style.mainLink}
+					element={props.profile.contacts.mainLink}
+					pattern={pattern} err={errors.mainLink}
+					title="MainLink :" regName="mainLink"
 					text1="Поле 'MainLink' обязательно к заполнению!"
 					text2="В поле 'MainLink' введен не корректный URL-адрес"
 				/>
 
 				<ContactField contactblock={style.contactblock5} labelSpanCSS={style.label} labelCSS={style.twitterLbl}
-					spanCSS={style.twitter} inpCSS1={style.input} inpCSS2={style.twitter}
-					contact={props.profile.contacts.twitter}
-					title="Twitter :" regName="twitter" pattern={pattern}
+					fieldCSS={style.twitter}
+					element={props.profile.contacts.twitter}
+					pattern={pattern} err={errors.twitter}
+					title="Twitter :" regName="twitter"
 					text1="Поле 'Twitter' обязательно к заполнению!"
 					text2="В поле 'Twitter' введен не корректный URL-адрес"
 				/>
 
 				<ContactField contactblock={style.contactblock6} labelSpanCSS={style.label} labelCSS={style.vkLbl}
-					spanCSS={style.vk} inpCSS1={style.input} inpCSS2={style.vk}
-					contact={props.profile.contacts.vk}
-					title="VK :" regName="vk" pattern={pattern}
+					fieldCSS={style.vk}
+					element={props.profile.contacts.vk}
+					pattern={pattern} err={errors.vk}
+					title="VK :" regName="vk"
 					text1="Поле 'VK' обязательно к заполнению!"
 					text2="В поле 'VK' введен не корректный URL-адрес"
 				/>
 
 				<ContactField contactblock={style.contactblock7} labelSpanCSS={style.label} labelCSS={style.websiteLbl}
-					spanCSS={style.website} inpCSS1={style.input} inpCSS2={style.website}
-					contact={props.profile.contacts.website}
-					title="Website :" regName="website" pattern={pattern}
+					fieldCSS={style.website}
+					element={props.profile.contacts.website}
+					pattern={pattern} err={errors.website}
+					title="Website :" regName="website"
 					text1="Поле 'Website' обязательно к заполнению!"
 					text2="В поле 'Website' введен не корректный URL-адрес"
 				/>
 
 				<ContactField contactblock={style.contactblock8} labelSpanCSS={style.label} labelCSS={style.youtubeLbl}
-					spanCSS={style.youtube} inpCSS1={style.input} inpCSS2={style.youtube}
-					contact={props.profile.contacts.youtube}
-					title="Youtube :" regName="youtube" pattern={pattern}
+					fieldCSS={style.youtube}
+					element={props.profile.contacts.youtube}
+					pattern={pattern} err={errors.youtube}
+					title="Youtube :" regName="youtube"
 					text1="Поле 'Youtube' обязательно к заполнению!"
 					text2="В поле 'Youtube' введен не корректный URL-адрес"
 				/>
@@ -228,8 +257,8 @@ const SettingsForm = (props) => {
 					<div>
 						<input id="file-input" type="file" className={`${style.fileInput}`}
 							{...register("file")}
-							onChange={chooseAvatarPhoto} onClick={activateEditMode}/>
-						<label htmlFor="file-input" className={`${style.fileBtn}`}>Выберите файл </label>
+							onChange={chooseAvatarPhoto} onClick={controlFileSendButton} />
+						<label htmlFor="file-input" className={`${style.fileBtn}`}>{title}</label>
 					</div>
 				</div>
 			</fieldset>
@@ -261,7 +290,6 @@ const SettingsForm = (props) => {
 		</form >
 	)
 }
-
 const ProfileSettings = (props) => {
 	React.useEffect(() => {
 		props.setProfile(props.myId)
@@ -278,5 +306,4 @@ const ProfileSettings = (props) => {
 		</div>
 	)
 }
-
 export { ProfileSettings };

@@ -93,8 +93,8 @@ function LoginForm(props) {
 					Unlogin
 				</button>
 				:
-				<button className={`${style.submitBtn}`}
-					onClick={() => { handleClick() }}
+				<button className={`${style.submitBtn} button`}
+					onClick={ handleClick }
 					id="submBtn"
 					{...register("loginBtn")}
 				>Login</button>

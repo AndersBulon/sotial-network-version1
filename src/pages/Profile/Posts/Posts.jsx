@@ -13,7 +13,7 @@ function PostForm(props) {
 		register,
 		formState: { errors },
 	} = useForm({ mode: "onSubmit" })
-	
+
 	const onSubmit = () => {
 		props.sendPost(localState)
 		localState = changeLocalState("")
@@ -49,7 +49,7 @@ function PostForm(props) {
 				onChange={changeTextarea}
 			/>
 			<input type="submit" className={`${style.sendPostBtn} button`}
-				onClick={() => { handleClick() }} value="Add new post" />
+				onClick={handleClick} value="Add new post" />
 		</form>
 	)
 }

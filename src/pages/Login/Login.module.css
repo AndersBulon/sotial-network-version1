@@ -47,14 +47,24 @@ h1{
 }
 
 .checkField {
-	margin-bottom: 20px;
+	display: grid;
+	grid-gap: 15px;
+	justify-content: center;
+	align-items: center;
+	grid-template-rows: min-content;
+	grid-template-columns: 20px max-content;
+	grid-template-areas: 
+	"check label";
+	padding: 20px;
 }
 .labelCheck {
-	font-size: 16px;
+	grid-area: label;
+	font-size: 20px;
 	color: #fff;
 }
 .check {
-	margin-right: 15px;
+	grid-area: check;
+	height: 20px;
 }
 
 .captcha {
@@ -98,50 +108,9 @@ h1{
 	transform: rotate(-360deg);
 }
 
-fieldset {
-	margin: 0 auto;
-	max-width: 500px;
-	border: 1px solid #fff;
-	border-radius: 10px;
-}
-fieldset:not(:last-child) {
-	margin-bottom: 20px;
-}
-legend {
-	font-family: monospace;
-	letter-spacing: 2px;
-	color: #fff;
-	font-size: 14px;
-	font-weight: 700;
-	font-style: italic;
-	text-align: left;
-	margin-left: 30px;
-	padding: 0 10px;
-}
-
 .submitBtn{
-	cursor: pointer;
-	position: relative;
-	color: rgb(81, 66, 66);
-	box-shadow: -2px 2px 20px 3px #aaa;
+	height: auto;
 	padding: 10px 20px;
-	width:100px;
-	border-radius: 10px;
 	margin:30px auto;
-	display: block;
-	background-image: linear-gradient(to left,transparent,transparent 50%,#e9b1a4 50%,#fff);
-	background-position: 100% 0;
-	background-size: 200% 100%;
-	transition: all .25s ease-in;
 	font: 700 18px tahoma;
   }
-.submitBtn:active {
-	top: 1px;
-	left: -1px;
-	box-shadow: -1px 1px 3px 1px #aaa;
-  }
-.submitBtn:hover {
-	background-position: 0 0;
-	color:#000;
-  }
-  
