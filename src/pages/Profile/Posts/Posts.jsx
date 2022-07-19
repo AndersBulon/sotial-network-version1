@@ -20,11 +20,9 @@ function PostForm(props) {
 		reset();
 	}
 
-
 	let changeTextarea = (e) => {
 		changeLocalState(e.currentTarget.value);
 	}
-
 
 	let errRef = React.createRef();
 	let handleClick = () => {
@@ -35,11 +33,11 @@ function PostForm(props) {
 		}, 850);
 	}
 
-
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className={style.postForm}>
-			{errors.text ? <p ref={errRef} className={`${style.postErr} error`}>{errors.text.message}</p>
-				: <p className={`${style.postErr} error`}></p>}
+			<p ref={errRef} className={`${style.postErr}`}>
+				{errors.text?errors.text.message:""}
+			</p>
 			<input
 				type="textarea" value={localState} placeholder="Введите новый пост..."
 				className={`${style.newpostInput} input`} autoFocus={true}
@@ -49,7 +47,8 @@ function PostForm(props) {
 				onChange={changeTextarea}
 			/>
 			<input type="submit" className={`${style.sendPostBtn} button`}
-				onClick={handleClick} value="Add new post" />
+				onClick={handleClick}
+				 value="Add new post" />
 		</form>
 	)
 }

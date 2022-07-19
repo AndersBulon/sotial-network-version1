@@ -5,8 +5,8 @@
 	grid-template-columns: 200px auto;
 	grid-template-rows: 200px 1fr auto;
 	grid-template-areas:
-	  "avatar info"
-	  "id info"
+	  "avatar infoBlock"
+	  "id infoBlock"
 	  "status status";
  }
  .id {
@@ -20,13 +20,53 @@
 	font-size: 26px;
 	font-weight: 700;
 	text-align: center;
-
  }
- .userinfo {
-	grid-area: info;
-	overflow: auto;
+ /* * =============================================================================== */
+ .infoBlock {
+	grid-area: infoBlock;
+	font-style: italic;
 	padding: 20px;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(max-content);
+	grid-template-areas: 
+	"infoTitle";
  }
+ .infoTitle:not(:last-child){
+	color: #fff;
+	grid-area: infoTitle;
+	font-size: 26px;
+	text-align: center;
+	font-weight: 700;
+	margin-bottom: 25px;
+}
+ .infoItem{
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 200px 1fr;
+	grid-template-rows: min-content;
+	grid-template-areas: 
+	"title description";
+}
+.infoItem:not(:last-child){
+	margin: 0px 0px  10px 0px;
+	
+}
+ .title {
+	grid-area: title;
+	font-size: 20px;
+	font-weight: 700;
+	text-align: left;
+	color: #fff;
+ }
+ .text {
+	grid-area: description;
+	text-align: left;
+	font-size: 16px;
+	font-weight: 700;
+	color: #000;
+ }
+/* * =============================================================================== */
  .avatar {
 	grid-area: avatar;
 	display: flex;
@@ -38,24 +78,10 @@
 	cursor: pointer;
 	padding: 2px;
 	background-color: #ffd700;
-
-}
-.profileTitle {
-	font-size: 26px;
-	text-align: center;
-	font-weight: 700;
-	font-style: italic;
-}
-.profileTitle:not(:last-child) {
-	margin-bottom: 5px;
 }
  .avatar img {
 	width: 100%;
 	object-fit: cover;
- }
- .contacts {
-	font-size: 20px;
-	font-weight: 700;
  }
  .errorId {
 	height: 100%;
@@ -69,8 +95,6 @@
  .profileStatus {
 	grid-area: status;
  }
-
-
 /**---------------------------------------*/
  @media (max-width: 1050px) {
 	.profile {
@@ -79,11 +103,11 @@
 	  grid-template-rows: 75px min-content 1fr;
 	  grid-template-areas:
 	  "id"
-	  "info"
+	  "infoBlock"
 	  "status";
 	}
-	.userinfo {
-	  padding: 5px;
+	.infoBlock {
+	  padding: 10px;
 	}
 	.avatar {
 	  position: absolute;

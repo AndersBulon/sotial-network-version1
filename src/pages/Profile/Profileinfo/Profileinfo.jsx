@@ -1,33 +1,14 @@
 import React from "react";
 import style from "./Profileinfo.module.css";
 import avatar from "../../../assets/images/avatar.png"
-import sadFace from "../../../assets/images/sadFace.png"
-import { Preloader } from "../../../components/Preloader/Preloader.jsx"
 import { ProfileStatus } from "../../../components/ProfileStatus/ProfileStatus.jsx";
+import { convertObjectToArray, logicFuncNo, logicFuncYes, splitStringWithSpaces } from "../../../components/HelpComponents/HelpComponents.js";
 
 
 function Profileinfo(props) {
-	if (!props.profile) {
-		return (
-			<>
-				<Preloader />
-				<div className={`${style.profile} profile`}>
-					<h2 className={`${style.id} nick designe`}>
-						ID is not defined
-					</h2>
-					<div className={`${style.avatar} avatar`}>
-						<img className={style.img} src={sadFace} alt="avatar" />
-					</div>
-					<div className={`${style.userinfo} userinfo designe`}>
-						<div className={style.errorId}>
-							Nickname is not defined
-						</div>
-					</div>
-				</div>
-			</>
 
-		)
-	}
+	let arr = convertObjectToArray(props.profile)
+
 	return (
 		<div className={`${style.profile} profile`}>
 			<div className={`${style.id} nick designe`}>
@@ -36,47 +17,17 @@ function Profileinfo(props) {
 			<div className={`${style.avatar} avatar`}>
 				<img className={style.img} src={props.profile.photos.large ? props.profile.photos.large : avatar} alt="avatar" />
 			</div>
-			<div className={`${style.userinfo} userinfo designe`}>
-				<h3 className={style.profileTitle}>Full Name : {props.profile.fullName}</h3>
-
-				<p>
-					<span className={style.contacts}>AboutMe: </span> {props.profile.aboutMe ? props.profile.aboutMe : "Нет данных"}
-				</p>
-				<p>
-					<span className={style.contacts}>Facebook: </span> {props.profile.contacts.facebook ? props.profile.contacts.facebook : "Нет данных"}
-				</p>
-				<p>
-					<span className={style.contacts}>Website: </span> {props.profile.contacts.website ? props.profile.contacts.website : "Нет данных"}
-				</p>
-				<p>
-					<span className={style.contacts}>Vk: </span> {props.profile.contacts.vk ? props.profile.contacts.vk : "Нет данных"}
-				</p>
-				<p>
-					<span className={style.contacts}>Twitter: </span> {props.profile.contacts.twitter ? props.profile.contacts.twitter : "Нет данных"}
-				</p>
-				<p>
-					<span className={style.contacts}>Instagram: </span> {props.profile.contacts.instagram ? props.profile.contacts.instagram : "Нет данных"}
-				</p>
-				<p>
-					<span className={style.contacts}>Youtube: </span> {props.profile.contacts.youtube ? props.profile.contacts.youtube : "Нет данных"}
-				</p>
-				<p>
-					<span className={style.contacts}>Github: </span> {props.profile.contacts.github ? props.profile.contacts.github : "Нет данных"}
-				</p>
-				<p>
-					<span className={style.contacts}>MainLink: </span> {props.profile.contacts.mainLink ? props.profile.contacts.mainLink : "Нет данных"}
-				</p>
-				<p>
-					<span className={style.contacts}>Looking for a job: </span> {props.profile.lookingForAJob ? "YES" : "NO"}
-				</p>
-				<p>
-					<span className={style.contacts}>Looking for a job description: </span> {props.profile.lookingForAJobDescription ? props.profile.lookingForAJobDescription : "Нет данных"}
-				</p>
-
+			<div className={`${style.infoBlock} designe`}>
+				<h2 className={style.infoTitle}>Full Name : {props.profile.fullName}</h2>
+				{arr.map(el =>
+					<p className={style.infoItem} key={el} >
+						<span className={style.title} key={el[0]} >{splitStringWithSpaces(el[0])}</span>
+						<span className={style.text} key={el[1]}  >{el[1] ? logicFuncYes(el[1])  : logicFuncNo(el[1])}</span>
+					</p>)}
 			</div>
 			<div className={style.profileStatus}>
-				<ProfileStatus status={props.status} 
-				updateStatus = {props.updateStatus} myId={props.myId} userId={props.profile.userId} />
+				<ProfileStatus status={props.status}
+					updateStatus={props.updateStatus} myId={props.myId} userId={props.profile.userId} />
 			</div>
 		</div>
 	);
