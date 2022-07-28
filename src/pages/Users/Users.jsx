@@ -2,30 +2,16 @@ import React from "react";
 import style from "./Users.module.css"
 import image from "../../assets/images/user.jpg"
 import { NavLink } from "react-router-dom";
+import { Paginator } from "../../components/Paginator/Paginator.jsx";
+import { statusHelper } from "../../components/HelpComponents/HelpComponents.js"
 
 let Users = (props) => {
+
 	return (
-
 		<div className={`${style.content} designe`} >
-			<h4>Страничка пользователей</h4>
-
-			<div className={style.pages}>
-				<button disabled={props.currentPagesBlock === 1} onClick={() => { props.goFirstPageNumber() }} className={style.left_arr}>
-					&lt;&lt;
-				</button>
-
-				{props.blockStructure[props.currentPagesBlock].map(el =>
-					<span onClick={() => props.numPageChanged(el)} key={el} className={props.currentPage === el ? style.selectedPage : style.pageNum}>
-						{el}
-					</span>
-				)}
-
-				<button disabled={props.currentPagesBlock === props.totalBlockCount} onClick={() => { props.goEndPageNumber() }} className={style.right_arr}>
-					&gt;&gt;
-				</button>
-			</div>
-
-			<div className={style.item}>
+			<h4 className={style.title}>Страничка пользователей</h4>
+			<Paginator {...props} className={style.paginator} />
+			<div className={style.items}>
 				{props.users.map(user =>
 					<div className={style.userswrapper} key={user.id}>
 						<div className={style.avatar}>
@@ -59,18 +45,18 @@ let Users = (props) => {
 							</div>
 						}
 
-						<div className={`${user.followed ? style.info_act : style.info_disact}
-						 ${(user.id === props.myId) ? style.my : style.a}`} >
-							<div className={style.status}>{user.status ? user.status.slice(0, 50) : "Нет статуса"}</div>
-							<div className={style.fullname}>{user.name}</div>
-							<div className={style.country}>{user.country ? user.country : "Страна нет данных"}</div>
-							<div className={style.city}>ID: {user.id}</div>
+						<div className={`${user.followed ? style.info_act : style.info_disact} ${(user.id === props.myId) && style.my}`}>
+							{statusHelper(user, style.status, style.itemName, style.itemText)}
+							<div className={style.fullname}>
+								<span className={style.itemName}>Fullname :</span>
+								<span className={style.itemText}>{user.name.slice(0, 30)}</span>
+							</div>
+							<div className={style.itemID}>
+								<span className={style.itemName}>ID :</span>
+								<span className={style.itemText}>{user.id}</span>
+							</div>
 						</div>
 					</div>)}
-			</div>
-			<div className={style.buttons_block}>
-				<button disabled={props.currentPagesBlock === 1} onClick={() => { props.showPrevBlock() }} className={`${style.prevbtn} button`}>PREVIOUS</button>
-				<button disabled={props.currentPagesBlock === props.totalBlockCount} onClick={() => { props.showNextBlock() }} className={`${style.nextbtn} button`}>NEXT</button>
 			</div>
 		</div>
 	)

@@ -1,0 +1,71 @@
+.paginator {
+	font-size: 24px;
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 1fr;
+	grid-template-rows: max-content max-content;
+	grid-template-areas: 
+	"pages"
+	"buttons_block";
+}
+.pages {
+	grid-area: pages;
+}
+.buttons_block {
+	grid-area: buttons_block;
+	padding: 5px 15px 20px;
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: 150px;
+	grid-gap: 20px;
+	justify-content:center;
+}
+
+.selectedPage, .pageNum {
+	cursor: pointer;
+}
+.selectedPage {
+	color: #e22020;
+	font-weight: 700;
+}
+.pageNum {
+	color: #74e059;
+	font-weight: 400;
+}
+.pages:not(:last-child) {
+	margin-bottom: 10px;
+}
+.selectedPage:not(:last-child), .pageNum:not(:last-child) {
+	margin-right: 10px;
+}
+.left_arr{
+	margin-right: 10px;
+}
+.right_arr {
+	margin-left: 10px;
+}
+.left_arr, .right_arr {
+	background: #000;
+	color: #e22020;
+	font-size: 26px;
+	font-weight: 800;
+	cursor: pointer;
+	letter-spacing: 5px;
+}
+.left_arr:disabled, .right_arr:disabled {
+	color: #443d3d;
+	cursor: auto;
+}
+@media (max-width: 780px) {
+	.paginator {
+		font-size: 20px;
+		grid-gap: 5px;
+	}
+	.selectedPage:not(:last-child), .pageNum:not(:last-child) {
+		margin-right: 8px;
+	}
+	.left_arr, .right_arr {
+		font-size: 20px;
+		letter-spacing: 2px;
+	}
+}

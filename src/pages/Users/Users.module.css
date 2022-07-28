@@ -1,16 +1,32 @@
 .content {
-	padding: 10px;
-	padding-bottom: 20px;
+	display: grid;
+	grid-gap: 10px;
+	padding: 10px 10px 20px;
 	height: 100%;
 	background-color: #000;
 	text-align: center;
-	font-size: 28px;
 	color: #fff;
+	grid-template-columns: 1fr;
+	grid-template-rows: 40px max-content max-content;
+	grid-template-areas: 
+	"title"
+	"paginator"
+	"items";
 }
-.content h4:not(:last-child) {
-	margin-bottom: 20px;
+.title {
+	font-size: 28px;
+	grid-area: title;
 }
-.userswrapper, .userswrapper1 {
+.paginator {
+	grid-area: paginator;
+}
+.items {
+	grid-area: items;
+	display: grid;
+	grid-gap: 10px;
+}
+/** ====================================================================== */
+.userswrapper {
 	background-color: #222;
 	padding: 0px 10px;
 	border-radius: 10px;
@@ -18,27 +34,24 @@
 	color: #000;
 	grid-column-gap: 10px;
 	font-size: 18px;
-	height: 100px;
 	grid-template-columns:  100px 1fr 130px;
 	grid-template-areas: 
 		"avatar info followBtn";
 }
-
 .avatar {
 	box-shadow: -2px 2px 10px 3px #eee;
 	grid-area: avatar;
 	align-self: center;
 	justify-self: center;
-	height: 90px;
-	width: 90px;
-	/* background-color: #000; */
+	height: 80px;
+	width: 80px;
 	border-radius: 50%;
-
+	transition: all 0.3s ease 0s;
 }
 .avatar:hover {
-	box-shadow: -2px 2px 5px 3px #eee;
+	height: 90px;
+	width: 90px;
 }
-
 .btnCont {
 	grid-area: followBtn;
 	border-radius: 10px;
@@ -52,8 +65,6 @@
 	font-weight: 700;
 	align-self: center;
 }
-
-
 .followBtn{
 	border-radius: 10px;
 	height: 100%;
@@ -78,7 +89,6 @@
 .textus {
 	grid-area: textus;
 }
-
 .lockedBtn {
 	grid-area: lockimg;
 	margin-left: 10px;
@@ -88,33 +98,49 @@
 	background: url(../../assets//images/lockBtn.png)no-repeat ;
 	background-size:  100% ;
 }
-
 .avatar img {
 	height: 100%;
 	border-radius: 50%;
 	object-fit: cover;
 }
 .info_act, .info_disact{
-	background-color: #bff3b9;
+	text-align: left;
+	display: grid;
+	grid-gap: 5px;
 	border-left: #000 10px solid;
 	border-right: #000 10px solid;
 	grid-area: info;
-	display: grid;
 	min-width: 350px;
 	padding: 10px;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 1fr 1fr;
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(25px);
 	grid-template-areas: 
-		"fullname country"
-		"status city";
+		"fullname"
+		"status"
+		"itemID";
+}
+.info_act {
+	background-color: #bff3b9;
 }
 .info_disact {
 	background-color: #222;
 	color: #aaa;
 }
+
+.info_disact .itemName {
+	color: red;
+}
+.info_act .itemName {
+	color: green;
+}
 .my {
-	color: #000;
-	background-color:  #b6e9e1 ;
+	padding: 20px;
+	color: #fff;
+	background-color:  #000 ;
+	box-shadow: inset 0px 0px 30px 0px  #fff;
+}
+.my .itemName {
+	color: orange;
 }
 .my .status {
 	font-size: 16px;
@@ -122,77 +148,32 @@
 	font-style: italic;
 }
 
+.status, .fullname, .itemID {
+	display: grid;
+	grid-template-columns: 100px 1fr;
+	grid-template-rows: repeat(max-content);
+	grid-template-areas: "itemName itemText";
+}
+.status{
+	font-size: 14px;
+	grid-area: status;
+}
 .fullname {
 	font-size: 20px;
 	font-weight: 700;
 	font-style: italic;
 	grid-area: fullname;
-	justify-self: start;
 }
-.city{
-	grid-area: city;
-	justify-self: end;
-	align-self: end;
+.itemI {
+	grid-area: itemID;
 }
-.country{
-	grid-area: country;
-	justify-self: end;
-}
-.status{
-	font-size: 14px;
-	grid-area: status;
-	justify-self: start;
-	align-self: end;
-}
-.item {
-	display: grid;
-	grid-gap: 10px;
-}
-
-.selectedPage {
-	color: #e22020;
+.itemName {
+	grid-area: itemName;
+	font-size: 16px;
 	font-weight: 700;
-}
-.pageNum {
-	font-size: 24px;
-	color: #74e059;
-	font-weight: 400;
-}
-.pages {
-	grid-area: pages;
-}
-.pages:not(:last-child) {
-	margin-bottom: 10px;
-}
-.selectedPage:not(:last-child), .pageNum:not(:last-child) {
-	margin-right: 10px;
-}
-.selectedPage, .pageNum {
-	cursor: pointer;
-}
-
-
-.left_arr, .right_arr {
-	background: #000;
-	color: #e22020;
-	font-size: 26px;
-	font-weight: 800;
-	cursor: pointer;
-	letter-spacing: 5px;
+	font-style: italic;
 	padding-right: 10px;
 }
-.left_arr:disabled, .right_arr:disabled {
-	color: #443d3d;
-	cursor: auto;
+.itemText {
+	grid-area: itemText;
 }
-
-
-.buttons_block {
-	padding: 25px 0;
-	display: grid;
-	grid-auto-flow: column;
-	grid-auto-columns: 150px;
-	grid-gap: 20px;
-	justify-content:center;
-}
-
