@@ -46,7 +46,7 @@ export const Paginator = (props) => {
 		}
 		// eslint-disable-next-line
 	}, [props.totalBlockCount])
-console.log(props);
+
 	return (
 		<div className={style.paginator}>
 			<div className={style.pages}>

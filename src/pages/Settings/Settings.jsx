@@ -10,6 +10,9 @@ function Settings() {
 			<div>
 				<Link to="/settings/profile" className={`${style.link} link`}> Редактировать свой профиль </Link>
 			</div>
+			<div>
+				<Link to="/settings/paginator" className={`${style.link} link`}> Редактировать постраничный вывод вкладки Users </Link>
+			</div>
 		</div>
 	)
 }

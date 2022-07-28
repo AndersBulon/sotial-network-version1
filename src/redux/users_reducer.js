@@ -8,6 +8,7 @@ import { updateObjectInArrayForReducer } from "../components/HelpComponents/Help
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
+const SET_NEW_PAGINATOR_SETTINGS = 'SET-NEW-PAGINATOR-SETTINGS';
 const SET_BLOCK_STRUCTURE = 'SET-BLOCK-STRUCTURE';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT';
@@ -42,9 +43,9 @@ export const usersReducer = (state = initialState, action) => {
 
 	switch (action.type) {
 		case FOLLOW:
-			return updateObjectInArrayForReducer(state, action.userId, state.users, "id", {followed: true}, "users")
+			return updateObjectInArrayForReducer(state, action.userId, state.users, "id", { followed: true }, "users")
 		case UNFOLLOW:
-			return updateObjectInArrayForReducer(state, action.userId, state.users, "id", {followed: false}, "users")
+			return updateObjectInArrayForReducer(state, action.userId, state.users, "id", { followed: false }, "users")
 
 		case SET_USERS:
 			return {
@@ -95,6 +96,13 @@ export const usersReducer = (state = initialState, action) => {
 					: state.lockedButton.filter(id => id !== action.id)
 			}
 		}
+		case SET_NEW_PAGINATOR_SETTINGS: {
+			return {
+				...state,
+				pageSize: action.pageSize,
+				pagesInBlock: action.pagesInBlock,
+			}
+		}
 		default:
 			return state;
 	}
@@ -103,7 +111,8 @@ export const usersReducer = (state = initialState, action) => {
 //* =============  ActionCreators  _AC  ===================================
 
 const setTotalUsersCount = (totalUsersCount, totalBlockCount, pages) => ({
-	 type: SET_TOTAL_USERS_COUNT, totalUsersCount, totalBlockCount, pages })
+	type: SET_TOTAL_USERS_COUNT, totalUsersCount, totalBlockCount, pages
+})
 export const goFirstPageNumber = () => ({ type: GO_FIRST_PAGE_NUMBER })
 export const goEndPageNumber = () => ({ type: GO_END_PAGE_NUMBER })
 export const setCurrentPage = (curPage) => ({ type: SET_CURRENT_PAGE, curPage })
@@ -116,9 +125,10 @@ export const showPrevBlock = () => ({ type: SHOW_PREVIOUS_BLOCK })
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
 export const changeButtonsСondition = (disabled, id) => ({ type: LOCKED_BUTTON, disabled, id })
 export const changeNextPrev = (value) => ({ type: CHANGE_NEXT_PREV, value })
+export const setNewPaginatorSettings = (pageSize = 5, pagesInBlock = 10) => ({ type: SET_NEW_PAGINATOR_SETTINGS, pageSize, pagesInBlock })
 
 //* =============  FUNCTIONS  ===================================
-let followUnfollowFlow = async (id, dispatch, apiMethod, actionCreator)  => {
+let followUnfollowFlow = async (id, dispatch, apiMethod, actionCreator) => {
 	dispatch(changeButtonsСondition(true, id));
 	let data = await apiMethod(id)
 	if (data.resultCode === 0) { dispatch(actionCreator(id)) }

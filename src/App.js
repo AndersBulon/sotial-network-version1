@@ -18,6 +18,7 @@ import { connect } from "react-redux";
 import { initializeAppThunkCreator } from "./redux/app_reducer.js";
 import { Preloader } from "./components/Preloader/Preloader.jsx";
 import ProfileSettingsContainer from "./components/ProfileSettings/ProfileSettingsContainer.jsx";
+import PaginatorSettingsContainer from "./components/Paginator/PaginatorSettings/PaginatorSettingsContainer.jsx";
 
 
 
@@ -47,6 +48,7 @@ class App extends Component {
 						<Route path="music" element={<Music />} />
 						<Route path="settings" element={<Settings />} />
 						<Route path="settings/profile" element={<ProfileSettingsContainer />} />
+						<Route path="settings/paginator" element={<PaginatorSettingsContainer />} />
 						<Route path="*" element={<Notfound />} />
 					</Route>
 				</Routes>
