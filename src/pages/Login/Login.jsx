@@ -88,17 +88,14 @@ function LoginForm(props) {
 
 			<div>{props.isAuth ?
 				<button type="button" className={`${style.submitBtn} button `}
-					onClick={props.logOut}
-					{...register("loginBtn")}>
+					onClick={props.logOut}>
 					Unlogin
 				</button>
 				:
-				<button className={`${style.submitBtn} button`}
+				<input type="submit" className={`${style.submitBtn} button`}
 					onClick={handleClick}
-					onTouchStart={handleClick}
-					id="submBtn"
-					{...register("loginBtn")}
-				>Login</button>
+					value="Логин"
+				/>
 			}
 			</div>
 		</form>
