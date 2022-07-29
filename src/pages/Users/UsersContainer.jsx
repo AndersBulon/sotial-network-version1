@@ -7,41 +7,13 @@ import {
 } from "../../redux/users_reducer.js";
 import Users from "./Users.jsx";
 import { compose } from "redux";
-// import { WithAuthRediredct } from "../../components/HOC/WithAuthRedirect.js";
-
 
 class UsersApiContainer extends React.Component {
 
 	componentDidMount() {
-	
 		this.props.getUsers(this.props.currentPage, this.props.pageSize)
 	}
-	// numPageChanged = (el) => {
-	// 	this.props.setCurrentPage(el)
-	// 	this.props.getUsers(el, this.props.pageSize)
-	// }
-	// showPrevBlock = () => {
-	// 	this.props.showPrevBlock();
-	// 	setTimeout(() => {
-	// 		this.props.getUsers(this.props.currentPage, this.props.pageSize)
-	// 	}, 100);
-	// }
-	// showNextBlock = () => {
-	// 	this.props.showNextBlock()
-	// 	setTimeout(() => {
-	// 		this.props.getUsers(this.props.currentPage, this.props.pageSize)
-	// 	}, 100);
-	// }
-	// goEndPageNumber = () => {
-	// 	this.props.goEndPageNumber()
-	// 	this.props.getUsers(this.props.pages, this.props.pageSize)
-	// }
-	// goFirstPageNumber = () => {
-	// 	this.props.goFirstPageNumber()
-	// 	setTimeout(() => {
-	// 		this.props.getUsers(this.props.currentPage, this.props.pageSize)
-	// 	}, 50);
-	// }
+
 	changeButtonsСondition = (disabled, id) => {
 		this.props.changeButtonsСondition(disabled, id)
 	}
@@ -49,39 +21,17 @@ class UsersApiContainer extends React.Component {
 		return (
 			<>
 				{this.props.isFetching ? <Preloader /> : null}
-				<Users {...this.props}
-					// goFirstPageNumber={this.goFirstPageNumber}
-					// numPageChanged={this.numPageChanged}
-					// goEndPageNumber={this.goEndPageNumber}
-					// showPrevBlock={this.showPrevBlock}
-					// showNextBlock={this.showNextBlock}
-
-					// currentPagesBlock={this.props.currentPagesBlock}
-					// blockStructure={this.props.blockStructure}
-					// currentPage={this.props.currentPage}
-					// totalBlockCount={this.props.totalBlockCount}
-					// users={this.props.users}
-					// lockedButton={this.props.lockedButton}
-					// nextPrevButton={this.props.nextPrevButton}
-					// myId={this.props.myId}
-					// isAuth={this.props.isAuth}
-
-					// follow={this.props.follow}
-					// unFollow={this.props.unFollow}
-
-				/>
+				<Users {...this.props} />
 			</>
 		)
 	}
 }
-
 
 let mapStateToProps = (state) => {
 	return {
 		totalUsersCount: state.usersPage.totalUsersCount,
 		pagesInBlock: state.usersPage.pagesInBlock,
 		pageSize: state.usersPage.pageSize,
-
 		currentPagesBlock: state.usersPage.currentPagesBlock,
 		blockStructure: state.usersPage.blockStructure,
 		currentPage: state.usersPage.currentPage,
@@ -104,7 +54,6 @@ let mapDispatchToProps = (dispatch) => {
 		showNextBlock: () => { dispatch(showNextBlock()) },
 		getUsers: (currentPage, pageSize, totalBlockCount, pages, blockStructure) => {
 			 dispatch(getUsersThunkCreator(currentPage, pageSize, totalBlockCount, pages, blockStructure)) },
-
 		setBlockStructure: (blockStructure) => { dispatch(setBlockStructure(blockStructure)) },
 		unFollow: (id) => { dispatch(unFollowThunkCreator(id)) },
 		follow: (id) => { dispatch(followThunkCreator(id)) },
