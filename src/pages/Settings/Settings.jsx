@@ -6,11 +6,11 @@ import style from "./Settings.module.css"
 function Settings() {
 	return (
 		<div className={`${style.content} designe`} >
-			<h2>НАСТРОЙКИ / SETTINGS</h2>
-			<div>
+			<h3 className={style.title}>НАСТРОЙКИ / SETTINGS</h3>
+			<div className={style.linkItem}>
 				<Link to="/settings/profile" className={`${style.link} link`}> Редактировать свой профиль </Link>
 			</div>
-			<div>
+			<div className={style.linkItem}>
 				<Link to="/settings/paginator" className={`${style.link} link`}> Редактировать постраничный вывод вкладки Users </Link>
 			</div>
 		</div>

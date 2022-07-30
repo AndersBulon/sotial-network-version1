@@ -94,7 +94,7 @@ function LoginForm(props) {
 				:
 				<input type="submit" className={`${style.submitBtn} button`}
 					onClick={handleClick}
-					value="Логин"
+					value="Login"
 				/>
 			}
 			</div>
@@ -108,7 +108,7 @@ function Login(props) {
 	}
 	return (
 		<div className={`${style.content} designe`} >
-			<h1>Login</h1>
+			<h3>Login</h3>
 			<LoginForm
 				{...props}
 				loginThunkCreator={props.loginThunkCreator} logOut={props.logOut} getCaptcha={props.getCaptcha}

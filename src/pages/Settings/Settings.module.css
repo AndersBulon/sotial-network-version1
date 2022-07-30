@@ -1,19 +1,29 @@
 .content {
-	color: #fff;
-	height: 100%;
-	background-color: #000;
+	padding: 20px;
 	text-align: center;
-	font-size: 50px;
+	height: 100%;
+	font-size: 30px;
+	background-color: #000;
+	color: #fff;
+	font-style: italic;
+}
+.title {
+	text-transform: uppercase;
+	font-style: italic;
+	margin-bottom: 30px;
 }
 .link, .active_link {
 	font-weight: 600;
 	padding: 8px;
 	display: inline-block;
 	text-decoration: none;
-	font-size: 22px;
+	font-size: 20px;
  }
  .link {
 	 color: #fff;
+ }
+ .linkItem:not(:last-child) {
+	margin-bottom: 10px;
  }
  .active_link {
 	 color: #d0ecb7;

@@ -11,22 +11,24 @@ const linkclass = ({ isActive }) => isActive ? `${style.active_link}` : `${style
 
 let Header = (props) => {
 	return (
-		<header className={`${style.header} grid designe header`}>
-			<div className={style.logotype}>
+		<header className={`${style.header} header`}>
+			<div className={style.leftBlock}>
 				<img
 					className={style.img}
 					src={logo}
 					alt="logo"
 				/>
-				<h1 className="title">Social NetworK</h1>
+				<h3 className={style.title}>Social NetworK</h3>
 			</div>
-			<div className={style.loginBlock}>
+			<div className={style.rightBlock}>
 				{props.isAuth
 					? <div className={style.login}>
 						<span className={style.loginString}>{props.login}</span>
-						<button onClick={props.logOut} className={style.logoutBtn}>Logout</button>
+						<button onClick={props.logOut} className={`${style.logoutBtn} button`}>Logout</button>
 					</div>
-					: <NavLink className={linkclass} to="/login">Login</NavLink>
+					: <div className={style.login1}>
+						<NavLink className={linkclass} to="/login">Login</NavLink>
+					</div>
 				}
 			</div>
 		</header>

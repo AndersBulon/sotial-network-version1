@@ -109,7 +109,7 @@ const SettingsForm = (props) => {
 				</label>
 				{!editMode
 					? <span className={`${props.labelSpanCSS} ${props.fieldCSS}`}>{
-						value}</span>
+						value.slice(0,25)+"..."}</span>
 					: <textarea value={value ? value : ""}
 						autoFocus={props.err}
 						onFocus={textAreaAdjust}
@@ -297,7 +297,7 @@ const ProfileSettings = (props) => {
 	}, [props.myId])
 	return (
 		<div className={style.contant}>
-			<h2>Settings Profile</h2>
+			<h3 className={style.blockTitle}>Settings / Profile</h3>
 			<SettingsForm
 				{...props}
 				updateProfile={props.updateProfile}

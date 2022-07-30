@@ -4,7 +4,7 @@ import style from "./Homepage.module.css";
 function Homepage() {
 	return (
 		<div className={`${style.content} designe`}>
-			Домашняя страница
+			<h3>Домашняя страница</h3>
 		</div>
 	)
 }
