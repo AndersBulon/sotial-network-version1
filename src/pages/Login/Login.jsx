@@ -104,7 +104,7 @@ function LoginForm(props) {
 
 function Login(props) {
 	if (props.isAuth) {
-		return <Navigate replace to='/profile' />
+		return <Navigate replace to='/users' />
 	}
 	return (
 		<div className={`${style.content} designe`} >
