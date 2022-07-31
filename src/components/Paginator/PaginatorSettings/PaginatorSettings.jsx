@@ -20,6 +20,7 @@ const PaginatorSettingsForm = (props) => {
 		reset()
 	}
 
+
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className={style.paginatorSettingsForm} >
 			<fieldset className={style.fieldset}>

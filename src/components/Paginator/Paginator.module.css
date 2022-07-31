@@ -56,7 +56,7 @@
 	color: #443d3d;
 	cursor: auto;
 }
-@media (max-width: 780px) {
+@media (max-width: 767px) {
 	.paginator {
 		font-size: 20px;
 		grid-gap: 5px;

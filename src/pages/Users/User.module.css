@@ -1,28 +1,21 @@
 .userswrapper {
 	background-color: #222;
-	padding: 0px 10px;
 	border-radius: 10px;
 	display: grid;
 	color: #000;
-	grid-column-gap: 10px;
 	font-size: 18px;
 	grid-template-columns:  100px 1fr 130px;
 	grid-template-areas: 
 		"avatar info followBtn";
 }
 .avatar {
-	box-shadow: -2px 2px 10px 3px #eee;
 	grid-area: avatar;
 	align-self: center;
 	justify-self: center;
-	height: 80px;
-	width: 80px;
-	border-radius: 50%;
-	transition: all 0.3s ease 0s;
-}
-.avatar:hover {
 	height: 90px;
 	width: 90px;
+	border-radius: 50%;
+	transition: all 0.3s ease 0s;
 }
 .btnCont {
 	grid-area: followBtn;
@@ -36,11 +29,12 @@
 	font-size: 18px;
 	font-weight: 700;
 	align-self: center;
+	justify-self: center
 }
 .followBtn{
 	border-radius: 10px;
 	height: 100%;
-	min-width: 120px;	
+	min-width: 110px;	
 }
 .followBtn:disabled, .prevbtn:disabled, .nextbtn:disabled {
 	background: #555;
@@ -150,4 +144,56 @@
 }
 .itemText {
 	grid-area: itemText;
+}
+@media (max-width: 767px) {
+	.userswrapper {
+		background-color: #222;
+		border-radius: 10px;
+		display: grid;
+		color: #000;
+		grid-column-gap: 5px;
+		font-size: 18px;
+		position: relative;
+		grid-template-columns: 1fr;
+		grid-template-areas: 
+			"info";
+	}
+	.avatar {
+		position: absolute;
+		left: 10px;
+		top: 10px;
+		height: 70px;
+		width: 70px;
+		z-index: 3;
+		border: 2px solid orangered;
+	}
+	.btnCont {
+		position: absolute;
+		left: 110px;
+		top: 25px;
+	}
+	.info_act, .info_disact{
+		border-radius: 10px;
+		text-align: left;
+		display: grid;
+		grid-gap: 5px;
+		border-left: none;
+		border-right: none;
+		grid-area: info;
+		padding: 15px ;
+		grid-template-columns: 1fr;
+		grid-template-rows:  95px 25px 25px;
+		grid-template-areas: 
+			"fullname"
+			"status"
+			"itemID";
+	}
+	.fullname {
+	align-self: end;
+	}
+}
+@media (max-width: 400px) {
+	.fullname {
+		font-size: 16px;
+		}
 }

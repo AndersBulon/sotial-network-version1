@@ -28,9 +28,11 @@ export const Paginator = (props) => {
 		return blockStructure;
 	}
 
+
 	let [totalBlock, setTotalBlock] = React.useState(Math.ceil(props.totalUsersCount / props.pagesInBlock / props.pageSize))
 	let [totalPages, setTotalPages] = React.useState(Math.ceil(props.totalUsersCount / props.pageSize))
-
+	let [currWidth, setcurrWidth]=React.useState(window.innerWidth)
+	
 	React.useEffect(() => {
 		if (props.totalUsersCount > 0) {
 			setTotalBlock(Math.ceil(props.totalUsersCount / props.pagesInBlock / props.pageSize))
@@ -44,8 +46,30 @@ export const Paginator = (props) => {
 		if (props.totalBlockCount > 1) {
 			props.setBlockStructure(blockStructureCreation())
 		}
+		props.setNewPaginatorSettings(props.pageSize, props.pagesInBlock)
 		// eslint-disable-next-line
-	}, [props.totalBlockCount])
+	}, [props.totalBlockCount, props.pagesInBlock])
+
+	React.useEffect(() => {
+		if(currWidth<650) props.setNewPaginatorSettings(5, 5)
+		// eslint-disable-next-line
+	}, [ props.pagesInBlock])
+
+
+	window.addEventListener('resize', function(e){
+		let winWidth = e.target.innerWidth
+		if(winWidth < 650) {	
+			setcurrWidth(winWidth)
+			props.setNewPaginatorSettings(5, 5)
+		}
+		if(winWidth >= 650) {	
+			setcurrWidth(winWidth)
+			props.setNewPaginatorSettings(5, 10)
+		}
+	})
+
+
+
 
 	return (
 		<div className={style.paginator}>

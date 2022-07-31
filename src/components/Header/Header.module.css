@@ -97,7 +97,7 @@
 	border-radius: 10px;
 }
 /** ====================================================== */
-@media (max-width: 767px) {
+@media (max-width: 950px) {
 	.header__container {
 		display: grid;
 		grid-gap: 10px;
@@ -113,7 +113,6 @@
 		display: block;
 	}
 	.title {
-
 		font-weight: 400;
 		font-size: 24px;
 		letter-spacing: 0px;

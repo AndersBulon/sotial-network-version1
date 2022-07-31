@@ -173,7 +173,7 @@ legend {
 		justify-self: stretch;
 	}
 }
-@media (max-width: 767px) {
+@media (max-width: 1000px) {
 	.mainContainer{
 		grid-template-rows: 235px 1fr;
 		grid-template-columns: 1fr;

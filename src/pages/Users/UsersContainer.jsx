@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Preloader } from "../../components/Preloader/Preloader.jsx";
 import {
 	goEndPageNumber, goFirstPageNumber, setCurrentPage, showNextBlock, showPrevBlock,
-	getUsersThunkCreator, unFollowThunkCreator, followThunkCreator, setBlockStructure
+	getUsersThunkCreator, unFollowThunkCreator, followThunkCreator, setBlockStructure, setNewPaginatorSettings
 } from "../../redux/users_reducer.js";
 import Users from "./Users.jsx";
 import { compose } from "redux";
@@ -57,6 +57,7 @@ let mapDispatchToProps = (dispatch) => {
 		setBlockStructure: (blockStructure) => { dispatch(setBlockStructure(blockStructure)) },
 		unFollow: (id) => { dispatch(unFollowThunkCreator(id)) },
 		follow: (id) => { dispatch(followThunkCreator(id)) },
+		setNewPaginatorSettings: (pageSize, pagesInBlock)=> {dispatch(setNewPaginatorSettings(pageSize, pagesInBlock))},
 	}
 }
 

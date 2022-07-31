@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { statusHelper } from "../../components/HelpComponents/HelpComponents.js"
 
 let User = (props) => {
+
 	return (
 					<div className={style.userswrapper} key={props.user.id}>
 						<div className={style.avatar}>

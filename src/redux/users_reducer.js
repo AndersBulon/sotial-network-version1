@@ -97,6 +97,7 @@ export const usersReducer = (state = initialState, action) => {
 			}
 		}
 		case SET_NEW_PAGINATOR_SETTINGS: {
+		
 			return {
 				...state,
 				pageSize: action.pageSize,
@@ -125,7 +126,7 @@ export const showPrevBlock = () => ({ type: SHOW_PREVIOUS_BLOCK })
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
 export const changeButtonsСondition = (disabled, id) => ({ type: LOCKED_BUTTON, disabled, id })
 export const changeNextPrev = (value) => ({ type: CHANGE_NEXT_PREV, value })
-export const setNewPaginatorSettings = (pageSize = 5, pagesInBlock = 10) => ({ type: SET_NEW_PAGINATOR_SETTINGS, pageSize, pagesInBlock })
+export const setNewPaginatorSettings = (pageSize, pagesInBlock) => ({ type: SET_NEW_PAGINATOR_SETTINGS, pageSize, pagesInBlock })
 
 //* =============  FUNCTIONS  ===================================
 let followUnfollowFlow = async (id, dispatch, apiMethod, actionCreator) => {
