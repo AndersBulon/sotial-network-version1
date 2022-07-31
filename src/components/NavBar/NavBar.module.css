@@ -11,11 +11,11 @@
 	font-weight: 600;
 	padding: 8px;
 	display: inline-block;
-	text-decoration: none;
 	font-size: 22px;
- }
- .link {
-	 color: #fff;
+}
+.link {
+	color: #fff;
+	text-decoration: none;
  }
  .active_link {
 	 color: #d0ecb7;
@@ -26,17 +26,8 @@
 	border-radius: 10px;
  }
 
-
-
- @media (max-width: 1300px) {
+@media (max-width: 767px) {
 	.nav {
-	  grid-auto-flow: column;
-	  justify-content: center;
+		display: none;
 	}
- }
- @media (max-width: 850px) {
-	.nav {
-	  grid-auto-flow: row;
-	  justify-content: start;
-	}
- }
+}

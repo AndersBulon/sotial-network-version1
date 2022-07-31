@@ -1,7 +1,6 @@
 
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { Layout } from "./components/Layout.jsx";
 
 import Homepage from "./pages/Homepage/Homepage";
 import News from "./pages/News/News";
@@ -19,6 +18,7 @@ import { initializeAppThunkCreator } from "./redux/app_reducer.js";
 import { Preloader } from "./components/Preloader/Preloader.jsx";
 import ProfileSettingsContainer from "./components/ProfileSettings/ProfileSettingsContainer.jsx";
 import PaginatorSettingsContainer from "./components/Paginator/PaginatorSettings/PaginatorSettingsContainer.jsx";
+import { Layout } from "./components/Layout/Layout.jsx";
 
 
 
