@@ -7,7 +7,7 @@ let Users = (props) => {
 
 	return (
 		<div className={`${style.content} designe`} >
-			<h4 className={style.title}>Страничка пользователей</h4>
+			<h3 className={style.title}>Страничка пользователей</h3>
 			<Paginator {...props} className={style.paginator} />
 			<div className={style.items}>
 				{props.users.map(user =>

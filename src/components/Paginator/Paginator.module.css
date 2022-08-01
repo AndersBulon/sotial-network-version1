@@ -1,24 +1,24 @@
 .paginator {
+	display: inline-block;
 	font-size: 24px;
-	display: grid;
-	grid-gap: 10px;
-	grid-template-columns: 1fr;
-	grid-template-rows: max-content max-content;
-	grid-template-areas: 
-	"pages"
-	"buttons_block";
-}
-.pages {
-	grid-area: pages;
 }
 .buttons_block {
-	grid-area: buttons_block;
+	margin: 0 auto;
+	max-width: 400px;
 	padding: 5px 15px 20px;
 	display: grid;
 	grid-auto-flow: column;
-	grid-auto-columns: 150px;
+	grid-template-columns: 1fr 1fr;
 	grid-gap: 20px;
 	justify-content:center;
+	grid-template-areas: "prev next";
+
+}
+.prevbtn {
+grid-area: prev;
+}
+.nextbtn {
+grid-area: next;
 }
 
 .selectedPage, .pageNum {
@@ -59,7 +59,6 @@
 @media (max-width: 767px) {
 	.paginator {
 		font-size: 20px;
-		grid-gap: 5px;
 	}
 	.selectedPage:not(:last-child), .pageNum:not(:last-child) {
 		margin-right: 8px;
@@ -67,5 +66,16 @@
 	.left_arr, .right_arr {
 		font-size: 20px;
 		letter-spacing: 2px;
+	}
+	.buttons_block {
+		padding: 10px 5px 20px;
+		grid-gap: 10px;
+	}
+	.prevbtn, .nextbtn {
+		font-size: 14px;
+		font-weight: 500;
+		height: 30px;
+		min-width: 80px;
+		padding: 5px;
 	}
 }
