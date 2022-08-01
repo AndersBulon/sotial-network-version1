@@ -46,6 +46,7 @@ function LoginForm(props) {
 				<div>
 					{!props.isAuth ?
 						<input autoFocus={true} type="text" placeholder={"Login"}
+							size="20"
 							className={errors.login ? style.inputErr : style.input}
 							{...register('login', {
 								required: "Поле LOGIN обязательно !",
@@ -61,17 +62,17 @@ function LoginForm(props) {
 					{!props.isAuth ?
 						<div className={style.passContainer}>
 							<img onClick={toggleType} className={style.eyeImg} src={eyeImg} alt="" />
-							<input
+							<input maxlength="20" size="20"
 								{...register('password', {
 									required: "Поле PASSWORD обязательно !",
 									pattern: {
-										value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9@#$%!]).{8,40}$/,
-										message: `Пароль 8 - 40 символов. Обязательны: цифра или спецсимол: "@, #, $, %, !", заглавная буква, 
+										value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9@#$%!]).{8,20}$/,
+										message: `Пароль 8 - 20 символов. Обязательны: цифра или спецсимол: "@, #, $, %, !", заглавная буква, 
 										строчная буква. `
 									}
 								})}
 								type={passType}
-								className={`${errors.password ? style.inputErr : style.input} style.passInput`}
+								className={`${errors.password ? style.inputErr : style.input} ${style.passInput}`}
 								placeholder={"Password"} />
 						</div>
 

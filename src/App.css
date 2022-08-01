@@ -53,7 +53,7 @@ body._lock {
 .mainContainer{
 	grid-area: mainContainer;
 	justify-self: center;
-	padding: 0 8px 0 5px;
+	padding: 0 3px;
 	width: 1300px;
 	display: grid;
 	grid-gap: 5px;

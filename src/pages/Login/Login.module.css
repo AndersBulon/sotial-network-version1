@@ -31,28 +31,28 @@ h3{
 	display: inline-block;
 	position: relative;
 }
+/* .passInput {} */
 .eyeImg{
 	cursor: pointer;
 	position: absolute;
 	height: 20px;
-	top: 40%;
+	top: 37%;
 	right: 10px;
 	opacity: 0.6;
 }
-
 .eyeImg:hover {
 	opacity: 1;
 }
 
-.passInput {
-	position: relative;
-}
+
 .input, .inputErr, .inputDesable {
 	height: 35px;
-	padding: 10px;
+	padding: 5px;
 	border-radius: 5px;
-	font-weight: 700;
+	font-weight: 500;
+	font-size: 16px;
 }
+
 .input {
 	border: solid 2px #38ea0c;
 }

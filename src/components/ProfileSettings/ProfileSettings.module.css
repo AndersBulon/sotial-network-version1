@@ -7,7 +7,8 @@
 	font-size: 50px;
 }
 .blockTitle {
-	font-size: 40px;
+	font-size: 30px;
+	font-style: italic;
 }
 .input, .inputErr {
 	box-sizing: border-box;
@@ -29,20 +30,6 @@
 	outline: 1px solid  #38ea0c;
 	outline-offset: -3px;
 }
-
-.label {
-	text-align: left;
-	font-size: 20px;
-	font-weight: 700;
-	color: #fff;
-}
-span.label {
-	text-align: left;
-	font-size: 18px;
-	font-weight: 700;
-	color: #000;
-	font-style: italic;
-}
 /** =================================================================== */
 .block1 {
 	grid-area: block1;
@@ -58,55 +45,43 @@ span.label {
 	"informblock3"
 	"informblock4";
 }
-.informblock1, .informblock2, .informblock3, .informblock4{
+.informblock1, .informblock2, .informblock3, .informblock4,
+.contactblock1,.contactblock2,.contactblock3,.contactblock4,
+.contactblock5,.contactblock6,.contactblock7,.contactblock8 {
 	display: grid;
 	grid-gap: 10px;
 	grid-template-columns: 200px 1fr;
 	grid-template-rows: min-content;
+	grid-template-areas: "label description";
+}
+.label {
+	grid-area: label;
+	text-align: left;
+	font-size: 20px;
+	font-weight: 700;
+	color: #fff;
+}
+.spanDescription {
+	grid-area: description;
+	text-align: left;
+	font-size: 18px;
+	font-weight: 700;
+	color: #000;
+	font-style: italic;
 }
 .informblock1{
 	grid-area: informblock1;
-	grid-template-areas: 
-	"fullNameLbl fullName";
-}
-.fullNameLbl{
-	grid-area: fullNameLbl;
-}
-.fullName{
-	grid-area: fullName;
 }
 .informblock2{
 	grid-area: informblock2;
-	grid-template-areas: 
-	"aboutMeLbl aboutMe";
-}
-.aboutMeLbl{
-	grid-area: aboutMeLbl;
-}
-.aboutMe{
-	grid-area: aboutMe;
 }
 .informblock3{
 	grid-area: informblock3;
-	grid-template-areas: 
-	"jobDescriptionLbl jobDescription";
-}
-.jobDescriptionLbl{
-	grid-area: jobDescriptionLbl;
-}
-.jobDescription{
-	grid-area: jobDescription;
 }
 .informblock4{
 	grid-area: informblock4;
-	grid-template-areas: 
-	"jobCheckLbl jobCheck";
-}
-.jobCheckLbl{
-	grid-area: jobCheckLbl;
 }
 .jobCheck{
-	grid-area: jobCheck;
 	width: 30px;
 }
 /** =================================================================== */
@@ -128,92 +103,29 @@ span.label {
 	"contactblock7"
 	"contactblock8";
 }
-.contactblock1,.contactblock2,.contactblock3,.contactblock4,
-.contactblock5,.contactblock6,.contactblock7,.contactblock8 {
-	display: grid;
-	grid-gap: 10px;
-	grid-template-columns: 200px 1fr;
-	grid-template-rows: min-content;
-}
 .contactblock1{
 	grid-area: contactblock1;
-	grid-template-areas: "facebookLbl facebook";
-}
-.facebookLbl{
-	grid-area: facebookLbl;
-}
-.facebook{
-	grid-area: facebook;
 }
 .contactblock2{
 	grid-area: contactblock2;
-	grid-template-areas: "githubLbl github";
-}
-.githubLbl{
-	grid-area: githubLbl;
-}
-.github{
-	grid-area: github;
 }
 .contactblock3{
 	grid-area: contactblock3;
-	grid-template-areas: "instagramLbl instagram";
-}
-.instagramLbl{
-	grid-area: instagramLbl;
-}
-.instagram{
-	grid-area: instagram;
 }
 .contactblock4{
 	grid-area: contactblock4;
-	grid-template-areas: "mainLinkLbl mainLink";
-}
-.mainLinkLbl{
-	grid-area: mainLinkLbl;
-}
-.mainLink{
-	grid-area: mainLink;
 }
 .contactblock5{
 	grid-area: contactblock5;
-	grid-template-areas: "twitterLbl twitter";
-}
-.twitterLbl{
-	grid-area: twitterLbl;
-}
-.twitter{
-	grid-area: twitter;
 }
 .contactblock6{
 	grid-area: contactblock6;
-	grid-template-areas: "vkLbl vk";
-}
-.vkLbl{
-	grid-area: vkLbl;
-}
-.vk{
-	grid-area: vk;
 }
 .contactblock7{
 	grid-area: contactblock7;
-	grid-template-areas: "websiteLbl website";
-}
-.websiteLbl{
-	grid-area: websiteLbl;
-}
-.website{
-	grid-area: website;
 }
 .contactblock8{
 	grid-area: contactblock8;
-	grid-template-areas: "youtubeLbl youtube";
-}
-.youtubeLbl{
-	grid-area: youtubeLbl;
-}
-.youtube{
-	grid-area: youtube;
 }
 /** =================================================================== */
 .block3 {
@@ -233,7 +145,6 @@ span.label {
 	justify-content: center;
 	align-items: center;
 	grid-area: imageBlock;
-	/* max-height: 400px; */
 }
 .avatarImg {
 	border-radius: 50%;
@@ -348,61 +259,64 @@ span.label {
 		min-width: 70%;
 	}
 }
+@media (max-width: 1000px) {
+	.blockTitle{
+		font-size: 24px;
+		margin: 0;
+	}
+}
 @media (max-width: 767px) {
 	.block1, .block2, .block3{
 		padding: 10px;
 	}
-	.blockTitle {
-		font-size: 30px;
-		margin: 0;
-	}
 	.label {
-		font-size: 14px;
+		font-size: 18px;
 	}
-	span.label {
-		font-size: 12px;
+	.spanDescription {
+		font-size: 16px;
 	}
 	.block3 {
 		grid-template-columns: 1fr;
-		grid-template-rows: min-content min-content;
+		grid-template-rows: max-content max-content;
 		grid-gap: 0px;
 		grid-template-areas:
 		"imageBlock"
 		"uploadContainer";
 	}
-	.contactblock1,.contactblock2,.contactblock3,.contactblock4,
-	.contactblock5,.contactblock6,.contactblock7,.contactblock8 {
-		grid-gap: 5px;
-		grid-template-columns: 120px 1fr;
-	}
-	.informblock1, .informblock2, .informblock3, .informblock4{
-		grid-gap: 5px;
-		grid-template-columns: 120px 1fr;
-	}
 	.uploadImg {
-		padding: 10px;
+		padding: 5px;
 		max-height: 100px;
 		user-select: none;
 	}
 	.uploadContainer {
 		justify-self: center;
-		min-height: 200px;
-		width: 200px;
+		min-height: 220px;
+		width: 250px;
 	}
 }
-@media (max-width: 400px) {
+@media (max-width: 550px) {
+	.blockTitle{
+		font-size: 20px;
+		margin: 0;
+	}
 	.contactblock1,.contactblock2,.contactblock3,.contactblock4,
 	.contactblock5,.contactblock6,.contactblock7,.contactblock8,
-	.informblock1, .informblock2, .informblock3, .informblock4 {
-		grid-template-columns: 60px 1fr;
+	.informblock1, .informblock2, .informblock3 {
+		grid-gap: 5px;
+		grid-template-columns: 1fr;
+		grid-template-rows: max-content max-content;
+		grid-template-areas: 
+		"label"
+		"description";
 	}
+	.informblock4 {
+		grid-template-columns: 150px 1fr;
+}
 	.label {
-		font-size: 12px;
-		font-weight: 400;
+		font-size: 16px;
 	}
-	span.label {
-		font-size: 10px;
-		font-weight: 500;
+	.spanDescription {
+		font-size: 14px;
 	}
 }
 /** =================================================================== */

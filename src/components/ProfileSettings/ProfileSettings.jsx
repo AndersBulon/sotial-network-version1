@@ -67,7 +67,7 @@ const SettingsForm = (props) => {
 		setEditMode(false)
 		changeActiveSend(true)
 	}
-	const controlFileSendButton =()=> {
+	const controlFileSendButton = () => {
 		choosePhoto(upload)
 		sendFileControl("Файл не выбран")
 	}
@@ -93,28 +93,24 @@ const SettingsForm = (props) => {
 		function textAreaAdjust(e) {
 			e.target.style.height = "1px";
 			e.target.style.height = (10 + e.target.scrollHeight) + "px";
-			// e.target.style.backgroundColor = "#e4ffe4";
-			// if (props.err) {e.target.style.backgroundColor = "#ffcccc"}
 		}
 		function textAreaDeljust(e) {
 			e.target.style.height = "33px";
-			// e.target.style.backgroundColor = "#ffffff";
-			// if (props.err) {e.target.style.backgroundColor = "#ffcccc"}
 		}
 		return (
 			<div className={`${props.contactblock}`}>
 				<label
-					className={`${props.labelSpanCSS} ${props.labelCSS}`}>
+					className={props.labelSpanCSS} >
 					{props.title}
 				</label>
 				{!editMode
-					? <span className={`${props.labelSpanCSS} ${props.fieldCSS}`}>{
+					? <span className={style.spanDescription}>{
 						value}</span>
 					: <textarea value={value ? value : ""}
 						autoFocus={props.err}
 						onFocus={textAreaAdjust}
 						onBlurCapture={textAreaDeljust}
-						className={`${props.err ? style.inputErr : style.input} ${props.fieldCSS} `}
+						className={props.err ? style.inputErr : style.input}
 						{...register(props.regName,
 							{
 								required: props.text1,
@@ -135,25 +131,25 @@ const SettingsForm = (props) => {
 		<form onSubmit={handleSubmit(onSubmit)} className={style.form}>
 			<fieldset className={style.block1}>
 				<legend>Information</legend>
-				<ContactField contactblock={style.informblock1} labelSpanCSS={style.label} labelCSS={style.fullNameLbl}
-					fieldCSS={style.fullName} err={errors.fullName}
+				<ContactField contactblock={style.informblock1} labelSpanCSS={style.label}
+					err={errors.fullName}
 					regName="fullName" element={props.profile.fullName} func="changeFunc"
-					text1="Поле 'Full name' обязательно к заполнению!" title="Full name :"
+					text1="Поле 'Full name' обязательно к заполнению!" title="Full name:"
 				/>
-				<ContactField contactblock={style.informblock2} labelSpanCSS={style.label} labelCSS={style.aboutMeLbl}
-					fieldCSS={style.aboutMe} err={errors.aboutMe}
+				<ContactField contactblock={style.informblock2} labelSpanCSS={style.label}
+					err={errors.aboutMe}
 					regName="aboutMe" element={props.profile.aboutMe}
-					text1="Поле 'Поле 'About me' обязательно к заполнению!" title="About me :"
+					text1="Поле 'Поле 'About me' обязательно к заполнению!" title="About me:"
 				/>
-				<ContactField contactblock={style.informblock3} labelSpanCSS={style.label} labelCSS={style.jobDescriptionLbl}
-					fieldCSS={style.jobDescription} err={errors.jobDescription}
+				<ContactField contactblock={style.informblock3} labelSpanCSS={style.label}
+					err={errors.jobDescription}
 					regName="jobDescription" element={props.profile.lookingForAJobDescription}
-					text1="Поле 'Job description' обязательно к заполнению!" title="Job description :"
+					text1="Поле 'Job description' обязательно к заполнению!" title="Job description:"
 				/>
 				<div className={style.informblock4}>
 					<label
-						className={`${style.label} ${style.jobCheckLbl}`}>
-						Looking for a job
+						className={style.label}>
+						Looking for a job:
 					</label>
 					{!editMode
 						? <input type={"checkbox"}
@@ -173,52 +169,46 @@ const SettingsForm = (props) => {
 
 			<fieldset className={style.block2}>
 				<legend>Contacts</legend>
-				<ContactField contactblock={style.contactblock1} labelSpanCSS={style.label} labelCSS={style.facebookLbl}
-					fieldCSS={style.facebook}
-					element={props.profile.contacts.facebook} title="Facebook :" regName="facebook"
+				<ContactField contactblock={style.contactblock1} labelSpanCSS={style.label} 
+					element={props.profile.contacts.facebook} title="Facebook:" regName="facebook"
 					pattern={pattern} err={errors.facebook}
 					text1="Поле 'Facebook' обязательно к заполнению!"
 					text2="В поле 'Facebook' введен не корректный URL-адрес"
 				/>
 
-				<ContactField contactblock={style.contactblock2} labelSpanCSS={style.label} labelCSS={style.githubLbl}
-					fieldCSS={style.github}
+				<ContactField contactblock={style.contactblock2} labelSpanCSS={style.label}
 					element={props.profile.contacts.github}
 					pattern={pattern} err={errors.github}
-					title="Github :" regName="github"
+					title="Github:" regName="github"
 					text1="Поле 'Github' обязательно к заполнению!"
 					text2="В поле 'Github' введен не корректный URL-адрес"
 				/>
 
-				<ContactField contactblock={style.contactblock3} labelSpanCSS={style.label} labelCSS={style.instagramLbl}
-					fieldCSS={style.instagram}
+				<ContactField contactblock={style.contactblock3} labelSpanCSS={style.label}
 					element={props.profile.contacts.instagram}
 					pattern={pattern} err={errors.instagram}
-					title="Instagram :" regName="instagram"
+					title="Instagram:" regName="instagram"
 					text1="Поле 'Instagram' обязательно к заполнению!"
 					text2="В поле 'Instagram' введен не корректный URL-адрес"
 				/>
 
-				<ContactField contactblock={style.contactblock4} labelSpanCSS={style.label} labelCSS={style.mainLinkLbl}
-					fieldCSS={style.mainLink}
+				<ContactField contactblock={style.contactblock4} labelSpanCSS={style.label} 
 					element={props.profile.contacts.mainLink}
 					pattern={pattern} err={errors.mainLink}
-					title="MainLink :" regName="mainLink"
+					title="MainLink:" regName="mainLink"
 					text1="Поле 'MainLink' обязательно к заполнению!"
 					text2="В поле 'MainLink' введен не корректный URL-адрес"
 				/>
 
-				<ContactField contactblock={style.contactblock5} labelSpanCSS={style.label} labelCSS={style.twitterLbl}
-					fieldCSS={style.twitter}
+				<ContactField contactblock={style.contactblock5} labelSpanCSS={style.label} 
 					element={props.profile.contacts.twitter}
 					pattern={pattern} err={errors.twitter}
-					title="Twitter :" regName="twitter"
+					title="Twitter:" regName="twitter"
 					text1="Поле 'Twitter' обязательно к заполнению!"
 					text2="В поле 'Twitter' введен не корректный URL-адрес"
 				/>
 
-				<ContactField contactblock={style.contactblock6} labelSpanCSS={style.label} labelCSS={style.vkLbl}
-					fieldCSS={style.vk}
+				<ContactField contactblock={style.contactblock6} labelSpanCSS={style.label}
 					element={props.profile.contacts.vk}
 					pattern={pattern} err={errors.vk}
 					title="VK :" regName="vk"
@@ -226,20 +216,18 @@ const SettingsForm = (props) => {
 					text2="В поле 'VK' введен не корректный URL-адрес"
 				/>
 
-				<ContactField contactblock={style.contactblock7} labelSpanCSS={style.label} labelCSS={style.websiteLbl}
-					fieldCSS={style.website}
+				<ContactField contactblock={style.contactblock7} labelSpanCSS={style.label} 
 					element={props.profile.contacts.website}
 					pattern={pattern} err={errors.website}
-					title="Website :" regName="website"
+					title="Website:" regName="website"
 					text1="Поле 'Website' обязательно к заполнению!"
 					text2="В поле 'Website' введен не корректный URL-адрес"
 				/>
 
-				<ContactField contactblock={style.contactblock8} labelSpanCSS={style.label} labelCSS={style.youtubeLbl}
-					fieldCSS={style.youtube}
+				<ContactField contactblock={style.contactblock8} labelSpanCSS={style.label}
 					element={props.profile.contacts.youtube}
 					pattern={pattern} err={errors.youtube}
-					title="Youtube :" regName="youtube"
+					title="Youtube:" regName="youtube"
 					text1="Поле 'Youtube' обязательно к заполнению!"
 					text2="В поле 'Youtube' введен не корректный URL-адрес"
 				/>
@@ -297,7 +285,7 @@ const ProfileSettings = (props) => {
 	}, [props.myId])
 	return (
 		<div className={style.contant}>
-			<h3 className={style.blockTitle}>Settings / Profile</h3>
+			<h3 className={style.blockTitle}>Settings (Profile)</h3>
 			<SettingsForm
 				{...props}
 				updateProfile={props.updateProfile}
