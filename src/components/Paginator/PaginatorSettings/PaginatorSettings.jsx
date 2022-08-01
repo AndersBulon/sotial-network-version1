@@ -68,7 +68,7 @@ const PaginatorSettingsForm = (props) => {
 const PaginatorSettings = (props) => {
 	return (
 		<div className={style.contant}>
-			<h2 className={style.title}>Settings for Paginator</h2>
+			<h3 className={style.title}>Settings for Paginator</h3>
 			<div className={style.subtitle}>Текущее количество профилей на странице: {props.pageSize}</div>
 			<div className={style.subtitle}>Текущее количество страниц в блоке: {props.pagesInBlock}</div>
 			<PaginatorSettingsForm {...props} />

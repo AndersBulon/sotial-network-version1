@@ -6,7 +6,7 @@ export const splitStringWithSpaces = (str) => {
 			str = str.replace(char, " " + char)
 		}
 	}
-	str = str[0].toUpperCase() + str.slice(1).toLowerCase() + " :";
+	str = str[0].toUpperCase() + str.slice(1).toLowerCase() + ":";
 	return str
 }
 

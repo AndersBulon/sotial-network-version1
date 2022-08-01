@@ -1,7 +1,22 @@
 .footer {
 	display: grid;
 	justify-content: center;
-	font-weight: 800;
+	font-weight: 700;
 	color: #fff;
-	letter-spacing: 1px;
+	background-color: #000;
+	border-radius: 5px;
+	padding: 10px;
+	letter-spacing: 2px;
+	text-align: center;
+}
+.footer__container {
+	max-width: 1300px;
+}
+
+@media (max-width: 767px) {
+	.footer{
+		font-weight: 400;
+		letter-spacing: 1px;
+		font-size: 12px;
+	}
 }

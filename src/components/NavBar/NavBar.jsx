@@ -6,7 +6,7 @@ const linkclass = ({ isActive }) => isActive ? `${style.active_link}` : `${style
 
 const NavBar = () => {
 	return (
-		<nav className={`${style.nav} designe grid navigator`}>
+		<nav className={`${style.nav} navigator`}>
 			<div className={style.item}>
 				<NavLink to="/" className={linkclass}>
 					Home

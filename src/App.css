@@ -13,7 +13,7 @@ ol, ul, li {
 img {
 	vertical-align: top;
 }
-h1, h2,h3,h4,h5,h6 {
+h1, h2, h3, h4, h5, h6 {
 	font-weight: inherit;
 	font-size: inherit;
 }
@@ -36,6 +36,47 @@ body._lock {
 	  "mainContainer"
 	  "footer";
  }
+ /**------------- СТРУКТУРА ----------------------------- */
+.header {
+	grid-area: header;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 10;
+}
+.header__container {
+	margin: 0 auto;
+	max-width: 1300px;
+}
+
+.mainContainer{
+	grid-area: mainContainer;
+	justify-self: center;
+	padding: 0 8px 0 5px;
+	width: 1300px;
+	display: grid;
+	grid-gap: 5px;
+	grid-template-columns: 1fr 4fr;
+	grid-template-rows: 235px 1fr;
+	grid-template-areas: 
+	"topimage topimage"
+	"nav outlet";
+}
+.navigator {
+  grid-area: nav;
+}
+.top-image {
+  grid-area: topimage;
+}
+.outletcontainer {
+	border-radius: 5px;
+	grid-area: outlet;
+}
+
+.footer {
+  grid-area: footer;
+}
 /**---------------- СТРУКТУРА ----------------------*/
 
 /**----------------ОБЩИЕ CSS СТИЛИ----------------------*/
@@ -98,7 +139,7 @@ legend {
 	padding: 5px;
 	border-radius: 10px;
 }
-.button{
+.button {
 	position: relative;
 	cursor: pointer;
 	color: rgb(81, 66, 66);
@@ -131,6 +172,27 @@ legend {
 	color:#000;
   }
 
+/**-----------------------------------------------*/
+@media (max-width: 1300px) {
+	.mainContainer{
+		width: 100%;
+		justify-self: stretch;
+	}
+}
+@media (max-width: 1000px) {
+	.mainContainer{
+		grid-template-rows: 235px 1fr;
+		grid-template-columns: 1fr;
+		grid-template-areas: 
+		"topimage"
+		"outlet";
+	}
+}
+@media (max-width: 767px) {
+	h3 {
+		font-size: 18px;
+	}
+}
 /**----------------MENU BURGER--------------- */
 .menu__body{
 	display: none;
@@ -144,64 +206,6 @@ legend {
 }
 .menu__burger {
 	display: none;
-}
-/**------------------------------------------ */
-.navigator {
-  grid-area: nav;
-}
-.top-image {
-  grid-area: topimage;
-}
-.outletcontainer {
-	border-radius: 5px;
-	grid-area: outlet;
-}
-.header {
-	grid-area: header;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	z-index: 10;
-}
-.header__container {
-	margin: 0 auto;
-	max-width: 1300px;
-}
-
-.mainContainer{
-	grid-area: mainContainer;
-	padding: 0 5px;
-	justify-self: center;
-	width: 1300px;
-	display: grid;
-	grid-gap: 5px;
-	grid-template-rows: 235px 1fr;
-	grid-template-columns: 1fr 4fr;
-	grid-template-areas: 
-	"topimage topimage"
-	"nav outlet";
-}
-.footer {
-  grid-area: footer;
-}
-
-
-/**-----------------------------------------------*/
-@media (max-width: 1300px) {
-	.mainContainer{
-		width: auto;
-		justify-self: stretch;
-	}
-}
-@media (max-width: 1000px) {
-	.mainContainer{
-		grid-template-rows: 235px 1fr;
-		grid-template-columns: 1fr;
-		grid-template-areas: 
-		"topimage"
-		"outlet";
-	}
 }
 /**-------------------MENU BURGER----------------------------*/
 

@@ -20,7 +20,7 @@
 	font-size: 20px;
  }
  .link {
-	 color: #fff;
+	color: rgb(212, 235, 177);
  }
  .linkItem:not(:last-child) {
 	margin-bottom: 10px;
@@ -32,4 +32,14 @@
  .link:hover, .active_link:hover{
 	background: linear-gradient(180deg, #000, #ec0e97, #000);
 	border-radius: 10px;
+ }
+ @media (max-width: 767px) {
+	.title {
+		font-size: 20px;
+	}
+	.link, .active_link {
+		font-weight: 400;
+		font-size: 16px;
+
+	}
  }

@@ -6,12 +6,14 @@
 	color: #fff;
 	font-size: 50px;
 	font-style: italic;
+	border-radius: 5px;
 }
 .title {
 	margin-bottom: 20px;
-	font-size: 70px;
+	font-size: 30px;
 }
 .subtitle {
+	color: rgb(212, 235, 177);
 	font-weight: 700;
 	font-size: 20px;
 	margin-bottom: 20px;
@@ -21,25 +23,18 @@
 	width: 250px;
 	padding: 5px;
 }
-/* .paginatorSettingsForm {} */
 
 .fieldset {
-	display: grid;
-	grid-gap: 25px;
-	padding: 20px 20px 30px;
-	max-width: 100px;
-	grid-template-columns: max-content;
-	grid-template-rows: repeat(min-content) ;
-	grid-template-areas: 
-	"block1"
-	"block2"
-	"block3";
+	padding: 20px ;
+	display: inline-block;
 }
 .block1, .block2 {
 	display: grid;
 	align-items: center;
 	grid-template-columns: 120px 1fr;
-	grid-template-rows: 1fr 20px;
+	grid-template-rows: 1fr;
+	margin: 0px 0px  20px 0px;
+	
 }
 .block1 {
 	grid-area: block1;
@@ -55,6 +50,9 @@
 }
 .block3 {
 	grid-area: block3;
+}
+.sendBtn {
+	margin-bottom: 10px;
 }
 .pSizeLbl, .pInBlockLbl{
 	justify-self: start;
@@ -87,4 +85,66 @@
 }
 .pInBlockErr {
 	grid-area: pInBlockErr;
+}
+/** ================================================================= */
+@media (max-width: 767px) {
+	.title {
+		margin-bottom: 10px;
+		font-size: 20px;
+	}
+	.subtitle {
+		font-weight: 400;
+		font-size: 16px;
+		margin-bottom: 10px;
+	}
+	.fieldset {
+		padding: 10px 5px;
+	}
+	.pSizeLbl, .pInBlockLbl{
+		font-weight: 400;
+		font-size: 14px;
+	}
+	.pSizeInput, .pInBlockInput {
+		font-size: 14px;
+		font-weight: 600;
+		width: 50px;
+	}
+	.block1, .block2 {
+		display: grid;
+		align-items: center;
+		grid-template-columns: 60px 1fr;
+		grid-template-rows: 1fr;
+	}
+	.sendBtn {
+		font-size: 14px;
+		height: 30px;
+		padding: 5px;
+		min-width: 80px;
+	}
+}
+@media (max-width: 350px) {
+	.contant {
+		padding: 10px 5px;
+	}
+	.title {
+		margin-bottom: 10px;
+		font-size: 18px;
+	}
+	.subtitle {
+		font-weight: 400;
+		font-size: 14px;
+		margin-bottom: 5px;
+	}
+	.pSizeLbl, .pInBlockLbl{
+		font-weight: 400;
+		font-size: 12px;
+	}
+	.pSizeInput, .pInBlockInput {
+		font-size: 14px;
+		font-weight: 600;
+		width: 35px;
+	}
+	.block1, .block2 {
+		grid-template-columns: 40px 1fr;
+	}
 }

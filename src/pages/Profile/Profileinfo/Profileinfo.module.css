@@ -15,11 +15,13 @@
 	background: #000;
 	color: #fff;
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
+	text-align: center;
 	font-size: 26px;
 	font-weight: 700;
-	text-align: center;
+	padding: 10px;
+	border-radius: 5px;
  }
  /* * =============================================================================== */
  .infoBlock {
@@ -32,7 +34,7 @@
 	grid-template-areas: 
 	"infoTitle";
  }
- .infoTitle:not(:last-child){
+ .infoTitle{
 	color: #fff;
 	grid-area: infoTitle;
 	font-size: 26px;
@@ -57,14 +59,14 @@
 	font-size: 20px;
 	font-weight: 700;
 	text-align: left;
-	color: #fff;
+	color: rgb(212, 235, 177);
  }
  .text {
 	grid-area: description;
 	text-align: left;
 	font-size: 16px;
 	font-weight: 700;
-	color: #000;
+	color: #fff;
  }
 /* * =============================================================================== */
  .avatar {
@@ -126,12 +128,36 @@
 		padding-top: 15px;
 	}
  }
-@media (max-width: 400px) {
-	.profile {
-		grid-template-rows: min-content min-content 1fr;
+@media (max-width: 550px) {
+	.infoBlock {
+		padding: 0px;
 	 }
-	.id {
-		padding-left: 70px;
+	 .infoItem{
+		grid-gap: 1px;
+		grid-template-columns:  1fr;
+		grid-template-rows: min-content min-content;
+		grid-template-areas: 
+		"title"
+		"description";
+	}
+	.title {
+		font-size: 16px;
+		font-weight: 600;
+	 }
+	 .text {
+		font-size: 14px;
+		font-weight: 400;
+	 }
+	 .id {
+		padding-top: 0px;
+		padding-left: 90px;
+		font-size: 20px;
+	}
+	.infoTitle {
+		font-size: 18px;
+		text-align: center;
+		font-weight: 600;
+		margin-bottom: 5px;
 	}
 }
  

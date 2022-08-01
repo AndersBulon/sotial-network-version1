@@ -11,13 +11,13 @@ function Profileinfo(props) {
 
 	return (
 		<div className={`${style.profile} profile`}>
-			<div className={`${style.id} nick designe`}>
+			<div className={style.id}>
 				{props.profile.fullName ? " ID № : " + props.profile.userId : "Nickname is not defined"}
 			</div>
-			<div className={`${style.avatar} avatar`}>
+			<div className={style.avatar}>
 				<img className={style.img} src={props.profile.photos.large ? props.profile.photos.large : avatar} alt="avatar" />
 			</div>
-			<div className={`${style.infoBlock} designe`}>
+			<div className={style.infoBlock}>
 				<h2 className={style.infoTitle}>Full Name : {props.profile.fullName}</h2>
 				{arr.map(el =>
 					<p className={style.infoItem} key={el} >
