@@ -23,7 +23,7 @@ const MessageForm = (props) => {
 		<form onSubmit={handleSubmit(onSubmit)} className={style.messageForm} >
 			{errors.text && <p className={`${style.messageErr} error`}>{errors.text.message }</p>}
 			<input type="textarea" className={`${style.messageInput} input`}
-				placeholder="Введите новое сообщение..." autoFocus={true}
+				placeholder="Введите новое сообщение..." 
 				value={messageText}
 				{...register("text",
 					{ required: "Введите сообщение!!!" })}

@@ -3,7 +3,6 @@ import style from "./PaginatorSettings.module.css";
 import { useForm } from "react-hook-form";
 
 const PaginatorSettingsForm = (props) => {
-	console.log(props);
 	let [pSize, setPageSize] = React.useState(props.pageSize)
 	let [pInBlock, setpagesInBlock] = React.useState(props.pagesInBlock)
 	const {

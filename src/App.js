@@ -34,7 +34,7 @@ class App extends Component {
 		}
 		
 		return (
-			<div className="app-wrapper grid">
+			<div className="app-wrapper">
 				<Routes >
 					<Route path="/" element={<Layout />}>
 						<Route index element={<Homepage />} />

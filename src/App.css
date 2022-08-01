@@ -1,13 +1,43 @@
-* {
+*, *::after, *::before {
   margin: 0;
   padding: 0;
   border: 0;
   box-sizing: border-box;
 }
+a {
+	text-decoration: none;
+}
+ol, ul, li {
+	list-style: none;
+}
+img {
+	vertical-align: top;
+}
+h1, h2,h3,h4,h5,h6 {
+	font-weight: inherit;
+	font-size: inherit;
+}
+html, body {
+min-height: 100%;
+}
 
 body._lock {
 	overflow: hidden;
 }
+/**---------------- СТРУКТУРА ----------------------*/
+.app-wrapper {
+	display: grid;
+	min-height: 100vh;
+	grid-gap: 5px;
+	grid-template-columns: 1fr;
+	grid-template-rows: 70px 1fr auto;
+	grid-template-areas:
+	  "header"
+	  "mainContainer"
+	  "footer";
+ }
+/**---------------- СТРУКТУРА ----------------------*/
+
 /**----------------ОБЩИЕ CSS СТИЛИ----------------------*/
 fieldset {
 	margin: 0 auto;
@@ -156,16 +186,7 @@ legend {
   grid-area: footer;
 }
 
-.app-wrapper {
-  min-height: 100vh;
-  grid-gap: 5px;
-  grid-template-columns: 1fr;
-  grid-template-rows: 70px 1fr auto;
-  grid-template-areas:
-    "header"
-    "mainContainer"
-    "footer";
-}
+
 /**-----------------------------------------------*/
 @media (max-width: 1300px) {
 	.mainContainer{

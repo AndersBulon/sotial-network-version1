@@ -40,7 +40,7 @@ function PostForm(props) {
 			</p>
 			<input
 				type="textarea" value={localState} placeholder="Введите новый пост..."
-				className={`${style.newpostInput} input`} autoFocus={true}
+				className={`${style.newpostInput} input`} 
 				{...register('text', {
 					required: "Пост не может быть пустым !",
 				})}
