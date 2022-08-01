@@ -27,7 +27,26 @@ h3{
 	font-style: italic;
 	font-weight: 700;
 }
+.passContainer{
+	display: inline-block;
+	position: relative;
+}
+.eyeImg{
+	cursor: pointer;
+	position: absolute;
+	height: 20px;
+	top: 40%;
+	right: 10px;
+	opacity: 0.6;
+}
 
+.eyeImg:hover {
+	opacity: 1;
+}
+
+.passInput {
+	position: relative;
+}
 .input, .inputErr, .inputDesable {
 	height: 35px;
 	padding: 10px;

@@ -333,7 +333,7 @@ span.label {
 	display: grid;
 	grid-gap: 10px;
 	grid-template-columns: 1fr;
-	grid-template-rows: min-content min-content min-content minmax(40px, min-content ) minmax(40px, min-content ) 1fr;
+	grid-template-rows: min-content min-content min-content minmax(0px, min-content ) minmax(0px, min-content ) 1fr;
 	grid-template-areas: 
 			"block1"
 			"block2"
@@ -348,7 +348,7 @@ span.label {
 		min-width: 70%;
 	}
 }
-@media (max-width: 700px) {
+@media (max-width: 767px) {
 	.block1, .block2, .block3{
 		padding: 10px;
 	}
@@ -390,11 +390,19 @@ span.label {
 		width: 200px;
 	}
 }
-@media (max-width: 380px) {
+@media (max-width: 400px) {
 	.contactblock1,.contactblock2,.contactblock3,.contactblock4,
 	.contactblock5,.contactblock6,.contactblock7,.contactblock8,
 	.informblock1, .informblock2, .informblock3, .informblock4 {
-		grid-template-columns: 100px 1fr;
+		grid-template-columns: 60px 1fr;
+	}
+	.label {
+		font-size: 12px;
+		font-weight: 400;
+	}
+	span.label {
+		font-size: 10px;
+		font-weight: 500;
 	}
 }
 /** =================================================================== */

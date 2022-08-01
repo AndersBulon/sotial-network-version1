@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./Profileinfo.module.css";
-import avatar from "../../../assets/images/avatar.png"
+import avatar from "../../../assets/images/user.jpg"
 import { ProfileStatus } from "../../../components/ProfileStatus/ProfileStatus.jsx";
 import { convertObjectToArray, logicFuncNo, logicFuncYes, splitStringWithSpaces } from "../../../components/HelpComponents/HelpComponents.js";
 

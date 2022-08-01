@@ -2,8 +2,24 @@ import style from "./Login.module.css"
 import { useForm } from "react-hook-form"
 import React from "react"
 import { Navigate } from "react-router-dom"
+import eye from "../../assets/images/eye.svg"
+import eyeClosed from "../../assets/images/eye-closed.svg"
 
 function LoginForm(props) {
+	let [passType, changePassType] = React.useState("password")
+	let [eyeImg, changeEyeImg] = React.useState(eyeClosed)
+
+	const toggleType = () => {
+		if (passType === "password") {
+			changePassType("text")
+			changeEyeImg(eye)
+		}
+		else {
+			changePassType("password")
+			changeEyeImg(eyeClosed)
+		}
+
+	}
 
 	let errRef = React.createRef();
 	let handleClick = () => {
@@ -43,18 +59,22 @@ function LoginForm(props) {
 					<div className={style.error}></div>}
 				<div>
 					{!props.isAuth ?
-						<input
-							{...register('password', {
-								required: "Поле PASSWORD обязательно !",
-								pattern: {
-									value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9@#$%!]).{8,40}$/,
-									message: `Пароль 8 - 40 символов. Обязательны: цифра или спецсимол: "@, #, $, %, !", заглавная буква, 
+						<div className={style.passContainer}>
+							<img onClick={toggleType} className={style.eyeImg} src={eyeImg} alt="" />
+							<input
+								{...register('password', {
+									required: "Поле PASSWORD обязательно !",
+									pattern: {
+										value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9@#$%!]).{8,40}$/,
+										message: `Пароль 8 - 40 символов. Обязательны: цифра или спецсимол: "@, #, $, %, !", заглавная буква, 
 										строчная буква. `
-								}
-							})}
-							type="password"
-							className={errors.password ? style.inputErr : style.input}
-							placeholder={"Password"} />
+									}
+								})}
+								type={passType}
+								className={`${errors.password ? style.inputErr : style.input} style.passInput`}
+								placeholder={"Password"} />
+						</div>
+
 						: <input disabled={true} className={style.inputDesable} />}
 				</div>
 				{errors.password ?

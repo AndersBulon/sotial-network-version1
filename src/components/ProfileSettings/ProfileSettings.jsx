@@ -109,7 +109,7 @@ const SettingsForm = (props) => {
 				</label>
 				{!editMode
 					? <span className={`${props.labelSpanCSS} ${props.fieldCSS}`}>{
-						value.slice(0,25)+"..."}</span>
+						value}</span>
 					: <textarea value={value ? value : ""}
 						autoFocus={props.err}
 						onFocus={textAreaAdjust}
