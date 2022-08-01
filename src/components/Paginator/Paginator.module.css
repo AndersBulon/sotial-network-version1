@@ -12,7 +12,6 @@
 	grid-gap: 20px;
 	justify-content:center;
 	grid-template-areas: "prev next";
-
 }
 .prevbtn {
 grid-area: prev;
@@ -20,9 +19,13 @@ grid-area: prev;
 .nextbtn {
 grid-area: next;
 }
+.pages {
+	min-width: 250px;
+}
 
 .selectedPage, .pageNum {
 	cursor: pointer;
+	margin-right: 10px;
 }
 .selectedPage {
 	color: #e22020;
@@ -35,9 +38,7 @@ grid-area: next;
 .pages:not(:last-child) {
 	margin-bottom: 10px;
 }
-.selectedPage:not(:last-child), .pageNum:not(:last-child) {
-	margin-right: 10px;
-}
+
 .left_arr{
 	margin-right: 10px;
 }
@@ -57,14 +58,13 @@ grid-area: next;
 	cursor: auto;
 }
 @media (max-width: 767px) {
-	.paginator {
-		font-size: 20px;
-	}
-	.selectedPage:not(:last-child), .pageNum:not(:last-child) {
-		margin-right: 8px;
+	.selectedPage, .pageNum {
+		font-size: 18px;
+		margin: 0px 8px 0px 0px;
+		
 	}
 	.left_arr, .right_arr {
-		font-size: 20px;
+		font-size: 18px;
 		letter-spacing: 2px;
 	}
 	.buttons_block {
@@ -72,10 +72,23 @@ grid-area: next;
 		grid-gap: 10px;
 	}
 	.prevbtn, .nextbtn {
-		font-size: 14px;
-		font-weight: 500;
-		height: 30px;
-		min-width: 80px;
+		font-size: 15px;
 		padding: 5px;
+	}
+}
+@media (max-width: 350px) {
+	.selectedPage, .pageNum {
+		font-size: 14px;
+		margin: 0px 5px 0px 0px;
+		
+	}
+	.left_arr, .right_arr {
+		font-size: 14px;
+		letter-spacing: 0px;
+	}
+	.prevbtn, .nextbtn {
+		font-size: 14px;
+		padding: 5px;
+		min-width: 80px;
 	}
 }
