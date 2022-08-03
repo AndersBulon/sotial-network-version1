@@ -1,33 +1,31 @@
 .content {
-	padding: 10px;
+	border-radius: 5px;
+	height: 100%;
 	display: grid;
-	grid-gap: 10px;
+	grid-gap: 2px;
 	grid-template-columns: 3fr 8fr;
-	grid-template-rows: 50px min-content 1fr;
+	grid-template-rows: 50px 200px 1fr;
 	grid-template-areas: 
 		"title title"
 		"sendscreen sendscreen"
 		"dialogs messages";
-	height: 100%;
-	background-color: #000;
 }
 
 .title {
-	color: #fff;
-	text-align: center;
 	grid-area: title;
-	background-color: brown;
-	font-size: 30px;
-	font-style: italic;
-	text-transform: uppercase;
+	border-radius: 5px;
+	text-align: center;
+	background-color: #000;
 }
 .dialogs_list {
+	border-radius: 5px;
 	overflow: auto;
 	grid-area: dialogs;
 	background-color: brown;
 	padding: 10px;
 }
 .messages_list {
+	border-radius: 5px;
 	padding: 10px;
 	background-color: brown;
 	grid-area: messages;
@@ -40,48 +38,50 @@
 }
 .sendscreen {
 	grid-area: sendscreen;
-	padding: 0;
-	background-color: #000;
 }
 .messageForm {
-	padding: 10px 10px 20px 10px;
+	position: relative;
 	width: 100%;
-	display: grid;
-	grid-auto-flow: row;
-	border-radius: 10px;
-	border: thick solid brown;
-	align-items: center;
-	grid-gap: 20px;
-	grid-template-rows: 20px 1fr 30px;
-	grid-template-columns: 1fr;
-	grid-template-areas:
-	"messageErr" 
-	"messInput" 
-	"sendBtn";
+	height: 100%;
+	padding: 0;
 }
 .messageErr {
-	grid-area: messageErr;
 	min-height: 20px;
-	justify-self: center;
+	position: absolute;
+	z-index: 2;
+	bottom: 10px;
+	left: 40%;
 }
 .messageInput {
-	grid-area: messInput;
-	justify-self: center;
-	width: 80%;
+	background-color: #000;
+	border-radius: 5px;
+	box-shadow: inset 0 0 10px #fff;
+	color: #fff;
+	font-size: 18px;
+	height: 100%;
+	left: 0;
+	padding: 15px;
+	position: absolute;
+	resize: none;
+	top: 0;
+	width: 100%;
+	z-index: 1;
 }
 .sendBtn {
-	grid-area: sendBtn;
-	justify-self: center;
+	position: absolute;
+	z-index: 2;
+	bottom: 20px;
+	right: 20px;
 }
 
 @media (max-width: 700px) {
 	.content {
 		grid-template-columns: 1fr;
-		grid-template-rows: min-content  1fr  2fr min-content ;
+		grid-template-rows: min-content  200px  1fr 1fr;
 		grid-template-areas: 
-			"title"
+		"title"
+			"sendscreen"
 			"dialogs"
-			"messages"
-			"sendscreen";
+			"messages";
 	}
 }

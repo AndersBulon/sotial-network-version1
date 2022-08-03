@@ -12,10 +12,11 @@
 	justify-self: stretch;
  }
  .link, .active_link {
-	font-weight: 600;
+	font-family: 'Kaushan Script';
 	padding: 8px;
 	display: inline-block;
 	font-size: 22px;
+	letter-spacing: 2px;
 }
 .link {
 	color: #fff;
@@ -23,11 +24,9 @@
  }
  .active_link {
 	 color: #d0ecb7;
+	}
+	.link:hover, .active_link:hover{
 	 text-decoration: underline;
- }
- .link:hover, .active_link:hover{
-	background: linear-gradient(180deg, #000, #ec0e97, #000);
-	border-radius: 10px;
  }
 
 @media (max-width: 1000px) {

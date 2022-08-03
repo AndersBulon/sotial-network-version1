@@ -129,7 +129,7 @@ function Login(props) {
 	}
 	return (
 		<div className={`${style.content} designe`} >
-			<h2>Login</h2>
+			<h3>Login</h3>
 			<LoginForm
 				{...props}
 				loginThunkCreator={props.loginThunkCreator} logOut={props.logOut} getCaptcha={props.getCaptcha}

@@ -29,12 +29,15 @@ let Header = (props) => {
 		<header className={`${style.header} header`}>
 			<div className={`${style.header__container} header__container`}>
 				<div className={style.leftBlock}>
-					<img
+					<div className={style.blokolor}>
+						<img
 						className={style.img}
 						src={logo}
 						alt="logo"
 					/>
-					<h3 className={style.title}>Social NetworK</h3>
+					</div>
+					
+					<h1 className={style.title}>Social NetworK</h1>
 				</div>
 				<div className={style.rightBlock}>
 					{props.isAuth

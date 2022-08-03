@@ -22,7 +22,7 @@ const MessageForm = (props) => {
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className={style.messageForm} >
 			{errors.text && <p className={`${style.messageErr} error`}>{errors.text.message }</p>}
-			<input type="textarea" className={`${style.messageInput} input`}
+			<textarea className={style.messageInput} 
 				placeholder="Введите новое сообщение..." 
 				value={messageText}
 				{...register("text",
@@ -38,15 +38,15 @@ function Messages(props) {
 	let message = props.messages.map(message => <MessageItem key={message.Id} mesId={message.Id} mesText={message.mesText} />);
 	let dialog = props.dialogs.map(dialog => <DialogItem key={dialog.Id} dialogId={dialog.Id} dialogAuthor={dialog.dialogAuthor} />);
 	return (
-		<div className={`${style.content} designe`} >
-			<h2 className={style.title + " designe"}>Страничка сообщений</h2>
-			<div className={style.dialogs_list + " designe"}>
+		<div className={style.content} >
+			<h3 className={style.title}>Messages</h3>
+			<div className={style.dialogs_list}>
 				{dialog}
 			</div>
-			<div className={style.messages_list + " designe"}>
+			<div className={style.messages_list}>
 				{message}
 			</div>
-			<div className={`${style.sendscreen} designe`}>
+			<div className={style.sendscreen}>
 				<MessageForm sendMessage={props.sendMessage}/>
 			</div>
 		</div>

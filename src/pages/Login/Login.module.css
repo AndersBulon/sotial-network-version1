@@ -8,11 +8,6 @@
 	padding: 20px;
 	text-align: center;
 }
-h3{
-	text-transform: uppercase;
-	color: #fff;
-	margin-bottom: 20px;
-}
 
  form {
 	margin: 0 auto; 
@@ -131,8 +126,5 @@ h3{
 }
 
 .submitBtn{
-	height: auto;
-	padding: 10px 20px;
-	margin:30px auto;
-	font: 700 18px tahoma;
+	margin:20px auto;
   }

@@ -19,50 +19,23 @@
 }
 .btnCont {
 	grid-area: followBtn;
-	border-radius: 10px;
-	background-color: #bbb;
-	color: #999;
-	align-self: end;
-	max-width: 150px;
-	height: 40px;
 	margin: 0 auto;
-	font-size: 18px;
-	font-weight: 700;
 	align-self: center;
 	justify-self: center
 }
 .followBtn{
-	border-radius: 10px;
-	height: 100%;
-	min-width: 110px;	
+	font-size: 16px;
+	letter-spacing: 1px;
 }
-.followBtn:disabled, .prevbtn:disabled, .nextbtn:disabled {
-	background: #555;
-	color: #999;
-	box-shadow: none;
-}
-.wrap{
-	padding: 0px 10px;
-	width: 100%;
-	display: grid;
-	grid-template-columns: max-content min-content;
-	height: 100%;
-	justify-content: space-between;
-	align-items: center;
-	grid-template-areas: 
-		"textus lockimg";
-}
-.textus {
-	grid-area: textus;
+
+.lockedBtnCont {
+	position: absolute;
+	right: 10px;
+	top: 10px;
 }
 .lockedBtn {
-	grid-area: lockimg;
-	margin-left: 10px;
-	padding: 2px 0px 1px 0px;
-	height: 22px;
-	width: 22px;
-	background: url(../../assets//images/lockBtn.png)no-repeat ;
-	background-size:  100% ;
+	height: 40px;
+	width: 40px;
 }
 .avatar img {
 	height: 100%;
@@ -70,6 +43,7 @@
 	object-fit: cover;
 }
 .info_act, .info_disact{
+	position: relative;
 	text-align: left;
 	display: grid;
 	grid-gap: 5px;
@@ -147,9 +121,6 @@
 }
 @media (max-width: 767px) {
 	.userswrapper {
-		background-color: #222;
-		border-radius: 10px;
-		display: grid;
 		color: #000;
 		grid-column-gap: 5px;
 		font-size: 18px;
@@ -168,9 +139,10 @@
 		border: 2px solid orangered;
 	}
 	.btnCont {
+		z-index: 3;
 		position: absolute;
 		left: 110px;
-		top: 25px;
+		top: 20px;
 	}
 	.info_act, .info_disact{
 		border-radius: 10px;
@@ -182,7 +154,7 @@
 		grid-area: info;
 		padding: 15px ;
 		grid-template-columns: 1fr;
-		grid-template-rows:  95px 25px 25px;
+		grid-template-rows:  95px 35px 30px;
 		grid-template-areas: 
 			"fullname"
 			"status"

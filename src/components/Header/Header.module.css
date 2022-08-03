@@ -1,6 +1,7 @@
 .header{
 	background-color: #000;
 	padding: 0px 20px 0px 15px;
+	box-shadow: inset 0 0 10px #fff;
 }
 .header__container {
 	display: grid;
@@ -26,20 +27,63 @@
 	grid-template-areas: "img title";
 	white-space: nowrap;
 }
-.img {
+.blokolor {
+	overflow: hidden;
+	border-radius: 50%;
 	z-index: 5;
 	grid-area: img;
-   height: 50px;
+	position: relative;
+	width: 50px;
+	height: 50px;
+	display: block;
+	transform: rotate(0deg);
+	animation: rotate 10s  infinite;
  }
+  .blokolor:after {
+	z-index: 5;
+	position: absolute;
+	content: '';
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(45deg, #f00 0%, #0f0 50%, #00f 100%);
+	opacity: 0.15;
+	animation: backgroundChange 2s alternate-reverse infinite;
+ }
+.img {
+	background-color: #114;
+	box-shadow: inset 0 0 10px 0 #acf;
+   height: 100%;
+	width: 100%;
+	padding: 1px 0px 0px 3px;
+	z-index: 6;
+	animation: img-shad 3s infinite;
+ }
+ @keyframes img-shad {
+	 
+	 50% {
+		box-shadow: inset 0 0 15px 0 #acf;
+	 }
+ }
+ @keyframes backgroundChange {
+	30% {
+	  opacity: 0.3;
+	}
+ }
+ @keyframes rotate {
+	100% {
+		transform: rotate(360deg);
+	}
+ }
+ 
  .title {
+	font-family: 'Permanent Marker', cursive;
+	letter-spacing: 3px;
+	font-size: 30px;
 	z-index: 5;
 	grid-area: title;
-	color: #fff;
 	font-weight: 500;
-	font-size: 30px;
-	letter-spacing: 2px;
-	font-style: italic;
-	margin: 0;
  }
  /** ====================================================== */
 .rightBlock {
@@ -57,11 +101,9 @@
 	"nick logOutBtn";
 }
 .loginString {
+	font-family: 'Kaushan Script';
 	color: #fff;
-	font-weight: 500;
-	font-size: 28px;
-	letter-spacing: 2px;
-	font-style: italic;
+	font-size: 26px;
 	grid-area: nick;
 	margin: 0px 10px 0px 0px;
 }
@@ -78,23 +120,20 @@
 	"link";
 }
 .desact_link, .act_link {
+	font-family: 'Kaushan Script';
 	grid-area: link;
-	font-weight: 600;
-	font-size: 18px;
-	color: #fff;
-	padding: 8px;
+	padding: 4px;
 	display: inline-block;
+	font-size: 30px;
 }
 .desact_link {
-	text-decoration: none;
+	color: #fff;
 }
-.act_link {
+.act_link, .act_link:hover {
 	color: #d0ecb7;
+	
 }
-.desact_link:hover, .act_link:hover{
-	background: linear-gradient(180deg, #000, #ec0e97, #000);
-	border-radius: 10px;
-}
+
 /** ====================================================== */
 @media (max-width: 1000px) {
 	.header__container {
@@ -111,37 +150,27 @@
 	.menu {
 		display: block;
 	}
+}
+@media (max-width: 450px) {
+	.header{
+		padding: 0px 10px;
+	}
+		.header__container {
+		grid-template-rows: 50px;
+	}
+	.leftBlock {
+		grid-template-columns: 40px max-content ;
+	}
 	.title {
-		font-weight: 400;
-		font-size: 24px;
-		letter-spacing: 0px;
-	 }
+		font-size: 22px;
+	}
+	.blokolor {
+		height: 32px;
+		width: 32px;
+	}	
 }
 @media (max-width: 350px) {
-	.leftBlock {
-		display: grid;
-		grid-area: leftblock;
-		align-items: center;
-		grid-template-columns: 45px 1fr;
-		grid-template-areas: "img title";
-		white-space: nowrap;
+	.title {
+		font-size: 20px;
 	}
-	.img {
-		z-index: 5;
-		grid-area: img;
-		height: 40px;
-	 }
-	 .title {
-		font-size: 22px;
-	 }
-}
-@media (max-width: 300px) {
-	.leftBlock {
-		grid-template-columns: max-content ;
-		grid-template-areas: "title";
-	}
-	.img {
-		display: none;
-	}
-	
 }
