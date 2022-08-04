@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/sotial-network-version1/static/css/main.12e7fba3.css",
+    "main.css": "/sotial-network-version1/static/css/main.95f610a7.css",
     "main.js": "/sotial-network-version1/static/js/main.aed1c650.js",
     "static/js/787.96cdf0b8.chunk.js": "/sotial-network-version1/static/js/787.96cdf0b8.chunk.js",
     "static/media/logo.png": "/sotial-network-version1/static/media/logo.0244b24f0a46c5cab8ba.png",
@@ -12,12 +12,12 @@
     "index.html": "/sotial-network-version1/index.html",
     "static/media/eye-closed.svg": "/sotial-network-version1/static/media/eye-closed.75ce64759ace21caa1ca89f3e16ba11f.svg",
     "static/media/eye.svg": "/sotial-network-version1/static/media/eye.08041b8e9f40588e08ca8183962a27e2.svg",
-    "main.12e7fba3.css.map": "/sotial-network-version1/static/css/main.12e7fba3.css.map",
+    "main.95f610a7.css.map": "/sotial-network-version1/static/css/main.95f610a7.css.map",
     "main.aed1c650.js.map": "/sotial-network-version1/static/js/main.aed1c650.js.map",
     "787.96cdf0b8.chunk.js.map": "/sotial-network-version1/static/js/787.96cdf0b8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.12e7fba3.css",
+    "static/css/main.95f610a7.css",
     "static/js/main.aed1c650.js"
   ]
 }
