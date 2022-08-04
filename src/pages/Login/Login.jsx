@@ -39,7 +39,7 @@ function LoginForm(props) {
 		props.loginThunkCreator(data.login, data.password, data.remember_me, data.captcha)
 	}
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
+		<form onSubmit={handleSubmit(onSubmit)} className={style.form}>
 			<fieldset>
 				<legend> Логин и пароль </legend>
 				{<p ref={errRef} className={`${style.error}`}>{props.messages}</p>}
@@ -62,7 +62,7 @@ function LoginForm(props) {
 					{!props.isAuth ?
 						<div className={style.passContainer}>
 							<img onClick={toggleType} className={style.eyeImg} src={eyeImg} alt="" />
-							<input maxlength="20" size="20"
+							<input maxLength="20" size="20"
 								{...register('password', {
 									required: "Поле PASSWORD обязательно !",
 									pattern: {
@@ -125,7 +125,7 @@ function LoginForm(props) {
 
 function Login(props) {
 	if (props.isAuth) {
-		return <Navigate replace to='/users' />
+		return <Navigate replace to='/' />
 	}
 	return (
 		<div className={`${style.content} designe`} >

@@ -4,7 +4,7 @@ import style from "./News.module.css"
 
 function News () {
 	return (
-		<div className={`${style.content} designe`} ><h3>Это новости</h3></div>
+		<div className={`${style.content} designe`} ><h3>News</h3></div>
 	)
 }
 

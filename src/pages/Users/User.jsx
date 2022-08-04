@@ -6,7 +6,6 @@ import { NavLink } from "react-router-dom";
 import { statusHelper } from "../../components/HelpComponents/HelpComponents.js"
 
 let User = (props) => {
-	console.log(props);
 	return (
 		<div className={style.userswrapper} key={props.user.id}>
 
@@ -33,7 +32,6 @@ let User = (props) => {
 						Unfollowed
 					</button>}
 			</div>
-			{/* } */}
 			<div className={`${props.user.followed ? style.info_act : style.info_disact} ${(props.user.id === props.myId) && style.my}`}>
 				{statusHelper(props.user, style.status, style.itemName, style.itemText)}
 				{!props.isAuth && <div className={style.lockedBtnCont}>
@@ -41,7 +39,7 @@ let User = (props) => {
 				</div>}
 				<div className={style.fullname}>
 					<span className={style.itemName}>Fullname :</span>
-					<span className={style.itemText}>{props.user.name.slice(0, 30)}</span>
+					<span className={style.itemText}>{props.user.name.slice(0, 20)}</span>
 				</div>
 				<div className={style.itemID}>
 					<span className={style.itemName}>ID :</span>

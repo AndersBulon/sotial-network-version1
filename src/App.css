@@ -20,13 +20,15 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: inherit;
 }
 h3 {
-	font-family: 'Kaushan Script', cursive;
+	/* font-family: 'Kaushan Script', cursive; */
+	font-family: 'Permanent Marker', cursive;
 	font-style: italic;
 	font-size: 30px;
 	letter-spacing: 3px;
 }
+
 html, body {
-min-height: 100%;
+	min-height: 100%;
 }
 
 body._lock {
@@ -44,15 +46,15 @@ body._lock {
 	  "mainContainer"
 	  "footer";
  }
- /**------------- СТРУКТУРА ----------------------------- */
+ /**------------- СТРУКТУРА ------------------------------------------------- */
+ /* !==================== width: 100 vw ======================================= */
 .header {
 	grid-area: header;
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 100%;
+	width: 100vw;
 	z-index: 10;
-	
 }
 .header__container {
 	margin: 0 auto;
@@ -66,8 +68,8 @@ body._lock {
 	width: 1300px;
 	display: grid;
 	grid-gap: 2px;
-	grid-template-columns: 1fr 4fr;
 	grid-template-rows: 235px 1fr;
+	grid-template-columns: 1fr 4fr;
 	grid-template-areas: 
 	"topimage topimage"
 	"nav outlet";
@@ -146,27 +148,19 @@ legend {
 .button {
 	font-family: 'Kaushan Script';
 	font-size: 20px;
-	/* position: relative; */
 	cursor: pointer;
 	letter-spacing: 2px;
 	padding: 5px 10px;
 	min-width: 105px;
 	box-shadow: 3px 4px  #999;
-	/* box-shadow: 1px 2px 2px 2px #777; */
 	height: auto;
 	border-radius: 20px;
 	margin: auto;
-	/* display: block; */
 	outline: none;
 	background-color: #ffe;
-	/* background-image: linear-gradient(to left,transparent,transparent 50%,bisque 50%,#fff ); */
-	/* background-position: 100% 0;
-	background-size: 200% 100%; */
-	/* transition: all .3s ease-in; */
 }
 .button:active {
 	transform: translate(1px, 2px);
-	/* transform: translateX(3px); */
 	box-shadow: 2px 2px #669;
 }
 .button:hover {
@@ -190,7 +184,7 @@ legend {
 }
 @media (max-width: 1000px) {
 	.mainContainer{
-		grid-template-rows: 235px 1fr;
+		grid-template-rows: 200px 1fr;
 		grid-template-columns: 1fr;
 		grid-template-areas: 
 		"topimage"
@@ -199,7 +193,7 @@ legend {
 }
 @media (max-width: 767px) {
 	h3 {
-		font-size: 26px;
+		font-size: 22px;
 	}
 }
 /**----------------MENU BURGER--------------- */
@@ -218,23 +212,16 @@ legend {
 }
 /**-------------------MENU BURGER----------------------------*/
 
-@media (min-width: 1100px) {
-	.menu__list {
-		grid-auto-flow: column;
-	}
-}
-@media (max-width: 1300px) {
+@media (max-width: 1000px) {
 	.menu__body{
 		display: block;
 	}
-}
-@media (max-width: 1100px) {
 	.menu__burger {
 		z-index: 5;
 		display: block;
 		position: relative;
-		width: 30px;
-		height: 18px;
+		width: 45px;
+		height: 30px;
 		cursor: pointer;
 	}
 	.menu__burger::before,
@@ -298,6 +285,7 @@ legend {
 		background-color: #000;
 		z-index: 2;
 	}
+	
 	.menu__list li {
 		margin: 0px 0px  25px 0px;
 	}
@@ -309,17 +297,15 @@ legend {
 	}
 }
 @media (max-width: 450px) {
-	.menu__body{
-		padding: 60px 30px 30px 30px;
+	.menu__burger {
+		width: 30px;
+		height: 22px;
 	}
 	.menu__list li a{
 		font-size: 20px;
 	}
-	.app-wrapper {
-		grid-template-rows: 50px 1fr auto;
-	 }
-	.menu__body::before{
-		height: 50px;
+	legend {
+		font-size: 12px;
 	}
 }
 /**-------------------MENU BURGER----------------------------*/

@@ -1,6 +1,6 @@
 import style from "./Header.module.css"
 import logo from "../../assets/images/logo.png"
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { logOutThunkCreator } from "../../redux/auth_reducer.js";
 import { getSelected_IsAuth, getSelected_Login } from "../../redux/auth_selectors.js";
@@ -14,7 +14,7 @@ let Header = (props) => {
 		e.target.nextElementSibling.classList.toggle('_active')
 	}
 	const linkClickChange = (e) => {
-		if(e.target.innerText.slice(0, 6) === "Logout"){
+		if (e.target.innerText.slice(0, 6) === "Logout") {
 			props.logOut()
 		}
 		const burger = document.querySelector(".menu__burger")
@@ -29,14 +29,18 @@ let Header = (props) => {
 		<header className={`${style.header} header`}>
 			<div className={`${style.header__container} header__container`}>
 				<div className={style.leftBlock}>
-					<div className={style.blokolor}>
-						<img
-						className={style.img}
-						src={logo}
-						alt="logo"
-					/>
-					</div>
-					
+					<Link to="/" className={style.imglink}>
+						<div className={style.blokolor}>
+							<img onClick={() => { console.log("кликнул на картинке") }}
+								className={style.img}
+								src={logo}
+								alt="logo"
+							/>
+
+						</div>
+					</Link>
+
+
 					<h1 className={style.title}>Social NetworK</h1>
 				</div>
 				<div className={style.rightBlock}>

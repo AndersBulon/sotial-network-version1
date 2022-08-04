@@ -26,7 +26,6 @@
 	display: inline-block;
 	position: relative;
 }
-/* .passInput {} */
 .eyeImg{
 	cursor: pointer;
 	position: absolute;
@@ -38,7 +37,6 @@
 .eyeImg:hover {
 	opacity: 1;
 }
-
 
 .input, .inputErr, .inputDesable {
 	height: 35px;
@@ -128,3 +126,21 @@
 .submitBtn{
 	margin:20px auto;
   }
+
+  @media (max-width: 450px) {
+	.content {
+		padding: 10px;
+	}
+	.form {
+		padding: 0;
+	}
+	.form fieldset {
+		margin: 0;
+	}
+	.checkField {
+		padding: 0px 10px 10px 0px;
+	}
+	.submitBtn{
+		margin: 15px 10px 5px;
+	  }
+}

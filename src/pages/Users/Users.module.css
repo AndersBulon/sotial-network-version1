@@ -14,8 +14,6 @@
 	"items";
 }
 .title {
-	font-style: italic;
-	font-size: 30px;
 	grid-area: title;
 }
 .paginator {
@@ -25,9 +23,4 @@
 	grid-area: items;
 	display: grid;
 	grid-gap: 10px;
-}
-@media (max-width: 767px) {
-	.title {
-		font-size: 18px;
-	}
 }

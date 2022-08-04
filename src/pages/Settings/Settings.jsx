@@ -6,7 +6,7 @@ import style from "./Settings.module.css"
 function Settings() {
 	return (
 		<div className={`${style.content} designe`} >
-			<h3 className={style.title}>НАСТРОЙКИ / SETTINGS</h3>
+			<h3 className={style.title}>Settings</h3>
 			<div className={style.linkItem}>
 				<Link to="/settings/profile" className={`${style.link} link`}> Редактировать свой профиль </Link>
 			</div>

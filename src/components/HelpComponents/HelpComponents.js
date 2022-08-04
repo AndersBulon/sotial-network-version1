@@ -53,6 +53,8 @@ export const updateObjectInArrayForReducer = (state, action, array, objPropName,
 // * =====================Для Users ======================
 
 export const statusHelper = (user, styleStatus, styleItem, styleText) => {
+
+	
 	if (user.status) {
 		return (
 			<div className={styleStatus}>
@@ -60,7 +62,7 @@ export const statusHelper = (user, styleStatus, styleItem, styleText) => {
 					Статус :
 				</span>
 				<span className={styleText}>
-					{user.status.slice(0, 35)}
+					{user.status.slice(0, 20)}
 				</span>
 			</div>
 		)

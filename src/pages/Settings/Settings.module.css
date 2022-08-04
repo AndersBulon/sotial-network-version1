@@ -8,8 +8,7 @@
 	font-style: italic;
 }
 .title {
-	text-transform: uppercase;
-	font-style: italic;
+
 	margin-bottom: 30px;
 }
 .link, .active_link {
@@ -34,9 +33,6 @@
 	border-radius: 10px;
  }
  @media (max-width: 767px) {
-	.title {
-		font-size: 20px;
-	}
 	.link, .active_link {
 		font-weight: 400;
 		font-size: 16px;
