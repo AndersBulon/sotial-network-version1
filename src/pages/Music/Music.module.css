@@ -1,9 +1,5 @@
 .content {
 	text-align: center;
 	height: 100%;
-	font-size: 30px;
 	background-color: rgb(94, 22, 76);
-	color: #fff;
-	font-style: italic;
-	text-transform: uppercase;
 }

@@ -4,7 +4,7 @@ function Music() {
 
 	return (
 		<div className={`${style.content} designe`} >
-			<h3>Страничка Музыки</h3>
+			<h3>Music</h3>
 		</div>
 	)
 }
