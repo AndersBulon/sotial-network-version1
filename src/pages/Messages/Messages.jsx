@@ -29,7 +29,7 @@ const MessageForm = (props) => {
 					{ required: "Введите сообщение!!!" })}
 				onChange={(e)=> {setMessage(e.currentTarget.value)}}
 			/>
-			<input type="submit" value="Send Message" className={`${style.sendBtn} button`} />
+			<input type="submit" value="Send" className={`${style.sendBtn} button`} />
 		</form>
 	)
 }
