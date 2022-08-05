@@ -1,4 +1,107 @@
+.container {
+	display: grid;
+	min-height: 100%;
+	padding: 5px;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr minmax(50px, min-content);
+	grid-template-areas: 
+	"itemsContainer"
+	"formContainer";
+}
+.noMessages {
+	font-family: 'Kaushan Script', cursive;
+	font-size: 20px;
+	letter-spacing: 3px;
+	text-align: center;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: rgba(219, 233, 110, 0.55);
+}
+
+.itemsContainer {
+	padding: 10px 20px;
+	grid-area: itemsContainer;
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 1fr;
+	grid-auto-rows: min-content;
+}
+
+.formContainer {
+	grid-area: formContainer;
+}
+
+.message_item, .message_itemIn {
+	position: relative;
+	min-width: 90%;
+	text-align: center;
+	padding: 5px 10px;
+	display: grid;
+	grid-template-columns:1fr;
+	grid-template-rows: min-content min-content min-content;
+}
+
 .message_item {
-	background-color: #fff;
-	min-height: 32px;
+	justify-self: end;
+	border-radius: 10px 10px 0px 10px;
+	background-color: rgba(219, 233, 110, 0.55);
+	grid-template-areas: 
+	"Messtext"
+	"Messtime"
+	"from";
+}
+
+.message_itemIn {
+	justify-self: start;
+	border-radius: 0px 10px 10px 10px;
+	background-color: rgba(255, 255, 255, 0.55);
+	grid-template-areas: 
+	"from"
+	"Messtime"
+	"Messtext ";
+}
+.sendFrom {
+	font-size: 18px;
+	grid-area: from;
+	font-weight: 700;
+}
+.sendFrom span{
+	font-size: 16px;
+	font-weight: normal;
+}
+.messageText {
+	font-family: 'arial';
+	grid-area: Messtext;
+}
+.messageTime {
+	text-align: left;
+	grid-area: Messtime;
+	font-size: 12px;
+	font-weight: 700;
+}
+.message_itemIn::after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	top: 0;
+	left: -20px;
+	border-top: 20px solid rgba(255, 255, 255, 0.55);
+	border-left: 20px solid transparent;
+}
+.message_item::after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	bottom: 0;
+	right: -20px;
+	border-bottom: 20px solid rgba(219, 233, 110, 0.55);
+	border-right: 20px solid transparent;
+}
+.message_itemIn .sendFrom, .message_itemIn .messageTime {
+	justify-self: start;
+}
+.message_item .sendFrom, .message_item .messageTime {
+	justify-self: end;
 }

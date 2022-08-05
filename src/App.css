@@ -53,7 +53,7 @@ body._lock {
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 100vw;
+	width: 100%;
 	z-index: 10;
 }
 .header__container {
@@ -297,6 +297,9 @@ legend {
 	}
 }
 @media (max-width: 450px) {
+	.header {
+		width: 100vw;
+	}
 	.menu__burger {
 		width: 30px;
 		height: 22px;

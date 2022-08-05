@@ -82,3 +82,12 @@ export const statusHelper = (user, styleStatus, styleItem, styleText) => {
 }
 
 // * =====================Для Users ======================
+// * =====================Для MessagesItem ======================
+export const getDateAndTime = (timeCode) => {
+	let arr =[];
+	arr.push(new Date(parseInt(timeCode)).toLocaleTimeString().slice(0,-3))
+	arr.push(new Date(parseInt(timeCode)).toLocaleDateString())
+	return arr
+}
+
+// * =====================Для MessagesItem ======================

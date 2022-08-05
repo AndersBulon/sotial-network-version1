@@ -19,6 +19,7 @@ import { Preloader } from "./components/Preloader/Preloader.jsx";
 import ProfileSettingsContainer from "./components/ProfileSettings/ProfileSettingsContainer.jsx";
 import PaginatorSettingsContainer from "./components/Paginator/PaginatorSettings/PaginatorSettingsContainer.jsx";
 import { Layout } from "./components/Layout/Layout.jsx";
+// import { MessageForm } from "./pages/Messages/MessageForm/MessageForm.jsx";
 
 
 
@@ -41,6 +42,7 @@ class App extends Component {
 						<Route path="profile" element={<ProfileContainer />} />
 						<Route path="profile/:id" element={<ProfileContainer />} />
 						<Route path="messages" element={<MessagesContainer />} />
+						<Route path="messages/:id" element={<MessagesContainer />} />
 						<Route path="users" element={<UsersContainer />} />
 						<Route path="news" element={<News />} />
 						<Route path="news/:id" element={<NewsSport />} />

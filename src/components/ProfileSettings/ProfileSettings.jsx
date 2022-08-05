@@ -87,6 +87,7 @@ const SettingsForm = (props) => {
 		React.useEffect(() => {
 			setContact(props.element)
 		}, [props.element])
+		
 		const changeFunc = (e) => {
 			setContact(e.currentTarget.value)
 		};

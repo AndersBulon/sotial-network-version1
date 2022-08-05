@@ -14,8 +14,8 @@ let mapStateToProps = (state) => {
 }
 let mapDispatchToProps = (dispatch) => {
 	return {
-		sendMessage: (messageText) => {
-			dispatch(addMessage_AC(messageText));
+		sendMessage: (messageText, dialogId) => {
+			dispatch(addMessage_AC(messageText, dialogId));
 		},
 	}
 }

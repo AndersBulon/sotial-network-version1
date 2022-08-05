@@ -5,6 +5,7 @@
 }
 .header__container {
 	display: grid;
+	padding: 0px 15px;
 	grid-gap: 10px;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 70px;
@@ -151,15 +152,15 @@
 	}
 }
 @media (max-width: 450px) {
-
+.header__container, .header {
+		padding: 0 5px;
+	}
 	.title {
 		font-size: 24px;
 	}
 }
 @media (max-width: 370px) {
-	.header {
-		padding: 0 10px;
-	}
+	
 		.blokolor {
 		height: 40px;
 		width: 40px;
