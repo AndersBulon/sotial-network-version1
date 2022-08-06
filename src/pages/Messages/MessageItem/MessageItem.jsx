@@ -5,9 +5,20 @@ import style from "./MessageItem.module.css"
 
 
 const MessageItem = (props) => {
+
+	const messagesEndRef = React.useRef(null)
+
+	const scrollToBottom = () => {
+		if (messagesEndRef.current) {
+			messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+		}
+	}
 	const messages = props.messages.filter(function (e) {
 		return "" + e.dialogId === "" + props.dialogId;
 	});
+
+	React.useEffect(scrollToBottom, [messages]);
+
 	const author = props.dialogs.filter(function (e) {
 		return "" + e.Id === "" + props.dialogId;
 	});
@@ -18,12 +29,10 @@ const MessageItem = (props) => {
 				<span>Message from: </span>{message.typeMess === "in" ? author[0].dialogAuthor : "My"}
 			</div>
 			<div className={style.messageText}>{message.mesText}</div>
-			<div className={style.messageTime}>
-				<div className={style.messageTime}>{getDateAndTime(message.time)[1]}</div>
+			<div className={style.messageTimeDataContainer}>
+				<div className={style.messageData}>{getDateAndTime(message.time)[1]}</div>
 				<div className={style.messageTime}>{getDateAndTime(message.time)[0]}</div>
 			</div>
-
-
 		</div>);
 	return (
 		<div className={style.container}>
@@ -31,11 +40,12 @@ const MessageItem = (props) => {
 			{messages.length > 0 &&
 				<div className={style.itemsContainer}>
 					{messageItem}
+					<div ref={messagesEndRef} />
 				</div>}
-			{messages.length > 0 && 
-			<div className={style.formContainer}>
-				<MessageForm {...props}/>
-			</div>}
+
+			<div className={style.formContainer} >
+				<MessageForm {...props} />
+			</div>
 
 		</div>)
 }

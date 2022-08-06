@@ -7,8 +7,43 @@
 }
 
 .dialog_item {
-	text-align: center;
-	padding: 5px;
+	display: grid;
+	grid-gap: 20px;
+	grid-template-rows: 1fr;
+	grid-template-columns: max-content max-content;
+	grid-template-areas: "authorItem authorId";
+	padding: 5px 10px;
 	border-radius: 10px;
-	background-color: rgba(0, 0, 0, 0.2);
+	background-color: rgba(0, 0, 0, 0.4);
+	min-height: 50px;
+	justify-content: center;
+	align-items: center;
+}
+
+.dialog_item:hover .authorItem, .dialog_item:hover .authorId {
+	color: #d0ecb7;
+
+}
+.dialog_item:hover  {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.wrapper{
+	font-family: 'Kaushan Script', cursive;
+	
+}
+
+.authorItem, .authorId {
+	color: #fff;
+	font-size: 20px;
+	font-weight: 500;
+	letter-spacing: 3px;
+}
+
+.authorItem {
+	grid-area: authorItem;
+
+}
+.authorId {
+	grid-area: authorId;
 }

@@ -1,7 +1,7 @@
 .container {
 	display: grid;
 	min-height: 100%;
-	padding: 5px;
+	padding: 0px 5px;
 	grid-template-columns: 1fr;
 	grid-template-rows: 1fr minmax(50px, min-content);
 	grid-template-areas: 
@@ -44,7 +44,7 @@
 .message_item {
 	justify-self: end;
 	border-radius: 10px 10px 0px 10px;
-	background-color: rgba(219, 233, 110, 0.55);
+	background-color: rgba(219, 233, 110, 0.75);
 	grid-template-areas: 
 	"Messtext"
 	"Messtime"
@@ -54,7 +54,7 @@
 .message_itemIn {
 	justify-self: start;
 	border-radius: 0px 10px 10px 10px;
-	background-color: rgba(255, 255, 255, 0.55);
+	background-color: rgba(255, 255, 255, 0.75);
 	grid-template-areas: 
 	"from"
 	"Messtime"
@@ -73,7 +73,8 @@
 	font-family: 'arial';
 	grid-area: Messtext;
 }
-.messageTime {
+.messageTimeDataContainer {
+	padding: 0 10px;
 	text-align: left;
 	grid-area: Messtime;
 	font-size: 12px;
@@ -86,7 +87,7 @@
 	height: 0;
 	top: 0;
 	left: -20px;
-	border-top: 20px solid rgba(255, 255, 255, 0.55);
+	border-top: 20px solid rgba(255, 255, 255, 0.75);
 	border-left: 20px solid transparent;
 }
 .message_item::after {
@@ -96,12 +97,12 @@
 	height: 0;
 	bottom: 0;
 	right: -20px;
-	border-bottom: 20px solid rgba(219, 233, 110, 0.55);
+	border-bottom: 20px solid rgba(219, 233, 110, 0.75);
 	border-right: 20px solid transparent;
 }
-.message_itemIn .sendFrom, .message_itemIn .messageTime {
+.message_itemIn .sendFrom, .message_itemIn .messageTimeDataContainer {
 	justify-self: start;
 }
-.message_item .sendFrom, .message_item .messageTime {
+.message_item .sendFrom, .message_item .messageTimeDataContainer {
 	justify-self: end;
 }

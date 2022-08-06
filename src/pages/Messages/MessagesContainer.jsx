@@ -7,6 +7,7 @@ import Messages from "./Messages.jsx";
 
 
 let mapStateToProps = (state) => {
+
 	return {
 		messages: state.messagesPage.messages,
 		dialogs: state.messagesPage.dialogs,
