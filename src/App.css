@@ -64,15 +64,15 @@ body._lock {
 .mainContainer{
 	grid-area: mainContainer;
 	justify-self: center;
-	padding: 0 3px;
+	padding: 0;
 	width: 1300px;
 	display: grid;
 	grid-gap: 2px;
 	grid-template-rows: 235px 1fr;
-	grid-template-columns: 1fr 4fr;
+	grid-template-columns: 1fr;
 	grid-template-areas: 
-	"topimage topimage"
-	"nav outlet";
+	"topimage"
+	"outlet";
 }
 .navigator {
   grid-area: nav;
@@ -197,11 +197,10 @@ legend {
 	}
 }
 /**----------------MENU BURGER--------------- */
-.menu__body{
-	display: none;
-}
+
 .menu__list {
 	display: grid;
+	grid-auto-flow: column;
 	grid-gap: 5px;
 }
 .menu__list li {
@@ -220,8 +219,8 @@ legend {
 		z-index: 5;
 		display: block;
 		position: relative;
-		width: 45px;
-		height: 30px;
+		width: 40px;
+		height: 28px;
 		cursor: pointer;
 	}
 	.menu__burger::before,
@@ -285,7 +284,12 @@ legend {
 		background-color: #000;
 		z-index: 2;
 	}
-	
+
+	.menu__list {
+
+	grid-auto-flow: row;
+
+}
 	.menu__list li {
 		margin: 0px 0px  25px 0px;
 	}

@@ -39,8 +39,6 @@ let Header = (props) => {
 
 						</div>
 					</Link>
-
-
 					<h1 className={style.title}>Social NetworK</h1>
 				</div>
 				<div className={style.rightBlock}>
@@ -60,9 +58,6 @@ let Header = (props) => {
 					</div>
 					<nav className="menu__body">
 						<ul className="menu__list">
-							{props.isAuth ?
-								<li><NavLink onClick={linkClickChange} className={linkclass} to="/login">Logout({props.login})</NavLink></li>
-								: <li><NavLink onClick={linkClickChange} className={linkclass} to="/login">Login</NavLink></li>}
 							<li><NavLink onClick={linkClickChange} className={linkclass} to="/">Home</NavLink></li>
 							<li><NavLink onClick={linkClickChange} className={linkclass} to="/messages">Message</NavLink></li>
 							<li><NavLink onClick={linkClickChange} className={linkclass} to="/music">Music</NavLink></li>
@@ -70,6 +65,9 @@ let Header = (props) => {
 							<li><NavLink onClick={linkClickChange} className={linkclass} to="/profile">Profile</NavLink></li>
 							<li><NavLink onClick={linkClickChange} className={linkclass} to="/users">Users</NavLink></li>
 							<li><NavLink onClick={linkClickChange} className={linkclass} to="/settings">Settings</NavLink></li>
+							{props.isAuth ?
+								<li><NavLink onClick={linkClickChange} className={linkclass} to="/login">Logout({props.login})</NavLink></li>
+								: <li><NavLink onClick={linkClickChange} className={linkclass} to="/login">Login</NavLink></li>}
 						</ul>
 					</nav>
 				</div>

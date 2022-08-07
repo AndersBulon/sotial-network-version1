@@ -5,16 +5,16 @@
 }
 .header__container {
 	display: grid;
-	padding: 0px 15px;
 	grid-gap: 10px;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 70px;
 	grid-template-areas: 
-	"leftblock  rightBlock";
+	"leftblock menu";
 }
 /** ====================================================== */
 .menu {
-	display: none;
+	grid-area: menu;
+	align-self: center;
 }
 /** ====================================================== */
 .leftBlock {
@@ -86,10 +86,12 @@
  }
  /** ====================================================== */
 .rightBlock {
+
 	display: grid;
 	grid-area: rightBlock;
 	align-items: center;
 	white-space: nowrap;
+	display: none;
 }
 .login {
 	display: grid;
@@ -123,7 +125,7 @@
 	grid-area: link;
 	padding: 4px;
 	display: inline-block;
-	font-size: 30px;
+	font-size: 18px;
 }
 .desact_link {
 	color: #fff;

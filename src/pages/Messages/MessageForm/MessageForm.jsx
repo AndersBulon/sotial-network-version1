@@ -51,8 +51,8 @@ export const MessageForm = (props) => {
 				onFocus={textAreaAdjust}
 				onChange={changeTextAreaValue}
 			/>
-			<input id="send_message_btn" type="submit" value="Send"
-				className={`${style.sendBtn} button`} />
+			<button id="send_message_btn" type="submit" 
+				className={style.sendBtn} />
 		</form>
 	)
 }

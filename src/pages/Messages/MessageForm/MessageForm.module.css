@@ -1,13 +1,14 @@
 .messageForm {
 	position: relative;
-	padding: 5px;
+	padding: 2px 25px;
+	max-width: 1300px;
 	display: grid;
-	grid-column-gap: 10px;
-	align-items: end;
+	grid-column-gap: 5px;
 	align-items: end;
 	grid-template-rows: 1fr;
 	grid-template-columns: 1fr min-content;
 	grid-template-areas: "messageInput sendBtn";
+	background: url(../../../assets/images/fons/fon7.jpg) repeat;
 }
 
 .messageInput {
@@ -21,16 +22,33 @@
 	padding: 5px 10px;
 	align-items: end;
 	resize: none;
+	max-height: 150px;
+	overflow: auto;
 }
 .sendBtn {
 	grid-area: sendBtn;
+	border-radius: 50%;
+	background: url(../../../assets/images/messages/arr.png) no-repeat rgb(229, 169, 16);
+	background-size: 25px 25px;
+	background-position: 7px;
+	height: 38px;
+	align-self: end;
+	opacity: 0.6;
+	width: 38px;
 	pointer-events: none;
-	color: #bbb;
-	background: #fff;
 	padding: 5px 2px;
-	min-width: 70px;
 }
 .sendBtn._active {
-	color: #000;
+	cursor: pointer;
 	pointer-events: all;
+	background: url(../../../assets/images/messages/arr.png) no-repeat rgb(154, 229, 16);
+	background-size: 25px 25px;
+	background-position: 7px;
+	opacity: 1;
+
+}
+@media (max-width: 767px) {
+	.messageForm {
+		padding: 2px 5px;
+	}
 }

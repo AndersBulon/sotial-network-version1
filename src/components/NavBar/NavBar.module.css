@@ -1,15 +1,18 @@
 .nav {
+	position: relative;
+	z-index: 5;
 	display: grid;
 	border-radius: 5px;
-	padding: 10px;
+	padding: 10px ;
 	grid-gap: 10px;
-	background: rgb(8, 1, 1);
+	background: #000;
 	grid-auto-rows: 50px;
+	align-items:stretch;
+	justify-items: center;
+	display: none;
  }
  .item {
 	padding: 5px;
-	align-self: center;
-	justify-self: stretch;
  }
  .link, .active_link {
 	font-family: 'Kaushan Script';

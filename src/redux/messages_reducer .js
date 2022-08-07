@@ -16,7 +16,9 @@ let initialState = {
 		{ 'Id': 4, 'mesText': 'Сообщение 4', 'dialogId': 3, time: '1659708245158', typeMess: 'in' },
 		{ 'Id': 5, 'mesText': 'Сообщение 5', 'dialogId': 3, time: '1659708255158', typeMess: 'in' },
 		{ 'Id': 6, 'mesText': 'Сообщение 6', 'dialogId': 2, time: '1659708265158' , typeMess: 'out'},
-		{ 'Id': 7, 'mesText': 'Сообщение от Федора', 'dialogId': 6, time: '1659708274158', typeMess: 'in' },
+		{ 'Id': 7, 'mesText': 'Сообщение от Саши', 'dialogId': 44, time: '1659708284158', typeMess: 'in' },
+		{ 'Id': 8, 'mesText': 'Привет Санек', 'dialogId': 44, time: '1659708374158', typeMess: 'out' },
+		{ 'Id': 9, 'mesText': 'Дарова Андрей', 'dialogId': 44, time: '1659709274158', typeMess: 'in' },
 	],
 	dialogs: [
 		
